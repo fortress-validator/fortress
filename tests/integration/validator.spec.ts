@@ -1,11 +1,11 @@
 import { expect, test } from '@playwright/test';
 
-test.describe('Formulate', () => {
+test.describe('Fortress', () => {
   test('should have the title', async ({ page }) => {
     await page.goto('/');
 
     await expect(page)
-      .toHaveTitle(/Formulate/);
+      .toHaveTitle(/Fortress/);
   });
 
   test('should validate the form', async ({ page }) => {

@@ -9,7 +9,7 @@ const validator = new FormValidator();
     <v-container class="fill-height d-flex justify-center">
       <v-card :min-width="600">
         <v-card-title class="pa-5">
-          Formulate
+          Fortress
         </v-card-title>
         <v-card-text class="pa-5 pt-0">
           <v-form>
