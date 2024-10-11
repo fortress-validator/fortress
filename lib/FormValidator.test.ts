@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import plugin from '../plugin';
+import plugin from '../plugins/date';
 import FormValidator from './FormValidator';
 
 describe('FormValidator', () => {
@@ -54,32 +54,32 @@ describe('FormValidator', () => {
     expect(validator.validate('@')).toBe('The input field must only contain letters, numbers, dashes and underscores.');
   });
 
-  test('should validate with plugin', () => {
+  test('should validate with "date" plugin', () => {
     const validator = new FormValidator()
       .registerPlugin(plugin)
       .defineField('Input')
-      .apply('json');
+      .apply('date', { format: 'YYYY-MM-DD', strict: true });
 
     // Pass cases
     expect(validator.validate(undefined)).toBe(true);
-    expect(validator.validate('{"foo":"bar"}')).toBe(true);
+    expect(validator.validate('2024-02-29')).toBe(true);
 
     // Fail cases
-    expect(validator.validate('{"foo":"bar"')).toBe('The input field must be a valid JSON string.');
+    expect(validator.validate('2024-02-30')).toBe('The input field must be a valid date.');
   });
 
-  test('should validate with plugin and "required" rule', () => {
+  test('should validate with "date" plugin and "required" rule', () => {
     const validator = new FormValidator()
       .registerPlugin(plugin)
       .defineField('Input')
       .required()
-      .apply('json');
+      .apply('date', { format: 'YYYY-MM-DD', strict: true });
 
     // Pass cases
-    expect(validator.validate('{"foo":"bar"}')).toBe(true);
+    expect(validator.validate('2024-02-29')).toBe(true);
 
     // Fail cases
     expect(validator.validate(undefined)).toBe('The input field is required.');
-    expect(validator.validate('{"foo":"bar"')).toBe('The input field must be a valid JSON string.');
+    expect(validator.validate('2024-02-30')).toBe('The input field must be a valid date.');
   });
 });

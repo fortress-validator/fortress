@@ -30,6 +30,9 @@
     "vue-tsc": "^2.0.28",
     "vuetify": "^3.6.13"
   },
+  "peerDependencies": {
+    "dayjs": "^1.11.0"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [

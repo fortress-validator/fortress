@@ -16,7 +16,7 @@ import unique from './unique';
 import uppercase from './uppercase';
 import url from './url';
 
-const locales: Rules = {
+const rules: Rules = {
   alphaDash,
   alphaDashDot,
   between,
@@ -35,4 +35,4 @@ const locales: Rules = {
   url,
 };
 
-export default locales;
+export default rules;
