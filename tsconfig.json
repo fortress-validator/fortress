@@ -30,6 +30,6 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["src", "lib", "plugins"],
+  "include": ["src", "lib"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

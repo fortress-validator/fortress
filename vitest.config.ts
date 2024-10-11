@@ -6,7 +6,6 @@ export default defineConfig({
     environment: 'jsdom',
     include: [
       'lib/**/*.test.ts',
-      'plugins/**/*.test.ts',
     ],
   },
   resolve: {

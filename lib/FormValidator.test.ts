@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
-import plugin from '../plugins/date';
 import FormValidator from './FormValidator';
+import date from './plugins/date';
 
 describe('FormValidator', () => {
   test('should set the locale', () => {
@@ -56,9 +56,9 @@ describe('FormValidator', () => {
 
   test('should validate with "date" plugin', () => {
     const validator = new FormValidator()
-      .registerPlugin(plugin)
+      .registerPlugin(date)
       .defineField('Input')
-      .apply('date', { format: 'YYYY-MM-DD', strict: true });
+      .date('YYYY-MM-DD', true);
 
     // Pass cases
     expect(validator.validate(undefined)).toBe(true);
@@ -70,10 +70,10 @@ describe('FormValidator', () => {
 
   test('should validate with "date" plugin and "required" rule', () => {
     const validator = new FormValidator()
-      .registerPlugin(plugin)
+      .registerPlugin(date)
       .defineField('Input')
       .required()
-      .apply('date', { format: 'YYYY-MM-DD', strict: true });
+      .date('YYYY-MM-DD', true);
 
     // Pass cases
     expect(validator.validate('2024-02-29')).toBe(true);

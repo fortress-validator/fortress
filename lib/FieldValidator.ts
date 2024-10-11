@@ -109,6 +109,10 @@ class FieldValidator {
     return this.apply(this.between.name, { min, max });
   }
 
+  public date(format: string = '', strict: boolean = false): this {
+    return this.apply(this.date.name, { format, strict });
+  }
+
   public email(): this {
     return this.apply(this.email.name);
   }
