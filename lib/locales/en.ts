@@ -24,6 +24,7 @@ const en: Messages = {
       : `The ${field} field must end with one of the following: ${values.join(', ')}.`;
   },
   in: (field, { values }: InRuleArguments) => `The ${field} field must be one of the following: ${values.join(', ')}.`,
+  json: (field) => `The ${field} field must be a valid JSON string.`,
   lowercase: (field) => `The ${field} field must be lowercase.`,
   max: (field, { max }: MaxRuleArguments) => ({
     array: `The ${field} field must not be greater than ${formatNumber(max)} items.`,

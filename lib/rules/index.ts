@@ -5,6 +5,7 @@ import between from './between';
 import email from './email';
 import endsWith from './endsWith';
 import _in from './in';
+import json from './json';
 import lowercase from './lowercase';
 import max from './max';
 import min from './min';
@@ -22,6 +23,7 @@ const locales: Rules = {
   email,
   endsWith,
   in: _in,
+  json,
   lowercase,
   max,
   min,

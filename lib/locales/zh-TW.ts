@@ -24,6 +24,7 @@ const zhTW: Messages = {
       : `此欄位必須以以下之一結尾：${values.join(', ')}`;
   },
   in: (_, { values }: InRuleArguments) => `此欄位必須是以下之一：${values.join(', ')}`,
+  json: () => '此欄位必須是有效的 JSON 字串',
   lowercase: () => '此欄位必須是小寫',
   max: (_, { max }: MaxRuleArguments) => ({
     array: `此欄位不能大於${formatNumber(max)}個項目`,

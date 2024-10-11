@@ -108,6 +108,13 @@ describe('FieldValidator', () => {
       expect(validator.validate('_')).toBe('The input field must be one of the following: foo, bar.');
     });
 
+    test('with "json" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .json();
+
+      expect(validator.validate('_')).toBe('The input field must be a valid JSON string.');
+    });
+
     test('with "lowercase" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .lowercase();

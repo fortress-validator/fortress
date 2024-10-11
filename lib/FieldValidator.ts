@@ -121,6 +121,10 @@ class FieldValidator {
     return this.apply(this.in.name, { values });
   }
 
+  public json(): this {
+    return this.apply(this.json.name);
+  }
+
   public lowercase(): this {
     return this.apply(this.lowercase.name);
   }
