@@ -13,37 +13,54 @@ const en: Messages = {
   alphaDash: (field) => `The ${field} field must only contain letters, numbers, dashes and underscores.`,
   alphaDashDot: (field) => `The ${field} field must only contain letters, numbers, dashes, underscores and dots.`,
   alphaNum: (field) => `The ${field} field must only contain letters and numbers.`,
-  between: (field, { min, max }: BetweenRuleArguments) => ({
-    array: `The ${field} field must be between ${formatNumber(min)} and ${formatNumber(max)} items.`,
-    file: `The ${field} field must be between ${formatNumber(min)} and ${formatNumber(max)} kilobytes.`,
-    number: `The ${field} field must be between ${formatNumber(min)} and ${formatNumber(max)}.`,
-    string: `The ${field} field must be between ${formatNumber(min)} and ${formatNumber(max)} characters.`,
-  }),
+  between: (field, args) => {
+    const { min, max } = args as BetweenRuleArguments;
+    return {
+      array: `The ${field} field must be between ${formatNumber(min)} and ${formatNumber(max)} items.`,
+      file: `The ${field} field must be between ${formatNumber(min)} and ${formatNumber(max)} kilobytes.`,
+      number: `The ${field} field must be between ${formatNumber(min)} and ${formatNumber(max)}.`,
+      string: `The ${field} field must be between ${formatNumber(min)} and ${formatNumber(max)} characters.`,
+    };
+  },
   email: (field) => `The ${field} field must be a valid email address.`,
-  endsWith: (field, { values }: EndsWithRuleArguments) => {
+  endsWith: (field, args) => {
+    const { values } = args as EndsWithRuleArguments;
     return typeof values === 'string'
       ? `The ${field} field must end with ${values}.`
       : `The ${field} field must end with one of the following: ${values.join(', ')}.`;
   },
-  in: (field, { values }: InRuleArguments) => `The ${field} field must be one of the following: ${values.join(', ')}.`,
+  in: (field, args) => {
+    const { values } = args as InRuleArguments;
+    return `The ${field} field must be one of the following: ${values.join(', ')}.`;
+  },
   json: (field) => `The ${field} field must be a valid JSON string.`,
   lowercase: (field) => `The ${field} field must be lowercase.`,
-  max: (field, { max }: MaxRuleArguments) => ({
-    array: `The ${field} field must not be greater than ${formatNumber(max)} items.`,
-    file: `The ${field} field must not be greater than ${formatNumber(max)} kilobytes.`,
-    number: `The ${field} field must not be greater than ${formatNumber(max)}.`,
-    string: `The ${field} field must not be greater than ${formatNumber(max)} characters.`,
-  }),
-  min: (field, { min }: MinRuleArguments) => ({
-    array: `The ${field} field must be at least ${formatNumber(min)} items.`,
-    file: `The ${field} field must be at least ${formatNumber(min)} kilobytes.`,
-    number: `The ${field} field must be at least ${formatNumber(min)}.`,
-    string: `The ${field} field must be at least ${formatNumber(min)} characters.`,
-  }),
-  notIn: (field, { values }: NotInRuleArguments) => `The ${field} field must not be one of the following: ${values.join(', ')}.`,
+  max: (field, args) => {
+    const { max } = args as MaxRuleArguments;
+    return {
+      array: `The ${field} field must not be greater than ${formatNumber(max)} items.`,
+      file: `The ${field} field must not be greater than ${formatNumber(max)} kilobytes.`,
+      number: `The ${field} field must not be greater than ${formatNumber(max)}.`,
+      string: `The ${field} field must not be greater than ${formatNumber(max)} characters.`,
+    };
+  },
+  min: (field, args) => {
+    const { min } = args as MinRuleArguments;
+    return {
+      array: `The ${field} field must be at least ${formatNumber(min)} items.`,
+      file: `The ${field} field must be at least ${formatNumber(min)} kilobytes.`,
+      number: `The ${field} field must be at least ${formatNumber(min)}.`,
+      string: `The ${field} field must be at least ${formatNumber(min)} characters.`,
+    };
+  },
+  notIn: (field, args) => {
+    const { values } = args as NotInRuleArguments;
+    return `The ${field} field must not be one of the following: ${values.join(', ')}.`;
+  },
   regex: (field) => `The ${field} field must match the required format.`,
   required: (field) => `The ${field} field is required.`,
-  startsWith: (field, { values }: StartsWitchRuleArguments) => {
+  startsWith: (field, args) => {
+    const { values } = args as StartsWitchRuleArguments;
     return typeof values === 'string'
       ? `The ${field} field must start with ${values}.`
       : `The ${field} field must start with one of the following: ${values.join(', ')}.`;

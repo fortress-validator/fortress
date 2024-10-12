@@ -1,5 +1,3 @@
-interface RuleArguments {
-  [key: string]: unknown;
-}
+interface RuleArguments extends Record<string, unknown> {}
 
 export default RuleArguments;

@@ -1,5 +1,5 @@
 import { isEmpty } from '@memochou1993/fortress-utils';
-import { RuleArguments } from '~/types';
+import { Rule, RuleArguments } from '~/types';
 
 export interface UniqueRuleArguments extends RuleArguments {
   values: unknown[];
@@ -12,4 +12,4 @@ const unique = ({ values, ignored = [] }: UniqueRuleArguments) => (input: unknow
   return !values.some((value) => value === input);
 };
 
-export default unique;
+export default unique as Rule;

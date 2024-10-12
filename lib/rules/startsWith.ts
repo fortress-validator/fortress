@@ -1,5 +1,5 @@
 import { isEmpty } from '@memochou1993/fortress-utils';
-import { RuleArguments } from '~/types';
+import { Rule, RuleArguments } from '~/types';
 
 export interface StartsWitchRuleArguments extends RuleArguments {
   values: string[] | string;
@@ -11,4 +11,4 @@ const startsWith = ({ values }: StartsWitchRuleArguments) => (input: unknown) =>
   return values.some((value) => String(input).startsWith(value));
 };
 
-export default startsWith;
+export default startsWith as Rule;

@@ -1,5 +1,5 @@
 import { isEmpty } from '@memochou1993/fortress-utils';
-import { RuleArguments } from '~/types';
+import { Rule, RuleArguments } from '~/types';
 
 export interface MaxRuleArguments extends RuleArguments {
   max: number;
@@ -19,4 +19,4 @@ const min = ({ max }: MaxRuleArguments) => (input: unknown) => {
   return false;
 };
 
-export default min;
+export default min as Rule;

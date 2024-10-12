@@ -1,7 +1,7 @@
 import Rule from './Rule';
 
 interface Rules {
-  [key: string]: Rule<unknown>;
+  [key: string]: Rule;
 }
 
 export default Rules;

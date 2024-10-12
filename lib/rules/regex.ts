@@ -1,5 +1,5 @@
 import { isEmpty } from '@memochou1993/fortress-utils';
-import { RuleArguments } from '~/types';
+import { Rule, RuleArguments } from '~/types';
 
 export interface RegexRuleArguments extends RuleArguments {
   expression: RegExp;
@@ -13,4 +13,4 @@ const regex = ({ expression }: RegexRuleArguments) => (input: unknown) => {
   return expression.test(String(input));
 };
 
-export default regex;
+export default regex as Rule;

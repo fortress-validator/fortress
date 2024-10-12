@@ -1,5 +1,5 @@
 import { isEmpty } from '@memochou1993/fortress-utils';
-import { RuleArguments } from '~/types';
+import { Rule, RuleArguments } from '~/types';
 
 export interface EndsWithRuleArguments extends RuleArguments {
   values: string[] | string;
@@ -11,4 +11,4 @@ const endsWith = ({ values }: EndsWithRuleArguments) => (input: unknown) => {
   return values.some((value) => String(input).endsWith(value));
 };
 
-export default endsWith;
+export default endsWith as Rule;
