@@ -12,6 +12,22 @@ const defaultParams = {
 };
 
 describe('FieldValidator', () => {
+  describe('should throw', () => {
+    test('an error for a non-existent rule', () => {
+      const validator = new FieldValidator({
+        name: 'Input',
+        locale: 'zh-TW',
+        fallbackLocale: 'en',
+        locales: defaultLocales,
+        rules: defaultRules,
+      })
+        .apply('date');
+
+      expect(() => validator.getRule('date')).toThrowError('The "date" rule does not exist.');
+      expect(() => validator.validate('foo')).toThrowError('The "date" rule does not exist.');
+    });
+  });
+
   describe('should return', () => {
     test('the message in the specified locale', () => {
       const validator = new FieldValidator({
