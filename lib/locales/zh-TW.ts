@@ -1,3 +1,4 @@
+import { formatNumber } from '@memochou1993/fortress-utils';
 import { BetweenRuleArguments } from '~/rules/between';
 import { EndsWithRuleArguments } from '~/rules/endsWith';
 import { InRuleArguments } from '~/rules/in';
@@ -6,7 +7,6 @@ import { MinRuleArguments } from '~/rules/min';
 import { NotInRuleArguments } from '~/rules/notIn';
 import { StartsWitchRuleArguments } from '~/rules/startsWith';
 import { Messages } from '~/types';
-import { formatNumber } from '~/utils';
 
 const zhTW: Messages = {
   alpha: () => '此欄位只能包含字母',

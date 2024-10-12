@@ -1,4 +1,4 @@
-import { isEmpty } from '~/utils';
+import { isEmpty } from '@memochou1993/fortress-utils';
 
 const json = () => (input: unknown) => {
   if (isEmpty(input)) return false;

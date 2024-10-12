@@ -1,5 +1,5 @@
+import { isEmpty } from '@memochou1993/fortress-utils';
 import { RuleArguments } from '~/types';
-import { isEmpty } from '../utils';
 import max from './max';
 import min from './min';
 

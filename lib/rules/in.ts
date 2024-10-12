@@ -1,5 +1,5 @@
+import { isEmpty } from '@memochou1993/fortress-utils';
 import { RuleArguments } from '~/types';
-import { isEmpty } from '~/utils';
 
 export interface InRuleArguments extends RuleArguments {
   values: unknown[];

@@ -1,5 +1,5 @@
+import { formatMessage, isEmpty } from '@memochou1993/fortress-utils';
 import { Checker, Conditions, FieldValidatorArguments, Locales, Message, Messages, Rule, RuleArguments, Rules } from './types';
-import { formatText, isEmpty } from './utils';
 
 class FieldValidator {
   private name: string;
@@ -65,9 +65,9 @@ class FieldValidator {
         if (!(inputType in message)) {
           throw new Error(`The message for the "${ruleName}" rule of the "${inputType}" type is missing.`);
         }
-        return formatText(message[inputType]);
+        return formatMessage(message[inputType]);
       }
-      return formatText(message);
+      return formatMessage(message);
     };
   }
 
