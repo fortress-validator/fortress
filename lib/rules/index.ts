@@ -10,6 +10,7 @@ import lowercase from './lowercase';
 import max from './max';
 import min from './min';
 import notIn from './notIn';
+import regex from './regex';
 import required from './required';
 import startsWith from './startsWith';
 import unique from './unique';
@@ -28,6 +29,7 @@ const rules: Rules = {
   max,
   min,
   notIn,
+  regex,
   required,
   startsWith,
   unique,

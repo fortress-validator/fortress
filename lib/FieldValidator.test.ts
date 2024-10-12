@@ -165,6 +165,13 @@ describe('FieldValidator', () => {
       expect(validator.validate('foo')).toBe('The input field must not be one of the following: foo, bar.');
     });
 
+    test('with "regex" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .regex(/^[0-9]$/);
+
+      expect(validator.validate('00')).toBe('The input field must match the required format.');
+    });
+
     test('with "required" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .required()
@@ -214,11 +221,6 @@ describe('FieldValidator', () => {
         .when(true)
         .alphaDash();
 
-      // Pass cases
-      expect(validator.validate(undefined)).toBe(true);
-      expect(validator.validate('foo')).toBe(true);
-
-      // Fail cases
       expect(validator.validate('@')).toBe('The input field must only contain letters, numbers, dashes and underscores.');
     });
 

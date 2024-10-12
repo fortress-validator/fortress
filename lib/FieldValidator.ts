@@ -145,6 +145,10 @@ class FieldValidator {
     return this.apply(this.notIn.name, { values });
   }
 
+  public regex(expression: RegExp): this {
+    return this.apply(this.regex.name, { expression });
+  }
+
   public required(): this {
     return this.apply(this.required.name);
   }

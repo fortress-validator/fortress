@@ -39,6 +39,7 @@ const en: Messages = {
     string: `The ${field} field must be at least ${formatNumber(min)} characters.`,
   }),
   notIn: (field, { values }: NotInRuleArguments) => `The ${field} field must not be one of the following: ${values.join(', ')}.`,
+  regex: (field) => `The ${field} field must match the required format.`,
   required: (field) => `The ${field} field is required.`,
   startsWith: (field, { values }: StartsWitchRuleArguments) => {
     return typeof values === 'string'

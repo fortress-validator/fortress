@@ -39,6 +39,7 @@ const zhTW: Messages = {
     string: `此欄位不能小於${formatNumber(min)}個字元`,
   }),
   notIn: (_, { values }: NotInRuleArguments) => `此欄位不能是以下之一：${values.join(', ')}`,
+  regex: () => '此欄位必須符合所需的格式',
   required: () => '此欄位為必填',
   startsWith: (_, { values }: StartsWitchRuleArguments) => {
     return typeof values === 'string'
