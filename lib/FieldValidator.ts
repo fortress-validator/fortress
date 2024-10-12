@@ -97,12 +97,20 @@ class FieldValidator {
     return this.pushChecker(ruleName, args);
   }
 
+  public alpha(): this {
+    return this.apply(this.alpha.name);
+  }
+
   public alphaDash(): this {
     return this.apply(this.alphaDash.name);
   }
 
   public alphaDashDot(): this {
     return this.apply(this.alphaDashDot.name);
+  }
+
+  public alphaNum(): this {
+    return this.apply(this.alphaNum.name);
   }
 
   public between(min: number, max: number): this {

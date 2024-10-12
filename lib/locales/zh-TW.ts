@@ -9,8 +9,10 @@ import { Messages } from '~/types';
 import { formatNumber } from '~/utils';
 
 const zhTW: Messages = {
+  alpha: () => '此欄位只能包含字母',
   alphaDash: () => '此欄位只能包含字母、數字、連接號和底線',
   alphaDashDot: () => '此欄位只能包含字母、數字、連接號、底線和點',
+  alphaNum: () => '此欄位只能包含字母和數字',
   between: (_, { min, max }: BetweenRuleArguments) => ({
     array: `此欄位必須介於${formatNumber(min)}到${formatNumber(max)}個項目之間`,
     file: `此欄位必須介於${formatNumber(min)}到${formatNumber(max)}KB 之間`,

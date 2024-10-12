@@ -67,6 +67,13 @@ describe('FieldValidator', () => {
   });
 
   describe('should validate', () => {
+    test('with "alpha" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .alpha();
+
+      expect(validator.validate('@')).toBe('The input field must only contain letters.');
+    });
+
     test('with "alphaDash" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .alphaDash();
@@ -79,6 +86,13 @@ describe('FieldValidator', () => {
         .alphaDashDot();
 
       expect(validator.validate('@')).toBe('The input field must only contain letters, numbers, dashes, underscores and dots.');
+    });
+
+    test('with "alphaNum" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .alphaNum();
+
+      expect(validator.validate('@')).toBe('The input field must only contain letters and numbers.');
     });
 
     test('with "between" rule', () => {

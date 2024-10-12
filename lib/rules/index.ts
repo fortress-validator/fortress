@@ -1,6 +1,8 @@
 import { Rules } from '~/types';
+import alpha from './alpha';
 import alphaDash from './alphaDash';
 import alphaDashDot from './alphaDashDot';
+import alphaNum from './alphaNum';
 import between from './between';
 import email from './email';
 import endsWith from './endsWith';
@@ -18,8 +20,10 @@ import uppercase from './uppercase';
 import url from './url';
 
 const rules: Rules = {
+  alpha,
   alphaDash,
   alphaDashDot,
+  alphaNum,
   between,
   email,
   endsWith,

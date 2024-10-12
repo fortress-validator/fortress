@@ -20,7 +20,7 @@ describe('Rule "regex"', () => {
     test('should fail with invalid input', () => {
       // @ts-expect-error: Testing invalid input
       const validate = regex({ expression: 'foo' as unknown });
-  
+
       expect(() => validate('foo')).toThrowError('The expression provided is not a valid RegExp.');
     });
   });

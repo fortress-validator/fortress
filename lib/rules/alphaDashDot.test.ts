@@ -6,6 +6,7 @@ describe('Rule "alphaDashDot"', () => {
 
   test('should pass with valid input', () => {
     expect(validate('foo')).toBe(true);
+    expect(validate('0')).toBe(true);
     expect(validate('-')).toBe(true);
     expect(validate('.')).toBe(true);
   });

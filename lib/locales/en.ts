@@ -9,8 +9,10 @@ import { Messages } from '~/types';
 import { formatNumber } from '~/utils';
 
 const en: Messages = {
+  alpha: (field) => `The ${field} field must only contain letters.`,
   alphaDash: (field) => `The ${field} field must only contain letters, numbers, dashes and underscores.`,
   alphaDashDot: (field) => `The ${field} field must only contain letters, numbers, dashes, underscores and dots.`,
+  alphaNum: (field) => `The ${field} field must only contain letters and numbers.`,
   between: (field, { min, max }: BetweenRuleArguments) => ({
     array: `The ${field} field must be between ${formatNumber(min)} and ${formatNumber(max)} items.`,
     file: `The ${field} field must be between ${formatNumber(min)} and ${formatNumber(max)} kilobytes.`,
