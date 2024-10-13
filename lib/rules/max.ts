@@ -15,7 +15,7 @@ const min = ({ max }: MaxRuleArguments) => (input: unknown) => {
   }
   if (input instanceof File) {
     return input.size <= max * 1024;
-  } 
+  }
   return false;
 };
 

@@ -7,7 +7,7 @@ export interface NotInRuleArguments extends RuleArguments {
 
 const notIn = ({ values }: NotInRuleArguments) => (input: unknown) => {
   if (isEmpty(input)) return false;
-  return !values.some((value) => value === input);
+  return !values.some(value => value === input);
 };
 
 export default notIn as Rule;

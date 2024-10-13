@@ -36,7 +36,7 @@ const zhTW: Messages = {
   json: () => '此欄位必須是有效的 JSON 字串',
   lowercase: () => '此欄位必須是小寫',
   max: (_, args) => {
-    const { max } = args as  MaxRuleArguments;
+    const { max } = args as MaxRuleArguments;
     return {
       array: `此欄位不能大於${formatNumber(max)}個項目`,
       file: `此欄位不能大於${formatNumber(max)}KB`,

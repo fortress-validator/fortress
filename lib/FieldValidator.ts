@@ -46,7 +46,7 @@ class FieldValidator {
   }
 
   public getMessage(ruleName: string): Message {
-    return this.messages[ruleName] || this.fallbackMessages[ruleName] || ((field) => `The ${field} field is invalid.`);
+    return this.messages[ruleName] || this.fallbackMessages[ruleName] || (field => `The ${field} field is invalid.`);
   }
 
   public getRule(name: string): Rule {
@@ -62,7 +62,7 @@ class FieldValidator {
       if (ruleName !== this.required.name && isEmpty(input)) return true;
       if (this.getRule(ruleName)(args)(input)) return true;
       if (typeof message === 'object') {
-        const inputType =  Object.prototype.toString.call(input).toLowerCase().slice(8, -1);
+        const inputType = Object.prototype.toString.call(input).toLowerCase().slice(8, -1);
         if (!(inputType in message)) {
           throw new Error(`The message for the "${ruleName}" rule of the "${inputType}" type is missing.`);
         }

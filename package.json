@@ -15,6 +15,7 @@
   "devDependencies": {
     "@eslint/js": "^9.7.0",
     "@playwright/test": "^1.47.2",
+    "@stylistic/eslint-plugin": "^2.9.0",
     "@types/eslint__js": "^8.42.3",
     "@types/node": "^20.14.12",
     "@vitejs/plugin-vue": "^4.6.2",
