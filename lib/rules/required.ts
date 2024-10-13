@@ -1,5 +1,5 @@
-import { Rule } from '@memochou1993/fortress-types';
-import { isEmpty } from '@memochou1993/fortress-utils';
+import { Rule } from '@fortress-validator/types';
+import { isEmpty } from '@fortress-validator/utils';
 
 const required: Rule = () => (input: unknown) => {
   return !isEmpty(input);

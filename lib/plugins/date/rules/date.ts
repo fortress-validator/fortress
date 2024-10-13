@@ -1,5 +1,5 @@
-import { RuleArguments } from '@memochou1993/fortress-types';
-import { isEmpty } from '@memochou1993/fortress-utils';
+import { RuleArguments } from '@fortress-validator/types';
+import { isEmpty } from '@fortress-validator/utils';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 

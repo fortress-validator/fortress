@@ -1,4 +1,4 @@
-import { Locales, Plugin, Rules } from '@memochou1993/fortress-types';
+import { Locales, Plugin, Rules } from '@fortress-validator/types';
 import FieldValidator from './FieldValidator';
 import defaultLocales from './locales';
 import defaultRules from './rules';

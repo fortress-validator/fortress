@@ -1,5 +1,5 @@
-import { Rule, RuleArguments } from '@memochou1993/fortress-types';
-import { isEmpty } from '@memochou1993/fortress-utils';
+import { Rule, RuleArguments } from '@fortress-validator/types';
+import { isEmpty } from '@fortress-validator/utils';
 
 export interface StartsWitchRuleArguments extends RuleArguments {
   values: string[] | string;

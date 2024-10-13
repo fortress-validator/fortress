@@ -1,4 +1,4 @@
-import { Messages } from '@memochou1993/fortress-types';
+import { Messages } from '@fortress-validator/types';
 
 const en: Messages = {
   date: (field) => `The ${field} field must be a valid date.`,

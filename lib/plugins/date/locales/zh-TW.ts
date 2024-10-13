@@ -1,4 +1,4 @@
-import { Messages } from '@memochou1993/fortress-types';
+import { Messages } from '@fortress-validator/types';
 
 const zhTW: Messages = {
   date: () => '此欄位必須是有效的日期',

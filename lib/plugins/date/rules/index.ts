@@ -1,4 +1,4 @@
-import { Rules } from '@memochou1993/fortress-types';
+import { Rules } from '@fortress-validator/types';
 import date from './date';
 
 const rules: Rules = {

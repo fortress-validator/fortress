@@ -1,5 +1,5 @@
-import { Messages } from '@memochou1993/fortress-types';
-import { formatNumber } from '@memochou1993/fortress-utils';
+import { Messages } from '@fortress-validator/types';
+import { formatNumber } from '@fortress-validator/utils';
 import { BetweenRuleArguments } from '~/rules/between';
 import { EndsWithRuleArguments } from '~/rules/endsWith';
 import { InRuleArguments } from '~/rules/in';
