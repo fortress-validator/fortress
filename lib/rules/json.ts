@@ -1,5 +1,5 @@
+import { Rule } from '@memochou1993/fortress-types';
 import { isEmpty } from '@memochou1993/fortress-utils';
-import { Rule } from '~/types';
 
 const json: Rule = () => (input: unknown) => {
   if (isEmpty(input)) return false;

@@ -1,4 +1,4 @@
-import { Rules } from '~/types';
+import { Rules } from '@memochou1993/fortress-types';
 import alpha from './alpha';
 import alphaDash from './alphaDash';
 import alphaDashDot from './alphaDashDot';

@@ -1,5 +1,6 @@
+import { Locales, Message, Messages, Rule, RuleArguments, Rules } from '@memochou1993/fortress-types';
 import { formatMessage, isEmpty } from '@memochou1993/fortress-utils';
-import { Checker, Conditions, FieldValidatorArguments, Locales, Message, Messages, Rule, RuleArguments, Rules } from './types';
+import { Checker, Conditions, FieldValidatorArguments } from './types';
 
 class FieldValidator {
   private name: string;

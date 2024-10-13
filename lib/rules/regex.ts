@@ -1,5 +1,5 @@
+import { Rule, RuleArguments } from '@memochou1993/fortress-types';
 import { isEmpty } from '@memochou1993/fortress-utils';
-import { Rule, RuleArguments } from '~/types';
 
 export interface RegexRuleArguments extends RuleArguments {
   expression: RegExp;

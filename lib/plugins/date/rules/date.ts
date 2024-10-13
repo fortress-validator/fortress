@@ -1,7 +1,7 @@
+import { RuleArguments } from '@memochou1993/fortress-types';
 import { isEmpty } from '@memochou1993/fortress-utils';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
-import { RuleArguments } from '~/types';
 
 dayjs.extend(customParseFormat);
 
