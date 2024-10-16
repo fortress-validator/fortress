@@ -162,6 +162,10 @@ class FieldValidator {
     return this.apply(this.required.name);
   }
 
+  public size(size: number): this {
+    return this.apply(this.size.name, { size });
+  }
+
   public startsWith(values: string[] | string): this {
     return this.apply(this.startsWith.name, { values });
   }

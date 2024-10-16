@@ -6,6 +6,7 @@ import { InRuleArguments } from '~/rules/in';
 import { MaxRuleArguments } from '~/rules/max';
 import { MinRuleArguments } from '~/rules/min';
 import { NotInRuleArguments } from '~/rules/notIn';
+import { SizeRuleArguments } from '~/rules/size';
 import { StartsWitchRuleArguments } from '~/rules/startsWith';
 
 const zhTW: Messages = {
@@ -59,6 +60,15 @@ const zhTW: Messages = {
   },
   regex: () => '此欄位必須符合所需的格式',
   required: () => '此欄位為必填',
+  size: (_, args) => {
+    const { size } = args as SizeRuleArguments;
+    return {
+      array: `此欄位必須包含${formatNumber(size)}個項目`,
+      file: `此欄位必須是${formatNumber(size)}KB`,
+      number: `此欄位必須是${formatNumber(size)}`,
+      string: `此欄位必須是${formatNumber(size)}個字元`,
+    };
+  },
   startsWith: (_, args) => {
     const { values } = args as StartsWitchRuleArguments;
     return typeof values === 'string'

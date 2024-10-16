@@ -6,6 +6,7 @@ import { InRuleArguments } from '~/rules/in';
 import { MaxRuleArguments } from '~/rules/max';
 import { MinRuleArguments } from '~/rules/min';
 import { NotInRuleArguments } from '~/rules/notIn';
+import { SizeRuleArguments } from '~/rules/size';
 import { StartsWitchRuleArguments } from '~/rules/startsWith';
 
 const en: Messages = {
@@ -59,6 +60,15 @@ const en: Messages = {
   },
   regex: field => `The ${field} field must match the required format.`,
   required: field => `The ${field} field is required.`,
+  size: (field, args) => {
+    const { size } = args as SizeRuleArguments;
+    return {
+      array: `The ${field} field must contain ${formatNumber(size)} items.`,
+      file: `The ${field} field must be ${formatNumber(size)} kilobytes.`,
+      number: `The ${field} field must be ${formatNumber(size)}.`,
+      string: `The ${field} field must be ${formatNumber(size)} characters.`,
+    };
+  },
   startsWith: (field, args) => {
     const { values } = args as StartsWitchRuleArguments;
     return typeof values === 'string'

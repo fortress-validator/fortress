@@ -14,6 +14,7 @@ import min from './min';
 import notIn from './notIn';
 import regex from './regex';
 import required from './required';
+import size from './size';
 import startsWith from './startsWith';
 import unique from './unique';
 import uppercase from './uppercase';
@@ -35,6 +36,7 @@ const rules: Rules = {
   notIn: notIn as Rule,
   regex: regex as Rule,
   required,
+  size: size as Rule,
   startsWith: startsWith as Rule,
   unique: unique as Rule,
   uppercase,

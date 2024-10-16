@@ -195,6 +195,16 @@ describe('FieldValidator', () => {
       expect(validator.validate('@')).toBe('The input field must only contain letters, numbers, dashes and underscores.');
     });
 
+    test('with "size" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .size(10);
+
+      expect(validator.validate(1)).toBe('The input field must be 10.');
+      expect(validator.validate('_'.repeat(1))).toBe('The input field must be 10 characters.');
+      expect(validator.validate(Array.from('_'.repeat(1)))).toBe('The input field must contain 10 items.');
+      expect(validator.validate(new File(['_'.repeat(1 * 1024)], ''))).toBe('The input field must be 10 kilobytes.');
+    });
+
     test('with "startsWith" rule set to a string', () => {
       const validator = new FieldValidator(defaultParams)
         .startsWith('foo');
