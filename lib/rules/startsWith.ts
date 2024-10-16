@@ -1,4 +1,4 @@
-import { Rule, RuleArguments } from '@fortress-validator/types';
+import { RuleArguments } from '@fortress-validator/types';
 import { isEmpty } from '@fortress-validator/utils';
 
 export interface StartsWitchRuleArguments extends RuleArguments {
@@ -11,4 +11,4 @@ const startsWith = ({ values }: StartsWitchRuleArguments) => (input: unknown) =>
   return values.some(value => String(input).startsWith(value));
 };
 
-export default startsWith as Rule;
+export default startsWith;

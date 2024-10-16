@@ -1,4 +1,4 @@
-import { Rule, RuleArguments } from '@fortress-validator/types';
+import { RuleArguments } from '@fortress-validator/types';
 import { isEmpty } from '@fortress-validator/utils';
 
 export interface InRuleArguments extends RuleArguments {
@@ -10,4 +10,4 @@ const _in = ({ values }: InRuleArguments) => (input: unknown) => {
   return values.some(value => value === input);
 };
 
-export default _in as Rule;
+export default _in;

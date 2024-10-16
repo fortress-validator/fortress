@@ -1,4 +1,4 @@
-import { Rule, RuleArguments } from '@fortress-validator/types';
+import { RuleArguments } from '@fortress-validator/types';
 import { isEmpty } from '@fortress-validator/utils';
 
 export interface MinRuleArguments extends RuleArguments {
@@ -19,4 +19,4 @@ const min = ({ min }: MinRuleArguments) => (input: unknown) => {
   return false;
 };
 
-export default min as Rule;
+export default min;

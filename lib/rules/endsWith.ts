@@ -1,4 +1,4 @@
-import { Rule, RuleArguments } from '@fortress-validator/types';
+import { RuleArguments } from '@fortress-validator/types';
 import { isEmpty } from '@fortress-validator/utils';
 
 export interface EndsWithRuleArguments extends RuleArguments {
@@ -11,4 +11,4 @@ const endsWith = ({ values }: EndsWithRuleArguments) => (input: unknown) => {
   return values.some(value => String(input).endsWith(value));
 };
 
-export default endsWith as Rule;
+export default endsWith;

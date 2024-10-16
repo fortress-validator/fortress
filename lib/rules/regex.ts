@@ -1,4 +1,4 @@
-import { Rule, RuleArguments } from '@fortress-validator/types';
+import { RuleArguments } from '@fortress-validator/types';
 import { isEmpty } from '@fortress-validator/utils';
 
 export interface RegexRuleArguments extends RuleArguments {
@@ -13,4 +13,4 @@ const regex = ({ expression }: RegexRuleArguments) => (input: unknown) => {
   return expression.test(String(input));
 };
 
-export default regex as Rule;
+export default regex;

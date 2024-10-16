@@ -1,4 +1,4 @@
-import { Rules } from '@fortress-validator/types';
+import { Rule, Rules } from '@fortress-validator/types';
 import alpha from './alpha';
 import alphaDash from './alphaDash';
 import alphaDashDot from './alphaDashDot';
@@ -24,19 +24,19 @@ const rules: Rules = {
   alphaDash,
   alphaDashDot,
   alphaNum,
-  between,
+  between: between as Rule,
   email,
-  endsWith,
-  in: _in,
+  endsWith: endsWith as Rule,
+  in: _in as Rule,
   json,
   lowercase,
-  max,
-  min,
-  notIn,
-  regex,
+  max: max as Rule,
+  min: min as Rule,
+  notIn: notIn as Rule,
+  regex: regex as Rule,
   required,
-  startsWith,
-  unique,
+  startsWith: startsWith as Rule,
+  unique: unique as Rule,
   uppercase,
   url,
 };

@@ -1,4 +1,4 @@
-import { Rule, RuleArguments } from '@fortress-validator/types';
+import { RuleArguments } from '@fortress-validator/types';
 import { isEmpty } from '@fortress-validator/utils';
 
 export interface NotInRuleArguments extends RuleArguments {
@@ -10,4 +10,4 @@ const notIn = ({ values }: NotInRuleArguments) => (input: unknown) => {
   return !values.some(value => value === input);
 };
 
-export default notIn as Rule;
+export default notIn;

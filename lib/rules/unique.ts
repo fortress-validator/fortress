@@ -1,4 +1,4 @@
-import { Rule, RuleArguments } from '@fortress-validator/types';
+import { RuleArguments } from '@fortress-validator/types';
 import { isEmpty } from '@fortress-validator/utils';
 
 export interface UniqueRuleArguments extends RuleArguments {
@@ -12,4 +12,4 @@ const unique = ({ values, ignored = [] }: UniqueRuleArguments) => (input: unknow
   return !values.some(value => value === input);
 };
 
-export default unique as Rule;
+export default unique;

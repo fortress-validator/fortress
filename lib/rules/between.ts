@@ -1,4 +1,4 @@
-import { Rule, RuleArguments } from '@fortress-validator/types';
+import { RuleArguments } from '@fortress-validator/types';
 import { isEmpty } from '@fortress-validator/utils';
 import max from './max';
 import min from './min';
@@ -13,4 +13,4 @@ const between = ({ min: minValue, max: maxValue }: BetweenRuleArguments) => (inp
   return min({ min: minValue })(input) && max({ max: maxValue })(input);
 };
 
-export default between as Rule;
+export default between;
