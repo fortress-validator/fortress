@@ -19,6 +19,7 @@
     "@types/eslint__js": "^8.42.3",
     "@types/node": "^20.14.12",
     "@vitejs/plugin-vue": "^4.6.2",
+    "dayjs": "^1.11.13",
     "eslint": "^8.57.0",
     "globals": "^15.8.0",
     "jsdom": "^24.1.1",
@@ -30,9 +31,6 @@
     "vue": "^3.4.33",
     "vue-tsc": "^2.0.28",
     "vuetify": "^3.6.13"
-  },
-  "peerDependencies": {
-    "dayjs": "^1.11.0"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

@@ -1,6 +1,6 @@
+import pluginDate from '@fortress-validator/plugin-date';
 import { describe, expect, test } from 'vitest';
 import FormValidator from './FormValidator';
-import date from './plugins/date';
 
 describe('FormValidator', () => {
   describe('should return', () => {
@@ -59,7 +59,7 @@ describe('FormValidator', () => {
 
     test('with "date" plugin and "required" rule', () => {
       const validator = new FormValidator()
-        .registerPlugin(date)
+        .registerPlugin(pluginDate)
         .defineField('Input')
         .required()
         .date('YYYY-MM-DD', true);
@@ -74,7 +74,7 @@ describe('FormValidator', () => {
 
     test('with "date" plugin without "required" rule', () => {
       const validator = new FormValidator()
-        .registerPlugin(date)
+        .registerPlugin(pluginDate)
         .defineField('Input')
         .date('YYYY-MM-DD', true);
 
