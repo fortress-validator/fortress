@@ -57,33 +57,48 @@ describe('FormValidator', () => {
       expect(validator.validate('@')).toBe('The input field must only contain letters, numbers, dashes and underscores.');
     });
 
-    test('with "date" plugin and "required" rule', () => {
-      const validator = new FormValidator()
-        .registerPlugin(pluginDate)
-        .defineField('Input')
-        .required()
-        .date('YYYY-MM-DD', true);
+    describe('for "date" plugin', () => {
+      test('with "after" rule', () => {
+        const validator = new FormValidator()
+          .registerPlugin(pluginDate)
+          .defineField('Input')
+          .after('2024-02-28', 'YYYY-MM-DD', 'YYYY/MM/DD');
 
-      // Pass cases
-      expect(validator.validate('2024-02-29')).toBe(true);
+        // Pass cases
+        expect(validator.validate(undefined)).toBe(true);
+        expect(validator.validate('2024-02-29')).toBe(true);
 
-      // Fail cases
-      expect(validator.validate(undefined)).toBe('The input field is required.');
-      expect(validator.validate('2024-02-30')).toBe('The input field must be a valid date.');
-    });
+        // Fail cases
+        expect(validator.validate('2024-02-27')).toBe('The input field must be a date after 2024/02/28.');
+      });
 
-    test('with "date" plugin without "required" rule', () => {
-      const validator = new FormValidator()
-        .registerPlugin(pluginDate)
-        .defineField('Input')
-        .date('YYYY-MM-DD', true);
+      test('with "before" rule', () => {
+        const validator = new FormValidator()
+          .registerPlugin(pluginDate)
+          .defineField('Input')
+          .before('2024-02-28', 'YYYY-MM-DD', 'YYYY/MM/DD');
 
-      // Pass cases
-      expect(validator.validate(undefined)).toBe(true);
-      expect(validator.validate('2024-02-29')).toBe(true);
+        // Pass cases
+        expect(validator.validate(undefined)).toBe(true);
+        expect(validator.validate('2024-02-27')).toBe(true);
 
-      // Fail cases
-      expect(validator.validate('2024-02-30')).toBe('The input field must be a valid date.');
+        // Fail cases
+        expect(validator.validate('2024-02-29')).toBe('The input field must be a date before 2024/02/28.');
+      });
+
+      test('with "date" rule', () => {
+        const validator = new FormValidator()
+          .registerPlugin(pluginDate)
+          .defineField('Input')
+          .date('YYYY-MM-DD');
+
+        // Pass cases
+        expect(validator.validate(undefined)).toBe(true);
+        expect(validator.validate('2024-02-29')).toBe(true);
+
+        // Fail cases
+        expect(validator.validate('2024-02-30')).toBe('The input field must be a valid date.');
+      });
     });
   });
 });

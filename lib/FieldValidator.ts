@@ -98,6 +98,10 @@ class FieldValidator {
     return this.pushChecker(ruleName, args);
   }
 
+  public after(date: string, format: string, displayFormat?: string, strict: boolean = true): this {
+    return this.apply(this.after.name, { date, format, displayFormat, strict });
+  }
+
   public alpha(): this {
     return this.apply(this.alpha.name);
   }
@@ -114,11 +118,15 @@ class FieldValidator {
     return this.apply(this.alphaNum.name);
   }
 
+  public before(date: string, format: string, displayFormat?: string, strict: boolean = true): this {
+    return this.apply(this.before.name, { date, format, displayFormat, strict });
+  }
+
   public between(min: number, max: number): this {
     return this.apply(this.between.name, { min, max });
   }
 
-  public date(format: string = '', strict: boolean = false): this {
+  public date(format: string, strict: boolean = true): this {
     return this.apply(this.date.name, { format, strict });
   }
 
