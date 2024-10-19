@@ -97,7 +97,7 @@ describe('FormValidator', () => {
         expect(validator.validate('2024-02-29')).toBe(true);
 
         // Fail cases
-        expect(validator.validate('2024-02-30')).toBe('The input field must be a valid date.');
+        expect(validator.validate('2024-02-30')).toBe('The input field must match the YYYY-MM-DD format.');
       });
     });
   });
