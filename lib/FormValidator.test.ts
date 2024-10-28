@@ -99,6 +99,20 @@ describe('FormValidator', () => {
         // Fail cases
         expect(validator.validate('2024-02-30')).toBe('The input field must match the YYYY-MM-DD format.');
       });
+
+      test('with "iso8601" rule', () => {
+        const validator = new FormValidator()
+          .registerPlugin(pluginDate)
+          .defineField('Input')
+          .iso8601();
+
+        // Pass cases
+        expect(validator.validate(undefined)).toBe(true);
+        expect(validator.validate('2024-02-29T12:00:00')).toBe(true);
+
+        // Fail cases
+        expect(validator.validate('2024-02-29')).toBe('The input field must be a valid ISO 8601 date.');
+      });
     });
   });
 });

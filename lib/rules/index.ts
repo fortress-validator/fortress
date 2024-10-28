@@ -21,26 +21,26 @@ import uppercase from './uppercase';
 import url from './url';
 
 const rules: Rules = {
-  alpha,
-  alphaDash,
-  alphaDashDot,
-  alphaNum,
+  alpha: alpha as Rule,
+  alphaDash: alphaDash as Rule,
+  alphaDashDot: alphaDashDot as Rule,
+  alphaNum: alphaNum as Rule,
   between: between as Rule,
-  email,
+  email: email as Rule,
   endsWith: endsWith as Rule,
   in: _in as Rule,
-  json,
-  lowercase,
+  json: json as Rule,
+  lowercase: lowercase as Rule,
   max: max as Rule,
   min: min as Rule,
   notIn: notIn as Rule,
   regex: regex as Rule,
-  required,
+  required: required as Rule,
   size: size as Rule,
   startsWith: startsWith as Rule,
   unique: unique as Rule,
-  uppercase,
-  url,
+  uppercase: uppercase as Rule,
+  url: url as Rule,
 };
 
 export default rules;

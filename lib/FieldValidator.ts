@@ -142,6 +142,10 @@ class FieldValidator {
     return this.apply(this.in.name, { values });
   }
 
+  public iso8601(): this {
+    return this.apply(this.iso8601.name);
+  }
+
   public json(): this {
     return this.apply(this.json.name);
   }
