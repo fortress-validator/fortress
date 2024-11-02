@@ -10,6 +10,7 @@ import { SizeRuleArguments } from '~/rules/size';
 import { StartsWitchRuleArguments } from '~/rules/startsWith';
 
 const en: Messages = {
+  accepted: field => `The ${field} field must be accepted.`,
   alpha: field => `The ${field} field must only contain letters.`,
   alphaDash: field => `The ${field} field must only contain letters, numbers, dashes and underscores.`,
   alphaDashDot: field => `The ${field} field must only contain letters, numbers, dashes, underscores and dots.`,
@@ -26,6 +27,7 @@ const en: Messages = {
     };
   },
   boolean: field => `The ${field} field must be a boolean value.`,
+  declined: field => `The ${field} field must be declined.`,
   email: field => `The ${field} field must be a valid email address.`,
   endsWith: (field, args) => {
     const { values } = args as EndsWithRuleArguments;

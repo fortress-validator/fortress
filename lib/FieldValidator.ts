@@ -98,6 +98,10 @@ class FieldValidator {
     return this.pushChecker(ruleName, args);
   }
 
+  public accepted(): this {
+    return this.apply(this.accepted.name);
+  }
+
   public after(date: string, format: string, displayFormat?: string, strict: boolean = true): this {
     return this.apply(this.after.name, { date, format, displayFormat, strict });
   }
@@ -132,6 +136,10 @@ class FieldValidator {
 
   public boolean(): this {
     return this.apply(this.boolean.name);
+  }
+
+  public declined(): this {
+    return this.apply(this.declined.name);
   }
 
   public date(format: string, strict: boolean = true): this {

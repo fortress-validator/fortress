@@ -1,4 +1,5 @@
 import { Rule, Rules } from '@fortress-validator/types';
+import accepted from './accepted';
 import alpha from './alpha';
 import alphaDash from './alphaDash';
 import alphaDashDot from './alphaDashDot';
@@ -6,6 +7,7 @@ import alphaNum from './alphaNum';
 import ascii from './ascii';
 import between from './between';
 import boolean from './boolean';
+import declined from './declined';
 import email from './email';
 import endsWith from './endsWith';
 import _in from './in';
@@ -27,6 +29,7 @@ import uppercase from './uppercase';
 import url from './url';
 
 const rules: Rules = {
+  accepted: accepted as Rule,
   alpha: alpha as Rule,
   alphaDash: alphaDash as Rule,
   alphaDashDot: alphaDashDot as Rule,
@@ -34,6 +37,7 @@ const rules: Rules = {
   ascii: ascii as Rule,
   between: between as Rule,
   boolean: boolean as Rule,
+  declined: declined as Rule,
   email: email as Rule,
   endsWith: endsWith as Rule,
   in: _in as Rule,

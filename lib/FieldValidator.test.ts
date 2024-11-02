@@ -74,6 +74,13 @@ describe('FieldValidator', () => {
       expect(validator.validate('@')).toBe('The input field must only contain letters.');
     });
 
+    test('with "accepted" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .accepted();
+
+      expect(validator.validate('@')).toBe('The input field must be accepted.');
+    });
+
     test('with "alphaDash" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .alphaDash();
@@ -122,6 +129,13 @@ describe('FieldValidator', () => {
         .boolean();
 
       expect(validator.validate('foo')).toBe('The input field must be a boolean value.');
+    });
+
+    test('with "declined" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .declined();
+
+      expect(validator.validate('foo')).toBe('The input field must be declined.');
     });
 
     test('with "email" rule', () => {
