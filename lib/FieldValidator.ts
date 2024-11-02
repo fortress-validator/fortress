@@ -130,6 +130,10 @@ class FieldValidator {
     return this.apply(this.between.name, { min, max });
   }
 
+  public boolean(): this {
+    return this.apply(this.boolean.name);
+  }
+
   public date(format: string, strict: boolean = true): this {
     return this.apply(this.date.name, { format, strict });
   }
@@ -144,6 +148,10 @@ class FieldValidator {
 
   public in(values: string[]): this {
     return this.apply(this.in.name, { values });
+  }
+
+  public integer(): this {
+    return this.apply(this.integer.name);
   }
 
   public iso8601(): this {
@@ -170,6 +178,14 @@ class FieldValidator {
     return this.apply(this.notIn.name, { values });
   }
 
+  public number(): this {
+    return this.apply(this.number.name);
+  }
+
+  public numeric(): this {
+    return this.apply(this.numeric.name);
+  }
+
   public regex(expression: RegExp): this {
     return this.apply(this.regex.name, { expression });
   }
@@ -184,6 +200,10 @@ class FieldValidator {
 
   public startsWith(values: string[] | string): this {
     return this.apply(this.startsWith.name, { values });
+  }
+
+  public string(): this {
+    return this.apply(this.string.name);
   }
 
   public unique(values: string[], ignores: unknown[] | unknown = []): this {

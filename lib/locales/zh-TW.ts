@@ -14,6 +14,7 @@ const zhTW: Messages = {
   alphaDash: () => '此欄位只能包含字母、數字、連接號和底線',
   alphaDashDot: () => '此欄位只能包含字母、數字、連接號、底線和點',
   alphaNum: () => '此欄位只能包含字母和數字',
+  array: () => '此欄位必須是一個陣列',
   ascii: () => '此欄位只能包含ASCII字元和符號',
   between: (_, args) => {
     const { min, max } = args as BetweenRuleArguments;
@@ -24,6 +25,7 @@ const zhTW: Messages = {
       string: `此欄位必須介於${formatNumber(min)}到${formatNumber(max)}個字元之間`,
     };
   },
+  boolean: () => '此欄位必須是一個布林值',
   email: () => '此欄位必須是有效的電子郵件地址',
   endsWith: (_, args) => {
     const { values } = args as EndsWithRuleArguments;
@@ -35,6 +37,7 @@ const zhTW: Messages = {
     const { values } = args as InRuleArguments;
     return `此欄位必須是以下之一：${values.join(', ')}`;
   },
+  integer: () => '此欄位必須是整數',
   json: () => '此欄位必須是有效的 JSON 字串',
   lowercase: () => '此欄位必須是小寫',
   max: (_, args) => {
@@ -59,6 +62,8 @@ const zhTW: Messages = {
     const { values } = args as NotInRuleArguments;
     return `此欄位不能是以下之一：${values.join(', ')}`;
   },
+  number: () => '此欄位必須是數字',
+  numeric: () => '此欄位必須是數字',
   regex: () => '此欄位必須符合所需的格式',
   required: () => '此欄位為必填',
   size: (_, args) => {
@@ -76,6 +81,7 @@ const zhTW: Messages = {
       ? `此欄位必須以${values}開頭`
       : `此欄位必須以以下之一開頭：${values.join(', ')}`;
   },
+  string: () => '此欄位必須是字串',
   unique: () => '此欄位已經存在',
   uppercase: () => '此欄位必須是大寫',
   url: () => '此欄位必須是有效的網址',

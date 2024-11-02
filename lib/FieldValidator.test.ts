@@ -117,6 +117,13 @@ describe('FieldValidator', () => {
       expect(validator.validate(new File(['_'.repeat(21 * 1024)], ''))).toBe('The input field must be between 10 and 20 kilobytes.');
     });
 
+    test('with "boolean" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .boolean();
+
+      expect(validator.validate('foo')).toBe('The input field must be a boolean value.');
+    });
+
     test('with "email" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .email();
@@ -143,6 +150,13 @@ describe('FieldValidator', () => {
         .in(['foo', 'bar']);
 
       expect(validator.validate('_')).toBe('The input field must be one of the following: foo, bar.');
+    });
+
+    test('with "integer" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .integer();
+
+      expect(validator.validate('foo')).toBe('The input field must be an integer.');
     });
 
     test('with "json" rule', () => {
@@ -186,6 +200,20 @@ describe('FieldValidator', () => {
       expect(validator.validate('foo')).toBe('The input field must not be one of the following: foo, bar.');
     });
 
+    test('with "number" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .number();
+
+      expect(validator.validate('foo')).toBe('The input field must be a number.');
+    });
+
+    test('with "numeric" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .numeric();
+
+      expect(validator.validate('foo')).toBe('The input field must be a number.');
+    });
+
     test('with "regex" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .regex(/^[0-9]$/);
@@ -217,6 +245,13 @@ describe('FieldValidator', () => {
         .startsWith('foo');
 
       expect(validator.validate('_')).toBe('The input field must start with foo.');
+    });
+
+    test('with "string" rule set to a string', () => {
+      const validator = new FieldValidator(defaultParams)
+        .string();
+
+      expect(validator.validate(true)).toBe('The input field must be a string.');
     });
 
     test('with "startsWith" rule set to an array', () => {
