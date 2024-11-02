@@ -142,6 +142,10 @@ class FieldValidator {
     return this.apply(this.declined.name);
   }
 
+  public distinct(): this {
+    return this.apply(this.distinct.name);
+  }
+
   public date(format: string, strict: boolean = true): this {
     return this.apply(this.date.name, { format, strict });
   }

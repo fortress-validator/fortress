@@ -8,6 +8,7 @@ import ascii from './ascii';
 import between from './between';
 import boolean from './boolean';
 import declined from './declined';
+import distinct from './distinct';
 import email from './email';
 import endsWith from './endsWith';
 import _in from './in';
@@ -38,6 +39,7 @@ const rules: Rules = {
   between: between as Rule,
   boolean: boolean as Rule,
   declined: declined as Rule,
+  distinct: distinct as Rule,
   email: email as Rule,
   endsWith: endsWith as Rule,
   in: _in as Rule,

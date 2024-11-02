@@ -138,6 +138,13 @@ describe('FieldValidator', () => {
       expect(validator.validate('foo')).toBe('The input field must be declined.');
     });
 
+    test('with "distinct" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .distinct();
+
+      expect(validator.validate(['foo', 'foo'])).toBe('The input field must not contain duplicate values.');
+    });
+
     test('with "email" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .email();

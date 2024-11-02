@@ -28,6 +28,7 @@ const zhTW: Messages = {
   },
   boolean: () => '此欄位必須是一個布林值',
   declined: () => '此欄位必須被拒絕',
+  distinct: () => '此欄位不能包含重複的值',
   email: () => '此欄位必須是有效的電子郵件地址',
   endsWith: (_, args) => {
     const { values } = args as EndsWithRuleArguments;

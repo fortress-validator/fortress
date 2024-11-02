@@ -28,6 +28,7 @@ const en: Messages = {
   },
   boolean: field => `The ${field} field must be a boolean value.`,
   declined: field => `The ${field} field must be declined.`,
+  distinct: field => `The ${field} field must not contain duplicate values.`,
   email: field => `The ${field} field must be a valid email address.`,
   endsWith: (field, args) => {
     const { values } = args as EndsWithRuleArguments;
