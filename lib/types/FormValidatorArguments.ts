@@ -1,3 +1,5 @@
+import { Locales, Rules } from '@fortress-validator/types';
+
 interface FormValidatorArguments {
   customLocales?: Locales;
   customRules?: Rules;

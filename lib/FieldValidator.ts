@@ -90,7 +90,7 @@ class FieldValidator {
     return true;
   }
 
-  public collect(): Checker[] {
+  public compose(): Checker[] {
     return this.shouldSkip ? [] : this.checkers;
   }
 
