@@ -118,6 +118,10 @@ class FieldValidator {
     return this.apply(this.alphaNum.name);
   }
 
+  public ascii(): this {
+    return this.apply(this.ascii.name);
+  }
+
   public before(date: string, format: string, displayFormat?: string, strict: boolean = true): this {
     return this.apply(this.before.name, { date, format, displayFormat, strict });
   }

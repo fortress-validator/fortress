@@ -95,6 +95,13 @@ describe('FieldValidator', () => {
       expect(validator.validate('@')).toBe('The input field must only contain letters and numbers.');
     });
 
+    test('with "ascii" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .ascii();
+
+      expect(validator.validate('â')).toBe('The input field must only contain ASCII characters and symbols.');
+    });
+
     test('with "between" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .between(10, 20);

@@ -14,6 +14,7 @@ const zhTW: Messages = {
   alphaDash: () => '此欄位只能包含字母、數字、連接號和底線',
   alphaDashDot: () => '此欄位只能包含字母、數字、連接號、底線和點',
   alphaNum: () => '此欄位只能包含字母和數字',
+  ascii: () => '此欄位只能包含ASCII字元和符號',
   between: (_, args) => {
     const { min, max } = args as BetweenRuleArguments;
     return {

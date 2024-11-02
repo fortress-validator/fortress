@@ -3,6 +3,7 @@ import alpha from './alpha';
 import alphaDash from './alphaDash';
 import alphaDashDot from './alphaDashDot';
 import alphaNum from './alphaNum';
+import ascii from './ascii';
 import between from './between';
 import email from './email';
 import endsWith from './endsWith';
@@ -25,6 +26,7 @@ const rules: Rules = {
   alphaDash: alphaDash as Rule,
   alphaDashDot: alphaDashDot as Rule,
   alphaNum: alphaNum as Rule,
+  ascii: ascii as Rule,
   between: between as Rule,
   email: email as Rule,
   endsWith: endsWith as Rule,

@@ -14,6 +14,7 @@ const en: Messages = {
   alphaDash: field => `The ${field} field must only contain letters, numbers, dashes and underscores.`,
   alphaDashDot: field => `The ${field} field must only contain letters, numbers, dashes, underscores and dots.`,
   alphaNum: field => `The ${field} field must only contain letters and numbers.`,
+  ascii: field => `The ${field} field must only contain ASCII characters and symbols.`,
   between: (field, args) => {
     const { min, max } = args as BetweenRuleArguments;
     return {
