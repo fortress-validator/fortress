@@ -1,5 +1,5 @@
 import { Locales, Message, Messages, Rule, RuleArguments, RuleFunction, Rules } from '@fortress-validator/types';
-import { formatMessage, isEmpty } from '@fortress-validator/utils';
+import { formatMessage, getType, isEmpty } from '@fortress-validator/utils';
 import { Conditions, FieldValidatorArguments } from './types';
 
 class FieldValidator {
@@ -57,21 +57,25 @@ class FieldValidator {
   }
 
   private buildRuleFunction(ruleName: string, args: RuleArguments): RuleFunction {
-    const message = this.getMessage(ruleName)(this.formattedName, args);
     return (input: unknown) => {
       if (ruleName !== this.required.name && isEmpty(input)) return true;
       const result = this.getRule(ruleName)(args)(input);
       if (typeof result === 'string') return result;
       if (result === true) return true;
-      if (typeof message === 'object') {
-        const inputType = Object.prototype.toString.call(input).toLowerCase().slice(8, -1);
-        if (!(inputType in message)) {
-          throw new Error(`The message for the "${ruleName}" rule of the "${inputType}" type is missing.`);
-        }
-        return formatMessage(message[inputType]);
-      }
-      return formatMessage(message);
+      return this.buildRuleFunctionMessage(ruleName, args, input);
     };
+  }
+
+  private buildRuleFunctionMessage(ruleName: string, args: RuleArguments, input: unknown): string {
+    const message = this.getMessage(ruleName)(this.formattedName, args);
+    if (typeof message === 'object') {
+      const inputType = getType(input);
+      if (!(inputType in message)) {
+        throw new Error(`The message for the "${ruleName}" rule of the "${inputType}" type is missing.`);
+      }
+      return formatMessage(message[inputType]);
+    }
+    return formatMessage(message);
   }
 
   private pushRuleFunction(ruleName: string, args: RuleArguments): this {
