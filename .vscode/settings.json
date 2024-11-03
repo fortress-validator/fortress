@@ -3,8 +3,5 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
     "source.organizeImports": "explicit"
-  },
-  "cSpell.words": [
-    "memochou1993"
-  ]
+  }
 }
