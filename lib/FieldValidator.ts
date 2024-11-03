@@ -60,7 +60,9 @@ class FieldValidator {
     const message = this.getMessage(ruleName)(this.formattedName, args);
     return (input: unknown) => {
       if (ruleName !== this.required.name && isEmpty(input)) return true;
-      if (this.getRule(ruleName)(args)(input)) return true;
+      const result = this.getRule(ruleName)(args)(input);
+      if (typeof result === 'string') return result;
+      if (result === true) return true;
       if (typeof message === 'object') {
         const inputType = Object.prototype.toString.call(input).toLowerCase().slice(8, -1);
         if (!(inputType in message)) {
@@ -91,9 +93,7 @@ class FieldValidator {
     if (this.shouldSkip) return true;
     for (const ruleFunction of this.ruleFunctions) {
       const result = ruleFunction(value);
-      if (typeof result === 'string') {
-        return result;
-      }
+      if (typeof result === 'string') return result;
     }
     return true;
   }
@@ -176,6 +176,10 @@ class FieldValidator {
 
   public json(): this {
     return this.apply(this.json.name);
+  }
+
+  public jsonSchema(schema: Record<string, unknown>): this {
+    return this.apply(this.jsonSchema.name, { schema });
   }
 
   public lowercase(): this {

@@ -19,6 +19,7 @@
     "@types/eslint__js": "^8.42.3",
     "@types/node": "^20.14.12",
     "@vitejs/plugin-vue": "^4.6.2",
+    "ajv": "^8.17.1",
     "dayjs": "^1.11.13",
     "eslint": "^8.57.0",
     "globals": "^15.8.0",

@@ -1,4 +1,5 @@
 import pluginDate from '@fortress-validator/plugin-date';
+import pluginJSONSchema from '@fortress-validator/plugin-json-schema';
 import { describe, expect, test } from 'vitest';
 import FormValidator from './FormValidator';
 
@@ -112,6 +113,30 @@ describe('FormValidator', () => {
 
         // Fail cases
         expect(validator.validate('2024-02-29')).toBe('The input field must be a valid ISO 8601 date.');
+      });
+    });
+
+    describe('for "json-schema" plugin', () => {
+      test('with "jsonSchema" rule', () => {
+        const schema = {
+          type: 'object',
+          required: [
+            'title',
+          ],
+        };
+
+        const validator = new FormValidator()
+          .registerPlugin(pluginJSONSchema)
+          .defineField('Input')
+          .jsonSchema(schema);
+
+        // Pass cases
+        expect(validator.validate(undefined)).toBe(true);
+        expect(validator.validate(JSON.stringify({ title: 'foo' }))).toBe(true);
+
+        // Fail cases
+        expect(validator.validate(JSON.stringify(true))).toBe('The json schema field must be object.');
+        expect(validator.validate(JSON.stringify({}))).toBe('The json schema field must have required property "title".');
       });
     });
   });
