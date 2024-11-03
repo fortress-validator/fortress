@@ -1,14 +1,14 @@
 import { Rule } from '@fortress-validator/types';
 import { isEmpty } from '@fortress-validator/utils';
-import number from './number';
-import string from './string';
+import numberRule from './number';
+import stringRule from './string';
 
 const numeric: Rule = () => (input: unknown) => {
   if (isEmpty(input)) return false;
-  if (string()(input)) {
+  if (stringRule()(input)) {
     return /^-?\d+(\.\d+)?$/.test(String(input));
   }
-  return number()(input);
+  return numberRule()(input);
 };
 
 export default numeric;

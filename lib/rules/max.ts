@@ -1,11 +1,11 @@
-import { RuleArguments } from '@fortress-validator/types';
+import { Rule, RuleArguments } from '@fortress-validator/types';
 import { isEmpty } from '@fortress-validator/utils';
 
 export interface MaxRuleArguments extends RuleArguments {
   max: number;
 }
 
-const min = ({ max }: MaxRuleArguments) => (input: unknown) => {
+const min: Rule<MaxRuleArguments> = ({ max }) => (input: unknown) => {
   if (isEmpty(input)) return false;
   if (typeof input === 'number') {
     return input <= max;

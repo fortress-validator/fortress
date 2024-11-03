@@ -1,11 +1,11 @@
-import { RuleArguments } from '@fortress-validator/types';
+import { Rule, RuleArguments } from '@fortress-validator/types';
 import { isEmpty } from '@fortress-validator/utils';
 
 export interface MinRuleArguments extends RuleArguments {
   min: number;
 }
 
-const min = ({ min }: MinRuleArguments) => (input: unknown) => {
+const min: Rule<MinRuleArguments> = ({ min }) => (input: unknown) => {
   if (isEmpty(input)) return false;
   if (typeof input === 'number') {
     return input >= min;

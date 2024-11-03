@@ -1,6 +1,6 @@
-import { Locales, Message, Messages, Rule, RuleArguments, Rules } from '@fortress-validator/types';
+import { Locales, Message, Messages, Rule, RuleArguments, RuleFunction, Rules } from '@fortress-validator/types';
 import { formatMessage, isEmpty } from '@fortress-validator/utils';
-import { Conditions, FieldValidatorArguments, RuleFunction } from './types';
+import { Conditions, FieldValidatorArguments } from './types';
 
 class FieldValidator {
   private name: string;
@@ -49,7 +49,7 @@ class FieldValidator {
     return this.messages[ruleName] || this.fallbackMessages[ruleName] || (field => `The ${field} field is invalid.`);
   }
 
-  public getRule(name: string): Rule {
+  public getRule(name: string): Rule<unknown> {
     if (!(name in this.rules)) {
       throw new Error(`The "${name}" rule does not exist.`);
     }
@@ -79,6 +79,14 @@ class FieldValidator {
     return this;
   }
 
+  public getRuleFunctions(): RuleFunction[] {
+    return this.ruleFunctions;
+  }
+
+  public compose(): RuleFunction[] {
+    return this.shouldSkip ? [] : this.getRuleFunctions();
+  }
+
   public validate(value: unknown): boolean | string {
     if (this.shouldSkip) return true;
     for (const ruleFunction of this.ruleFunctions) {
@@ -88,10 +96,6 @@ class FieldValidator {
       }
     }
     return true;
-  }
-
-  public compose(): RuleFunction[] {
-    return this.shouldSkip ? [] : this.ruleFunctions;
   }
 
   public apply(ruleName: string, args: RuleArguments = {}): this {
