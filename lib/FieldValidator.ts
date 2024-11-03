@@ -1,6 +1,6 @@
 import { Locales, Message, Messages, Rule, RuleArguments, Rules } from '@fortress-validator/types';
 import { formatMessage, isEmpty } from '@fortress-validator/utils';
-import { Checker, Conditions, FieldValidatorArguments } from './types';
+import { Conditions, FieldValidatorArguments, RuleFunction } from './types';
 
 class FieldValidator {
   private name: string;
@@ -13,7 +13,7 @@ class FieldValidator {
 
   private rules: Rules;
 
-  private checkers: Checker[] = [];
+  private ruleFunctions: RuleFunction[] = [];
 
   private conditions: Conditions = {};
 
@@ -56,7 +56,7 @@ class FieldValidator {
     return this.rules[name];
   }
 
-  private buildChecker(ruleName: string, args: RuleArguments): Checker {
+  private buildRuleFunction(ruleName: string, args: RuleArguments): RuleFunction {
     const message = this.getMessage(ruleName)(this.formattedName, args);
     return (input: unknown) => {
       if (ruleName !== this.required.name && isEmpty(input)) return true;
@@ -72,17 +72,17 @@ class FieldValidator {
     };
   }
 
-  private pushChecker(ruleName: string, args: RuleArguments): this {
+  private pushRuleFunction(ruleName: string, args: RuleArguments): this {
     if (ruleName in this.conditions && !this.conditions[ruleName]) return this;
-    const checker = this.buildChecker(ruleName, args);
-    this.checkers.push(checker);
+    const ruleFunction = this.buildRuleFunction(ruleName, args);
+    this.ruleFunctions.push(ruleFunction);
     return this;
   }
 
   public validate(value: unknown): boolean | string {
     if (this.shouldSkip) return true;
-    for (const checker of this.checkers) {
-      const result = checker(value);
+    for (const ruleFunction of this.ruleFunctions) {
+      const result = ruleFunction(value);
       if (typeof result === 'string') {
         return result;
       }
@@ -90,12 +90,12 @@ class FieldValidator {
     return true;
   }
 
-  public compose(): Checker[] {
-    return this.shouldSkip ? [] : this.checkers;
+  public compose(): RuleFunction[] {
+    return this.shouldSkip ? [] : this.ruleFunctions;
   }
 
   public apply(ruleName: string, args: RuleArguments = {}): this {
-    return this.pushChecker(ruleName, args);
+    return this.pushRuleFunction(ruleName, args);
   }
 
   public accepted(): this {
