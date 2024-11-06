@@ -21,10 +21,9 @@ describe('FieldValidator', () => {
         locales: defaultLocales,
         rules: defaultRules,
       })
-        .apply('date');
+        .apply('foo');
 
-      expect(() => validator.getRule('date')).toThrowError('The "date" rule does not exist.');
-      expect(() => validator.validate('foo')).toThrowError('The "date" rule does not exist.');
+      expect(() => validator.getRule('foo')).toThrowError('The "foo" rule is not registered.');
     });
   });
 

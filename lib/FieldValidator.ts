@@ -51,7 +51,7 @@ class FieldValidator {
 
   public getRule(name: string): Rule<unknown> {
     if (!(name in this.rules)) {
-      throw new Error(`The "${name}" rule does not exist.`);
+      throw new Error(`The "${name}" rule is not registered.`);
     }
     return this.rules[name];
   }
