@@ -138,6 +138,13 @@ describe('FieldValidator', () => {
       expect(validator.validate('foo')).toBe('The input field must be declined.');
     });
 
+    test('with "different" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .different('other', 'foo');
+
+      expect(validator.validate('foo')).toBe('The input and other fields must be different.');
+    });
+
     test('with "distinct" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .distinct();
@@ -249,6 +256,13 @@ describe('FieldValidator', () => {
 
       expect(validator.validate(undefined)).toBe('The input field is required.');
       expect(validator.validate('@')).toBe('The input field must only contain letters, numbers, dashes and underscores.');
+    });
+
+    test('with "same" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .same('other', 'foo');
+
+      expect(validator.validate('bar')).toBe('The input and other fields must match.');
     });
 
     test('with "size" rule', () => {

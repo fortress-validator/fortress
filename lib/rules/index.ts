@@ -8,6 +8,7 @@ import ascii from './ascii';
 import between from './between';
 import boolean from './boolean';
 import declined from './declined';
+import different from './different';
 import distinct from './distinct';
 import email from './email';
 import endsWith from './endsWith';
@@ -22,6 +23,7 @@ import number from './number';
 import numeric from './numeric';
 import regex from './regex';
 import required from './required';
+import same from './same';
 import size from './size';
 import startsWith from './startsWith';
 import string from './string';
@@ -39,6 +41,7 @@ const rules: Rules = {
   between: between as Rule<unknown>,
   boolean: boolean as Rule<unknown>,
   declined: declined as Rule<unknown>,
+  different: different as Rule<unknown>,
   distinct: distinct as Rule<unknown>,
   email: email as Rule<unknown>,
   endsWith: endsWith as Rule<unknown>,
@@ -53,6 +56,7 @@ const rules: Rules = {
   numeric: numeric as Rule<unknown>,
   regex: regex as Rule<unknown>,
   required: required as Rule<unknown>,
+  same: same as Rule<unknown>,
   size: size as Rule<unknown>,
   startsWith: startsWith as Rule<unknown>,
   string: string as Rule<unknown>,

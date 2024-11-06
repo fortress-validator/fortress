@@ -1,11 +1,13 @@
 import { Messages } from '@fortress-validator/types';
 import { formatNumber } from '@fortress-validator/utils';
 import { BetweenRuleArguments } from '~/rules/between';
+import { DifferentRuleArguments } from '~/rules/different';
 import { EndsWithRuleArguments } from '~/rules/endsWith';
 import { InRuleArguments } from '~/rules/in';
 import { MaxRuleArguments } from '~/rules/max';
 import { MinRuleArguments } from '~/rules/min';
 import { NotInRuleArguments } from '~/rules/notIn';
+import { SameRuleArguments } from '~/rules/same';
 import { SizeRuleArguments } from '~/rules/size';
 import { StartsWitchRuleArguments } from '~/rules/startsWith';
 
@@ -28,6 +30,10 @@ const zhTW: Messages = {
   },
   boolean: () => '此欄位必須是一個布林值',
   declined: () => '此欄位必須被拒絕',
+  different: (_, args) => {
+    const { field: other } = args as DifferentRuleArguments;
+    return `此欄位必須和${other}欄位不同`;
+  },
   distinct: () => '此欄位不能包含重複的值',
   email: () => '此欄位必須是有效的電子郵件地址',
   endsWith: (_, args) => {
@@ -69,6 +75,10 @@ const zhTW: Messages = {
   numeric: () => '此欄位必須是數字',
   regex: () => '此欄位必須符合所需的格式',
   required: () => '此欄位為必填',
+  same: (_, args) => {
+    const { field: other } = args as SameRuleArguments;
+    return `此欄位必須與${other}欄位相同`;
+  },
   size: (_, args) => {
     const { size } = args as SizeRuleArguments;
     return {

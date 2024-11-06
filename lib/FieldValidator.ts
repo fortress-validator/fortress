@@ -150,6 +150,10 @@ class FieldValidator {
     return this.apply(this.declined.name);
   }
 
+  public different(field: string, value: unknown): this {
+    return this.apply(this.different.name, { field, value });
+  }
+
   public distinct(): this {
     return this.apply(this.distinct.name);
   }
@@ -216,6 +220,10 @@ class FieldValidator {
 
   public required(): this {
     return this.apply(this.required.name);
+  }
+
+  public same(field: string, value: unknown): this {
+    return this.apply(this.same.name, { field, value });
   }
 
   public size(size: number): this {

@@ -1,11 +1,13 @@
 import { Messages } from '@fortress-validator/types';
 import { formatNumber } from '@fortress-validator/utils';
 import { BetweenRuleArguments } from '~/rules/between';
+import { DifferentRuleArguments } from '~/rules/different';
 import { EndsWithRuleArguments } from '~/rules/endsWith';
 import { InRuleArguments } from '~/rules/in';
 import { MaxRuleArguments } from '~/rules/max';
 import { MinRuleArguments } from '~/rules/min';
 import { NotInRuleArguments } from '~/rules/notIn';
+import { SameRuleArguments } from '~/rules/same';
 import { SizeRuleArguments } from '~/rules/size';
 import { StartsWitchRuleArguments } from '~/rules/startsWith';
 
@@ -28,6 +30,10 @@ const en: Messages = {
   },
   boolean: field => `The ${field} field must be a boolean value.`,
   declined: field => `The ${field} field must be declined.`,
+  different: (field, args) => {
+    const { field: other } = args as DifferentRuleArguments;
+    return `The ${field} and ${other} fields must be different.`;
+  },
   distinct: field => `The ${field} field must not contain duplicate values.`,
   email: field => `The ${field} field must be a valid email address.`,
   endsWith: (field, args) => {
@@ -69,6 +75,10 @@ const en: Messages = {
   numeric: field => `The ${field} field must be a number.`,
   regex: field => `The ${field} field must match the required format.`,
   required: field => `The ${field} field is required.`,
+  same: (field, args) => {
+    const { field: other } = args as SameRuleArguments;
+    return `The ${field} and ${other} fields must match.`;
+  },
   size: (field, args) => {
     const { size } = args as SizeRuleArguments;
     return {
