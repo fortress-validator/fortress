@@ -222,6 +222,12 @@ class FieldValidator {
     return this.apply(this.required.name);
   }
 
+  public requiredWhen(condition: boolean): this {
+    return this
+      .when({ required: condition })
+      .required();
+  }
+
   public same(field: string, value: unknown): this {
     return this.apply(this.same.name, { field, value });
   }
