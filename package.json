@@ -10,7 +10,8 @@
     "lint": "eslint lib",
     "test": "npm run test:unit -- --run && npm run test:integration",
     "test:unit": "vitest",
-    "test:integration": "playwright test"
+    "test:integration": "playwright test",
+    "release": "npm run test && npm run build && npm publish --access public"
   },
   "dependencies": {
     "@fortress-validator/utils": "^1.0.0"
