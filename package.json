@@ -12,8 +12,16 @@
     "test:unit": "vitest",
     "test:integration": "playwright test"
   },
+  "dependencies": {
+    "@fortress-validator/utils": "^1.0.0"
+  },
+  "peerDependencies": {
+    "@fortress-validator/plugin-date": "^1.0.2",
+    "@fortress-validator/plugin-json-schema": "^1.0.2"
+  },
   "devDependencies": {
     "@eslint/js": "^9.7.0",
+    "@fortress-validator/types": "^1.0.0",
     "@playwright/test": "^1.47.2",
     "@stylistic/eslint-plugin": "^2.9.0",
     "@types/eslint__js": "^8.42.3",

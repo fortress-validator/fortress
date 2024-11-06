@@ -4,7 +4,7 @@ import * as components from 'vuetify/components';
 import 'vuetify/styles';
 import App from './App.vue';
 
-const vuetify = createVuetify({ 
+const vuetify = createVuetify({
   components,
   theme: {
     defaultTheme: 'dark',
