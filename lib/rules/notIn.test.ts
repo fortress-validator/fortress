@@ -5,7 +5,7 @@ describe('Rule "notIn"', () => {
   const validate = notIn({ values: ['foo', 'bar'] });
 
   test('should pass with valid input', () => {
-    expect(validate('_')).toBe(true);
+    expect(validate('baz')).toBe(true);
   });
 
   test('should fail with invalid input', () => {

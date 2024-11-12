@@ -105,7 +105,9 @@ describe('FieldValidator', () => {
       const validator = new FieldValidator(defaultParams)
         .array();
 
-      expect(validator.validate('foo')).toBe('The input field must be an array.');
+      expect(validator.validate([])).toBe(true);
+      expect(validator.validate(undefined)).toBe('The input field must be an array.');
+      expect(validator.validate('')).toBe('The input field must be an array.');
     });
 
     test('with "ascii" rule', () => {
@@ -141,7 +143,7 @@ describe('FieldValidator', () => {
       const validator = new FieldValidator(defaultParams)
         .contains(['foo', 'bar']);
 
-      expect(validator.validate('_')).toBe('The input field must be one of the following: foo, bar.');
+      expect(validator.validate('baz')).toBe('The input field must be one of the following: foo, bar.');
     });
 
     test('with "containsAll" rule', () => {
@@ -200,6 +202,14 @@ describe('FieldValidator', () => {
       expect(validator.validate('_')).toBe('The input field must end with one of the following: foo, bar.');
     });
 
+    test('with "equals" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .equals(undefined);
+
+      expect(validator.validate(undefined)).toBe(true);
+      expect(validator.validate('')).toBe('The input field must be equal to undefined.');
+    });
+
     test('with "integer" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .integer();
@@ -239,6 +249,14 @@ describe('FieldValidator', () => {
       expect(validator.validate('_'.repeat(9))).toBe('The input field must be at least 10 characters.');
       expect(validator.validate(Array.from('_'.repeat(9)))).toBe('The input field must be at least 10 items.');
       expect(validator.validate(new File(['_'.repeat(9 * 1024)], ''))).toBe('The input field must be at least 10 kilobytes.');
+    });
+
+    test('with "notEquals" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .notEquals(undefined);
+
+      expect(validator.validate('')).toBe(true);
+      expect(validator.validate(undefined)).toBe('The input field must not be equal to undefined.');
     });
 
     test('with "notIn" rule', () => {
@@ -302,18 +320,20 @@ describe('FieldValidator', () => {
       expect(validator.validate('_')).toBe('The input field must start with foo.');
     });
 
-    test('with "string" rule set to a string', () => {
-      const validator = new FieldValidator(defaultParams)
-        .string();
-
-      expect(validator.validate(true)).toBe('The input field must be a string.');
-    });
-
     test('with "startsWith" rule set to an array', () => {
       const validator = new FieldValidator(defaultParams)
         .startsWith(['foo', 'bar']);
 
       expect(validator.validate('_')).toBe('The input field must start with one of the following: foo, bar.');
+    });
+
+    test('with "string" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .string();
+
+      expect(validator.validate('')).toBe(true);
+      expect(validator.validate(undefined)).toBe('The input field must be a string.');
+      expect(validator.validate([])).toBe('The input field must be a string.');
     });
 
     test('with "unique" rule', () => {

@@ -11,6 +11,6 @@ describe('Rule "contains"', () => {
 
   test('should fail with invalid input', () => {
     expect(validate(undefined)).toBe(false);
-    expect(validate('_')).toBe(false);
+    expect(validate('baz')).toBe(false);
   });
 });

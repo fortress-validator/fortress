@@ -6,8 +6,10 @@ import { ContainsAllRuleArguments } from '~/rules/containsAll';
 import { ContainsAnyRuleArguments } from '~/rules/containsAny';
 import { DifferentRuleArguments } from '~/rules/different';
 import { EndsWithRuleArguments } from '~/rules/endsWith';
+import { EqualsRuleArguments } from '~/rules/equals';
 import { MaxRuleArguments } from '~/rules/max';
 import { MinRuleArguments } from '~/rules/min';
+import { NotEqualsRuleArguments } from '~/rules/notEquals';
 import { NotInRuleArguments } from '~/rules/notIn';
 import { SameRuleArguments } from '~/rules/same';
 import { SizeRuleArguments } from '~/rules/size';
@@ -56,6 +58,10 @@ const zhTW: Messages = {
       ? `此欄位必須以${values}結尾`
       : `此欄位必須以以下之一結尾：${values.join(', ')}`;
   },
+  equals: (_, args) => {
+    const { value } = args as EqualsRuleArguments;
+    return `此欄位必須是${value}`;
+  },
   integer: () => '此欄位必須是整數',
   json: () => '此欄位必須是有效的 JSON 字串',
   lowercase: () => '此欄位必須是小寫',
@@ -76,6 +82,10 @@ const zhTW: Messages = {
       number: `此欄位不能小於${formatNumber(min)}`,
       string: `此欄位不能小於${formatNumber(min)}個字元`,
     };
+  },
+  notEquals: (_, args) => {
+    const { value } = args as NotEqualsRuleArguments;
+    return `此欄位不能是${value}`;
   },
   notIn: (_, args) => {
     const { values } = args as NotInRuleArguments;

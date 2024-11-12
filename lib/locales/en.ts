@@ -6,6 +6,7 @@ import { ContainsAllRuleArguments } from '~/rules/containsAll';
 import { ContainsAnyRuleArguments } from '~/rules/containsAny';
 import { DifferentRuleArguments } from '~/rules/different';
 import { EndsWithRuleArguments } from '~/rules/endsWith';
+import { EqualsRuleArguments } from '~/rules/equals';
 import { MaxRuleArguments } from '~/rules/max';
 import { MinRuleArguments } from '~/rules/min';
 import { NotInRuleArguments } from '~/rules/notIn';
@@ -56,6 +57,10 @@ const en: Messages = {
       ? `The ${field} field must end with ${values}.`
       : `The ${field} field must end with one of the following: ${values.join(', ')}.`;
   },
+  equals: (field, args) => {
+    const { value } = args as EqualsRuleArguments;
+    return `The ${field} field must be equal to ${value}.`;
+  },
   integer: field => `The ${field} field must be an integer.`,
   json: field => `The ${field} field must be a valid JSON string.`,
   lowercase: field => `The ${field} field must be lowercase.`,
@@ -76,6 +81,10 @@ const en: Messages = {
       number: `The ${field} field must be at least ${formatNumber(min)}.`,
       string: `The ${field} field must be at least ${formatNumber(min)} characters.`,
     };
+  },
+  notEquals: (field, args) => {
+    const { value } = args as EqualsRuleArguments;
+    return `The ${field} field must not be equal to ${value}.`;
   },
   notIn: (field, args) => {
     const { values } = args as NotInRuleArguments;

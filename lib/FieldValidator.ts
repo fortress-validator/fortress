@@ -45,6 +45,16 @@ class FieldValidator {
     return this.locales[this.fallbackLocale] || {};
   }
 
+  public get mandatoryRules(): string[] {
+    return [
+      this.required.name,
+      this.string.name,
+      this.array.name,
+      this.equals.name,
+      this.notEquals.name,
+    ];
+  }
+
   public getMessage(ruleName: string): Message {
     return this.messages[ruleName] || this.fallbackMessages[ruleName] || (field => `The ${field} field is invalid.`);
   }
@@ -58,7 +68,7 @@ class FieldValidator {
 
   private buildRuleFunction(ruleName: string, args: RuleArguments): RuleFunction {
     return (input: unknown) => {
-      if (ruleName !== this.required.name && isEmpty(input)) return true;
+      if (isEmpty(input) && !this.mandatoryRules.includes(ruleName)) return true;
       const result = this.getRule(ruleName)(args)(input);
       if (typeof result === 'string') return result;
       if (result === true) return true;
@@ -186,6 +196,10 @@ class FieldValidator {
     return this.apply(this.endsWith.name, { values });
   }
 
+  public equals(value: unknown): this {
+    return this.apply(this.equals.name, { value });
+  }
+
   public integer(): this {
     return this.apply(this.integer.name);
   }
@@ -212,6 +226,10 @@ class FieldValidator {
 
   public min(value: number): this {
     return this.apply(this.min.name, { min: value });
+  }
+
+  public notEquals(value: unknown): this {
+    return this.apply(this.notEquals.name, { value });
   }
 
   public notIn(values: string[]): this {

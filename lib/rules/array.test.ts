@@ -10,7 +10,7 @@ describe('Rule "array"', () => {
 
   test('should fail with invalid input', () => {
     expect(validate(undefined)).toBe(false);
-    expect(validate('foo')).toBe(false);
+    expect(validate('')).toBe(false);
     expect(validate(1)).toBe(false);
     expect(validate(0)).toBe(false);
     expect(validate(true)).toBe(false);

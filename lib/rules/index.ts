@@ -16,11 +16,13 @@ import different from './different';
 import distinct from './distinct';
 import email from './email';
 import endsWith from './endsWith';
+import equals from './equals';
 import integer from './integer';
 import json from './json';
 import lowercase from './lowercase';
 import max from './max';
 import min from './min';
+import notEquals from './notEquals';
 import notIn from './notIn';
 import number from './number';
 import numeric from './numeric';
@@ -52,11 +54,13 @@ const rules: Rules = {
   distinct: distinct as Rule<unknown>,
   email: email as Rule<unknown>,
   endsWith: endsWith as Rule<unknown>,
+  equals: equals as Rule<unknown>,
   integer: integer as Rule<unknown>,
   json: json as Rule<unknown>,
   lowercase: lowercase as Rule<unknown>,
   max: max as Rule<unknown>,
   min: min as Rule<unknown>,
+  notEquals: notEquals as Rule<unknown>,
   notIn: notIn as Rule<unknown>,
   number: number as Rule<unknown>,
   numeric: numeric as Rule<unknown>,
