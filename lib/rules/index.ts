@@ -4,6 +4,7 @@ import alpha from './alpha';
 import alphaDash from './alphaDash';
 import alphaDashDot from './alphaDashDot';
 import alphaNum from './alphaNum';
+import array from './array';
 import ascii from './ascii';
 import between from './between';
 import boolean from './boolean';
@@ -39,6 +40,7 @@ const rules: Rules = {
   alphaDash: alphaDash as Rule<unknown>,
   alphaDashDot: alphaDashDot as Rule<unknown>,
   alphaNum: alphaNum as Rule<unknown>,
+  array: array as Rule<unknown>,
   ascii: ascii as Rule<unknown>,
   between: between as Rule<unknown>,
   boolean: boolean as Rule<unknown>,

@@ -130,6 +130,10 @@ class FieldValidator {
     return this.apply(this.alphaNum.name);
   }
 
+  public array(): this {
+    return this.apply(this.array.name);
+  }
+
   public ascii(): this {
     return this.apply(this.ascii.name);
   }

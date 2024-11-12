@@ -101,6 +101,13 @@ describe('FieldValidator', () => {
       expect(validator.validate('@')).toBe('The input field must only contain letters and numbers.');
     });
 
+    test('with "array" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .array();
+
+      expect(validator.validate('foo')).toBe('The input field must be an array.');
+    });
+
     test('with "ascii" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .ascii();
