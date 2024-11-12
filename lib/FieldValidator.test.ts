@@ -139,13 +139,6 @@ describe('FieldValidator', () => {
       expect(validator.validate('foo')).toBe('The input field must be a boolean value.');
     });
 
-    test('with "contains" rule', () => {
-      const validator = new FieldValidator(defaultParams)
-        .contains(['foo', 'bar']);
-
-      expect(validator.validate('baz')).toBe('The input field must be one of the following: foo, bar.');
-    });
-
     test('with "containsAll" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .containsAll(['foo', 'bar']);
@@ -208,6 +201,13 @@ describe('FieldValidator', () => {
 
       expect(validator.validate(undefined)).toBe(true);
       expect(validator.validate('')).toBe('The input field must be equal to undefined.');
+    });
+
+    test('with "in" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .in(['foo', 'bar']);
+
+      expect(validator.validate('baz')).toBe('The input field must be one of the following: foo, bar.');
     });
 
     test('with "integer" rule', () => {

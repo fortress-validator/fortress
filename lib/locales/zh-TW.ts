@@ -1,12 +1,12 @@
 import { Messages } from '@fortress-validator/types';
 import { formatNumber } from '@fortress-validator/utils';
 import { BetweenRuleArguments } from '~/rules/between';
-import { ContainsRuleArguments } from '~/rules/contains';
 import { ContainsAllRuleArguments } from '~/rules/containsAll';
 import { ContainsAnyRuleArguments } from '~/rules/containsAny';
 import { DifferentRuleArguments } from '~/rules/different';
 import { EndsWithRuleArguments } from '~/rules/endsWith';
 import { EqualsRuleArguments } from '~/rules/equals';
+import { InRuleArguments } from '~/rules/in';
 import { MaxRuleArguments } from '~/rules/max';
 import { MinRuleArguments } from '~/rules/min';
 import { NotEqualsRuleArguments } from '~/rules/notEquals';
@@ -33,10 +33,6 @@ const zhTW: Messages = {
     };
   },
   boolean: () => '此欄位必須是一個布林值',
-  contains: (_, args) => {
-    const { values } = args as ContainsRuleArguments;
-    return `此欄位必須是以下之一：${values.join(', ')}`;
-  },
   containsAll: (_, args) => {
     const { values } = args as ContainsAllRuleArguments;
     return `此欄位必須包含以下所有項目：${values.join(', ')}`;
@@ -61,6 +57,10 @@ const zhTW: Messages = {
   equals: (_, args) => {
     const { value } = args as EqualsRuleArguments;
     return `此欄位必須是${value}`;
+  },
+  in: (_, args) => {
+    const { values } = args as InRuleArguments;
+    return `此欄位必須是以下之一：${values.join(', ')}`;
   },
   integer: () => '此欄位必須是整數',
   json: () => '此欄位必須是有效的 JSON 字串',

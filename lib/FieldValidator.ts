@@ -160,10 +160,6 @@ class FieldValidator {
     return this.apply(this.boolean.name);
   }
 
-  public contains(values: unknown[]): this {
-    return this.apply(this.contains.name, { values });
-  }
-
   public containsAll(values: unknown[]): this {
     return this.apply(this.containsAll.name, { values });
   }
@@ -198,6 +194,10 @@ class FieldValidator {
 
   public equals(value: unknown): this {
     return this.apply(this.equals.name, { value });
+  }
+
+  public in(values: unknown[]): this {
+    return this.apply(this.in.name, { values });
   }
 
   public integer(): this {

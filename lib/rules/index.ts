@@ -8,7 +8,6 @@ import array from './array';
 import ascii from './ascii';
 import between from './between';
 import boolean from './boolean';
-import contains from './contains';
 import containsAll from './containsAll';
 import containsAny from './containsAny';
 import declined from './declined';
@@ -17,6 +16,7 @@ import distinct from './distinct';
 import email from './email';
 import endsWith from './endsWith';
 import equals from './equals';
+import _in from './in';
 import integer from './integer';
 import json from './json';
 import lowercase from './lowercase';
@@ -46,7 +46,6 @@ const rules: Rules = {
   ascii: ascii as Rule<unknown>,
   between: between as Rule<unknown>,
   boolean: boolean as Rule<unknown>,
-  contains: contains as Rule<unknown>,
   containsAll: containsAll as Rule<unknown>,
   containsAny: containsAny as Rule<unknown>,
   declined: declined as Rule<unknown>,
@@ -55,6 +54,7 @@ const rules: Rules = {
   email: email as Rule<unknown>,
   endsWith: endsWith as Rule<unknown>,
   equals: equals as Rule<unknown>,
+  in: _in as Rule<unknown>,
   integer: integer as Rule<unknown>,
   json: json as Rule<unknown>,
   lowercase: lowercase as Rule<unknown>,
