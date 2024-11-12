@@ -8,6 +8,8 @@ import ascii from './ascii';
 import between from './between';
 import boolean from './boolean';
 import contains from './contains';
+import containsAll from './containsAll';
+import containsAny from './containsAny';
 import declined from './declined';
 import different from './different';
 import distinct from './distinct';
@@ -41,6 +43,8 @@ const rules: Rules = {
   between: between as Rule<unknown>,
   boolean: boolean as Rule<unknown>,
   contains: contains as Rule<unknown>,
+  containsAll: containsAll as Rule<unknown>,
+  containsAny: containsAny as Rule<unknown>,
   declined: declined as Rule<unknown>,
   different: different as Rule<unknown>,
   distinct: distinct as Rule<unknown>,

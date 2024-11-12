@@ -137,6 +137,20 @@ describe('FieldValidator', () => {
       expect(validator.validate('_')).toBe('The input field must be one of the following: foo, bar.');
     });
 
+    test('with "containsAll" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .containsAll(['foo', 'bar']);
+
+      expect(validator.validate(['foo', 'baz'])).toBe('The input field must contain all of the following: foo, bar.');
+    });
+
+    test('with "containsAny" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .containsAny(['foo', 'bar']);
+
+      expect(validator.validate(['baz'])).toBe('The input field must contain at least one of the following: foo, bar.');
+    });
+
     test('with "declined" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .declined();

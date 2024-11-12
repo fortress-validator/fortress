@@ -146,8 +146,16 @@ class FieldValidator {
     return this.apply(this.boolean.name);
   }
 
-  public contains(values: string[]): this {
+  public contains(values: unknown[]): this {
     return this.apply(this.contains.name, { values });
+  }
+
+  public containsAll(values: unknown[]): this {
+    return this.apply(this.containsAll.name, { values });
+  }
+
+  public containsAny(values: unknown[]): this {
+    return this.apply(this.containsAny.name, { values });
   }
 
   public declined(): this {

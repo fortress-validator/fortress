@@ -2,6 +2,8 @@ import { Messages } from '@fortress-validator/types';
 import { formatNumber } from '@fortress-validator/utils';
 import { BetweenRuleArguments } from '~/rules/between';
 import { ContainsRuleArguments } from '~/rules/contains';
+import { ContainsAllRuleArguments } from '~/rules/containsAll';
+import { ContainsAnyRuleArguments } from '~/rules/containsAny';
 import { DifferentRuleArguments } from '~/rules/different';
 import { EndsWithRuleArguments } from '~/rules/endsWith';
 import { MaxRuleArguments } from '~/rules/max';
@@ -32,6 +34,14 @@ const zhTW: Messages = {
   contains: (_, args) => {
     const { values } = args as ContainsRuleArguments;
     return `此欄位必須是以下之一：${values.join(', ')}`;
+  },
+  containsAll: (_, args) => {
+    const { values } = args as ContainsAllRuleArguments;
+    return `此欄位必須包含以下所有項目：${values.join(', ')}`;
+  },
+  containsAny: (_, args) => {
+    const { values } = args as ContainsAnyRuleArguments;
+    return `此欄位必須包含以下其中一個項目：${values.join(', ')}`;
   },
   declined: () => '此欄位必須被拒絕',
   different: (_, args) => {

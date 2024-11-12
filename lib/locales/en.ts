@@ -2,6 +2,8 @@ import { Messages } from '@fortress-validator/types';
 import { formatNumber } from '@fortress-validator/utils';
 import { BetweenRuleArguments } from '~/rules/between';
 import { ContainsRuleArguments } from '~/rules/contains';
+import { ContainsAllRuleArguments } from '~/rules/containsAll';
+import { ContainsAnyRuleArguments } from '~/rules/containsAny';
 import { DifferentRuleArguments } from '~/rules/different';
 import { EndsWithRuleArguments } from '~/rules/endsWith';
 import { MaxRuleArguments } from '~/rules/max';
@@ -32,6 +34,14 @@ const en: Messages = {
   contains: (field, args) => {
     const { values } = args as ContainsRuleArguments;
     return `The ${field} field must be one of the following: ${values.join(', ')}.`;
+  },
+  containsAll: (field, args) => {
+    const { values } = args as ContainsAllRuleArguments;
+    return `The ${field} field must contain all of the following: ${values.join(', ')}.`;
+  },
+  containsAny: (field, args) => {
+    const { values } = args as ContainsAnyRuleArguments;
+    return `The ${field} field must contain at least one of the following: ${values.join(', ')}.`;
   },
   declined: field => `The ${field} field must be declined.`,
   different: (field, args) => {
