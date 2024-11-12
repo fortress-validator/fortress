@@ -130,6 +130,13 @@ describe('FieldValidator', () => {
       expect(validator.validate('foo')).toBe('The input field must be a boolean value.');
     });
 
+    test('with "contains" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .contains(['foo', 'bar']);
+
+      expect(validator.validate('_')).toBe('The input field must be one of the following: foo, bar.');
+    });
+
     test('with "declined" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .declined();
@@ -170,13 +177,6 @@ describe('FieldValidator', () => {
         .endsWith(['foo', 'bar']);
 
       expect(validator.validate('_')).toBe('The input field must end with one of the following: foo, bar.');
-    });
-
-    test('with "in" rule', () => {
-      const validator = new FieldValidator(defaultParams)
-        .in(['foo', 'bar']);
-
-      expect(validator.validate('_')).toBe('The input field must be one of the following: foo, bar.');
     });
 
     test('with "integer" rule', () => {

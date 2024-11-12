@@ -146,6 +146,10 @@ class FieldValidator {
     return this.apply(this.boolean.name);
   }
 
+  public contains(values: string[]): this {
+    return this.apply(this.contains.name, { values });
+  }
+
   public declined(): this {
     return this.apply(this.declined.name);
   }
@@ -168,10 +172,6 @@ class FieldValidator {
 
   public endsWith(values: string[] | string): this {
     return this.apply(this.endsWith.name, { values });
-  }
-
-  public in(values: string[]): this {
-    return this.apply(this.in.name, { values });
   }
 
   public integer(): this {

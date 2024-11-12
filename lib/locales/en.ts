@@ -1,9 +1,9 @@
 import { Messages } from '@fortress-validator/types';
 import { formatNumber } from '@fortress-validator/utils';
 import { BetweenRuleArguments } from '~/rules/between';
+import { ContainsRuleArguments } from '~/rules/contains';
 import { DifferentRuleArguments } from '~/rules/different';
 import { EndsWithRuleArguments } from '~/rules/endsWith';
-import { InRuleArguments } from '~/rules/in';
 import { MaxRuleArguments } from '~/rules/max';
 import { MinRuleArguments } from '~/rules/min';
 import { NotInRuleArguments } from '~/rules/notIn';
@@ -29,6 +29,10 @@ const en: Messages = {
     };
   },
   boolean: field => `The ${field} field must be a boolean value.`,
+  contains: (field, args) => {
+    const { values } = args as ContainsRuleArguments;
+    return `The ${field} field must be one of the following: ${values.join(', ')}.`;
+  },
   declined: field => `The ${field} field must be declined.`,
   different: (field, args) => {
     const { field: other } = args as DifferentRuleArguments;
@@ -41,10 +45,6 @@ const en: Messages = {
     return typeof values === 'string'
       ? `The ${field} field must end with ${values}.`
       : `The ${field} field must end with one of the following: ${values.join(', ')}.`;
-  },
-  in: (field, args) => {
-    const { values } = args as InRuleArguments;
-    return `The ${field} field must be one of the following: ${values.join(', ')}.`;
   },
   integer: field => `The ${field} field must be an integer.`,
   json: field => `The ${field} field must be a valid JSON string.`,

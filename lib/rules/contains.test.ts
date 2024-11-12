@@ -1,8 +1,8 @@
 import { describe, expect, test } from 'vitest';
-import _in from './in';
+import contains from './contains';
 
-describe('Rule "in"', () => {
-  const validate = _in({ values: ['foo', 'bar'] });
+describe('Rule "contains"', () => {
+  const validate = contains({ values: ['foo', 'bar'] });
 
   test('should pass with valid input', () => {
     expect(validate('foo')).toBe(true);

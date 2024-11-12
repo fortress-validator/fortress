@@ -7,12 +7,12 @@ import alphaNum from './alphaNum';
 import ascii from './ascii';
 import between from './between';
 import boolean from './boolean';
+import contains from './contains';
 import declined from './declined';
 import different from './different';
 import distinct from './distinct';
 import email from './email';
 import endsWith from './endsWith';
-import _in from './in';
 import integer from './integer';
 import json from './json';
 import lowercase from './lowercase';
@@ -40,12 +40,12 @@ const rules: Rules = {
   ascii: ascii as Rule<unknown>,
   between: between as Rule<unknown>,
   boolean: boolean as Rule<unknown>,
+  contains: contains as Rule<unknown>,
   declined: declined as Rule<unknown>,
   different: different as Rule<unknown>,
   distinct: distinct as Rule<unknown>,
   email: email as Rule<unknown>,
   endsWith: endsWith as Rule<unknown>,
-  in: _in as Rule<unknown>,
   integer: integer as Rule<unknown>,
   json: json as Rule<unknown>,
   lowercase: lowercase as Rule<unknown>,

@@ -1,9 +1,9 @@
 import { Messages } from '@fortress-validator/types';
 import { formatNumber } from '@fortress-validator/utils';
 import { BetweenRuleArguments } from '~/rules/between';
+import { ContainsRuleArguments } from '~/rules/contains';
 import { DifferentRuleArguments } from '~/rules/different';
 import { EndsWithRuleArguments } from '~/rules/endsWith';
-import { InRuleArguments } from '~/rules/in';
 import { MaxRuleArguments } from '~/rules/max';
 import { MinRuleArguments } from '~/rules/min';
 import { NotInRuleArguments } from '~/rules/notIn';
@@ -29,6 +29,10 @@ const zhTW: Messages = {
     };
   },
   boolean: () => '此欄位必須是一個布林值',
+  contains: (_, args) => {
+    const { values } = args as ContainsRuleArguments;
+    return `此欄位必須是以下之一：${values.join(', ')}`;
+  },
   declined: () => '此欄位必須被拒絕',
   different: (_, args) => {
     const { field: other } = args as DifferentRuleArguments;
@@ -41,10 +45,6 @@ const zhTW: Messages = {
     return typeof values === 'string'
       ? `此欄位必須以${values}結尾`
       : `此欄位必須以以下之一結尾：${values.join(', ')}`;
-  },
-  in: (_, args) => {
-    const { values } = args as InRuleArguments;
-    return `此欄位必須是以下之一：${values.join(', ')}`;
   },
   integer: () => '此欄位必須是整數',
   json: () => '此欄位必須是有效的 JSON 字串',
