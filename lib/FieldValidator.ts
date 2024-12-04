@@ -364,7 +364,7 @@ class FieldValidator {
   }
 
   /**
-   * Passes if the field's value is not empty when the specified condition is true.
+   * Passes if the field's value is not empty when the specified condition is satisfied.
    */
   public requiredWhen(condition: boolean): this {
     return this
@@ -422,7 +422,7 @@ class FieldValidator {
   }
 
   /**
-   * This rule applies conditional validation based on the specified conditions.
+   * Determines whether to apply or skip validation based on the provided conditions.
    */
   public when(conditions: boolean | Conditions): this {
     if (typeof conditions === 'object') {
