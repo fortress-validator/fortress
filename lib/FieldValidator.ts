@@ -99,7 +99,7 @@ class FieldValidator {
     return this.ruleFunctions;
   }
 
-  public compose(): RuleFunction[] {
+  public collect(): RuleFunction[] {
     return this.shouldSkip ? [] : this.getRuleFunctions();
   }
 
