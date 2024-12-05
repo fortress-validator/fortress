@@ -308,14 +308,14 @@ class FieldValidator {
   }
 
   /**
-   * Passes if the field's value does not exceed the specified maximum.
+   * Passes if the field's value or length does not exceed the specified maximum.
    */
   public max(value: number): this {
     return this.apply(this.max.name, { max: value });
   }
 
   /**
-   * Passes if the field's value is at least the specified minimum.
+   * Passes if the field's value or length is at least the specified minimum.
    */
   public min(value: number): this {
     return this.apply(this.min.name, { min: value });
@@ -380,7 +380,7 @@ class FieldValidator {
   }
 
   /**
-   * Passes if the field's value matches the specified size.
+   * Passes if the field's value or length matches the specified size.
    */
   public size(size: number): this {
     return this.apply(this.size.name, { size });
