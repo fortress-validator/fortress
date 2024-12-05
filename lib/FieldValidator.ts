@@ -403,8 +403,8 @@ class FieldValidator {
   /**
    * Passes if the field's value contains only unique items, with optional ignored values.
    */
-  public unique(values: string[], ignores: unknown[] | unknown = []): this {
-    return this.apply(this.unique.name, { values, ignores });
+  public unique(values: string[], ignored: unknown[] | unknown = []): this {
+    return this.apply(this.unique.name, { values, ignored });
   }
 
   /**
