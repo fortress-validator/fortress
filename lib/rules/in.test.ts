@@ -7,10 +7,15 @@ describe('Rule "in"', () => {
   test('should pass with valid input', () => {
     expect(validate('foo')).toBe(true);
     expect(validate('bar')).toBe(true);
+    expect(validate(['foo'])).toBe(true);
+    expect(validate(['bar'])).toBe(true);
+    expect(validate(['foo', 'bar'])).toBe(true);
   });
 
   test('should fail with invalid input', () => {
     expect(validate(undefined)).toBe(false);
     expect(validate('baz')).toBe(false);
+    expect(validate(['baz'])).toBe(false);
+    expect(validate(['foo', 'bar', 'baz'])).toBe(false);
   });
 });
