@@ -23,7 +23,7 @@
   "devDependencies": {
     "@eslint/js": "^9.7.0",
     "@fortress-validator/types": "^1.0.0",
-    "@playwright/test": "^1.47.2",
+    "@playwright/test": "^1.48.2",
     "@stylistic/eslint-plugin": "^2.9.0",
     "@types/eslint__js": "^8.42.3",
     "@types/node": "^20.14.12",
