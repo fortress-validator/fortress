@@ -14,15 +14,19 @@ class FormValidator {
   private rules: Rules = {};
 
   constructor({
-    customLocales = {},
-    customRules = {},
-    locale,
     fallbackLocale,
+    locale,
+    locales,
+    plugin,
+    rules,
   }: FormValidatorArguments = {}) {
-    this.registerLocales(customLocales);
-    this.registerRules(customRules);
-    if (locale) this.setLocale(locale);
+    this.registerLocales(defaultLocales);
+    this.registerRules(defaultRules);
     if (fallbackLocale) this.setFallbackLocale(fallbackLocale);
+    if (locale) this.setLocale(locale);
+    if (locales) this.registerLocales(locales);
+    if (plugin) this.registerPlugin(plugin);
+    if (rules) this.registerRules(rules);
   }
 
   public getLocale(): string {
