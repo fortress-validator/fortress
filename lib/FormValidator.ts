@@ -64,12 +64,18 @@ class FormValidator {
   }
 
   public registerLocales(locales: Locales): this {
-    this.locales = Object.keys(defaultLocales).reduce((acc, key) => ({ ...acc, [key]: { ...defaultLocales[key], ...(locales[key] || {}) } }), {});
+    this.locales = Object.keys(locales).reduce(
+      (acc: Locales, key: string) => {
+        acc[key] = { ...this.locales[key], ...locales[key] };
+        return acc;
+      },
+      { ...this.locales },
+    );
     return this;
   }
 
   public registerRules(rules: Rules): this {
-    this.rules = { ...defaultRules, ...rules };
+    this.rules = { ...this.rules, ...rules };
     return this;
   }
 
