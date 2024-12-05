@@ -8,7 +8,7 @@ export interface InRuleArguments extends RuleArguments {
 const _in: Rule<InRuleArguments> = ({ values }) => (input: unknown) => {
   if (isEmpty(input)) return false;
   if (Array.isArray(input)) return input.every(item => values.includes(item));
-  return values.some(value => value === input);
+  return values.includes(input);
 };
 
 export default _in;
