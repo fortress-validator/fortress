@@ -4,7 +4,7 @@ interface FormValidatorArguments {
   fallbackLocale?: string;
   locale?: string;
   locales?: Locales;
-  plugin?: Plugin;
+  plugins?: Plugin[];
   rules?: Rules;
 }
 

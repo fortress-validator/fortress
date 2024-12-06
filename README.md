@@ -49,7 +49,7 @@ window.onload = () => {
 </script>
 ```
 
-## Rules
+## Available Rules
 
 | Name | Description |
 | --- | --- |
@@ -97,19 +97,51 @@ window.onload = () => {
 | `uppercase` | Passes if the field's value contains only uppercase characters. |
 | `url` | Passes if the field's value is a valid URL. |
 
-## Validation Methods
+## Available Methods
 
 | Name | Description |
 | --- | --- |
 | `collect` | Collects the rule functions. |
 | `validate` | Validates the field's value. |
-| `apply` | Applies the specified rule with the given arguments. |
+| `apply` | Applies the specified rule with the given arguments, useful for applying custom rules. |
 | `when` | Determines whether to apply or skip validation based on the provided conditions. |
 
-## Plugins
+## Available Plugins
 
 - [fortress-validator/plugin-date](https://github.com/fortress-validator/plugin-date)
 - [fortress-validator/plugin-json-schema](https://github.com/fortress-validator/plugin-json-schema)
+
+## Custom Plugin
+
+A custom plugin is composed of `rules` and `locales`, allowing you to define custom validation logic and locale-specific messages. 
+
+```js
+const validator = new FormValidator({
+  plugins: [
+    {
+      rules: {
+        multipleOf: (({ factor }: { factor: number }) => (input: unknown) => Number(input) % factor === 0) as Rule<unknown>,
+      },
+      locales: {
+        en: {
+          multipleOf: (field, args) => {
+            const { factor } = args as { factor: number };
+            return `The ${field} field must be a multiple of ${factor}.`;
+          },
+        },
+      },
+    },
+  ],
+})
+  .defineField('Input')
+  .apply('multipleOf', { factor: 2 });
+
+const result = validator.validate(1);
+
+console.log(result);
+// Output:
+// The input field must be a multiple of 2.
+```
 
 ## Development
 

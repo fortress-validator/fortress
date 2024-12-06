@@ -17,7 +17,7 @@ class FormValidator {
     fallbackLocale,
     locale,
     locales,
-    plugin,
+    plugins,
     rules,
   }: FormValidatorArguments = {}) {
     this.registerLocales(defaultLocales);
@@ -25,7 +25,7 @@ class FormValidator {
     if (fallbackLocale) this.setFallbackLocale(fallbackLocale);
     if (locale) this.setLocale(locale);
     if (locales) this.registerLocales(locales);
-    if (plugin) this.registerPlugin(plugin);
+    if (plugins) plugins.forEach(plugin => this.registerPlugin(plugin));
     if (rules) this.registerRules(rules);
   }
 
