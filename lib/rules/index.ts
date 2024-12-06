@@ -16,6 +16,7 @@ import distinct from './distinct';
 import email from './email';
 import endsWith from './endsWith';
 import equals from './equals';
+import file from './file';
 import _in from './in';
 import integer from './integer';
 import json from './json';
@@ -54,6 +55,7 @@ const rules: Rules = {
   email: email as Rule<unknown>,
   endsWith: endsWith as Rule<unknown>,
   equals: equals as Rule<unknown>,
+  file: file as Rule<unknown>,
   in: _in as Rule<unknown>,
   integer: integer as Rule<unknown>,
   json: json as Rule<unknown>,

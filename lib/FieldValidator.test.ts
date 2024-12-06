@@ -203,6 +203,14 @@ describe('FieldValidator', () => {
       expect(validator.validate('')).toBe('The input field must be equal to undefined.');
     });
 
+    test('with "file" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .file();
+
+      expect(validator.validate(undefined)).toBe(true);
+      expect(validator.validate('_')).toBe('The input field must be a file.');
+    });
+
     test('with "in" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .in(['foo', 'bar']);

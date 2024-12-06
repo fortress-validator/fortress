@@ -73,6 +73,7 @@ window.onload = () => {
 | `email` | Passes if the field's value is a valid email address. |
 | `endsWith` | Passes if the field's value ends with one of the specified values. |
 | `equals` | Passes if the field's value is equal to the specified value. |
+| `file` | Passes if the field's value is a file. |
 | `in` | Passes if the field's value is one of the specified values. |
 | `integer` | Passes if the field's value is an integer. |
 | `iso8601` | Passes if the field's value is a valid ISO 8601 date. |

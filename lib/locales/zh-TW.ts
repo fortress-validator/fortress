@@ -58,6 +58,7 @@ const zhTW: Messages = {
     const { value } = args as EqualsRuleArguments;
     return `此欄位必須是${value}`;
   },
+  file: () => '此欄位必須是檔案',
   in: (_, args) => {
     const { values } = args as InRuleArguments;
     return `此欄位必須是以下之一：${values.join(', ')}`;

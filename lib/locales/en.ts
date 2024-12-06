@@ -57,6 +57,7 @@ const en: Messages = {
     const { value } = args as EqualsRuleArguments;
     return `The ${field} field must be equal to ${value}.`;
   },
+  file: field => `The ${field} field must be a file.`,
   in: (field, args) => {
     const { values } = args as InRuleArguments;
     return `The ${field} field must be one of the following: ${values.join(', ')}.`;

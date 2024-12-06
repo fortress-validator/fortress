@@ -266,6 +266,13 @@ class FieldValidator {
   }
 
   /**
+   * Passes if the field's value is a file.
+   */
+  public file(): this {
+    return this.apply(this.file.name);
+  }
+
+  /**
    * Passes if the field's value is one of the specified values.
    */
   public in(values: unknown[]): this {
