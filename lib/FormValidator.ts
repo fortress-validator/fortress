@@ -16,17 +16,13 @@ class FormValidator {
   constructor({
     fallbackLocale,
     locale,
-    locales,
     plugins,
-    rules,
   }: FormValidatorArguments = {}) {
     this.registerLocales(defaultLocales);
     this.registerRules(defaultRules);
     if (fallbackLocale) this.setFallbackLocale(fallbackLocale);
     if (locale) this.setLocale(locale);
-    if (locales) this.registerLocales(locales);
     if (plugins) plugins.forEach(plugin => this.registerPlugin(plugin));
-    if (rules) this.registerRules(rules);
   }
 
   public getLocale(): string {
