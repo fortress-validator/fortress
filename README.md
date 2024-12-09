@@ -158,3 +158,18 @@ To run the tests for this package, run:
 ```bash
 npm run test
 ```
+
+## Contributors
+
+<a href="https://github.com/memochou1993">
+  <img src="https://github.com/memochou1993.png" width="60px;" />
+</a>
+<a href="https://github.com/clover180120">
+  <img src="https://github.com/clover180120.png" width="60px;" />
+</a>
+<a href="https://github.com/Joyining">
+  <img src="https://github.com/Joyining.png" width="60px;" />
+</a>
+<a href="https://github.com/BelleShih">
+  <img src="https://github.com/BelleShih.png" width="60px;" />
+</a>
