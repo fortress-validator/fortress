@@ -304,7 +304,7 @@ class FieldValidator {
    * Passes if the field's value matches the specified JSON schema.
    */
   public jsonSchema(schema: Record<string, unknown>): this {
-    return this.apply(this.jsonSchema.name, { schema });
+    return this.apply(this.jsonSchema.name, { schema, locale: this.locale, field: this.name });
   }
 
   /**

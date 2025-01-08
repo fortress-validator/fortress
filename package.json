@@ -17,8 +17,8 @@
     "@fortress-validator/utils": "^1.0.0"
   },
   "peerDependencies": {
-    "@fortress-validator/plugin-date": "^1.0.2",
-    "@fortress-validator/plugin-json-schema": "^1.0.2"
+    "@fortress-validator/plugin-date": "^1.0.3",
+    "@fortress-validator/plugin-json-schema": "^1.0.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.7.0",

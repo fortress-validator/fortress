@@ -182,8 +182,8 @@ describe('FormValidator', () => {
         expect(validator.validate(JSON.stringify({ title: 'foo' }))).toBe(true);
 
         // Fail cases
-        expect(validator.validate(JSON.stringify(true))).toBe('The json schema field must be object.');
-        expect(validator.validate(JSON.stringify({}))).toBe('The json schema field must have required property "title".');
+        expect(validator.validate(JSON.stringify(true))).toBe('The input field must be object.');
+        expect(validator.validate(JSON.stringify({}))).toBe('The input field must have required property "title".');
       });
     });
   });
