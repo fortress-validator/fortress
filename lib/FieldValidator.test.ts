@@ -1,3 +1,4 @@
+import { createTestFile } from '@fortress-validator/utils';
 import { describe, expect, test } from 'vitest';
 import FieldValidator from './FieldValidator';
 import defaultLocales from './locales';
@@ -124,12 +125,12 @@ describe('FieldValidator', () => {
       expect(validator.validate(9)).toBe('The input field must be between 10 and 20.');
       expect(validator.validate('_'.repeat(9))).toBe('The input field must be between 10 and 20 characters.');
       expect(validator.validate(Array.from('_'.repeat(9)))).toBe('The input field must be between 10 and 20 items.');
-      expect(validator.validate(new File(['_'.repeat(9 * 1024)], ''))).toBe('The input field must be between 10 and 20 kilobytes.');
+      expect(validator.validate(createTestFile(9))).toBe('The input field must be between 10 and 20 kilobytes.');
 
       expect(validator.validate(21)).toBe('The input field must be between 10 and 20.');
       expect(validator.validate('_'.repeat(21))).toBe('The input field must be between 10 and 20 characters.');
       expect(validator.validate(Array.from('_'.repeat(21)))).toBe('The input field must be between 10 and 20 items.');
-      expect(validator.validate(new File(['_'.repeat(21 * 1024)], ''))).toBe('The input field must be between 10 and 20 kilobytes.');
+      expect(validator.validate((createTestFile(21)))).toBe('The input field must be between 10 and 20 kilobytes.');
     });
 
     test('with "boolean" rule', () => {
@@ -246,7 +247,7 @@ describe('FieldValidator', () => {
       expect(validator.validate(11)).toBe('The input field must not be greater than 10.');
       expect(validator.validate('_'.repeat(11))).toBe('The input field must not be greater than 10 characters.');
       expect(validator.validate(Array.from('_'.repeat(11)))).toBe('The input field must not be greater than 10 items.');
-      expect(validator.validate(new File(['_'.repeat(11 * 1024)], ''))).toBe('The input field must not be greater than 10 kilobytes.');
+      expect(validator.validate(createTestFile(11))).toBe('The input field must not be greater than 10 kilobytes.');
     });
 
     test('with "min" rule', () => {
@@ -256,7 +257,7 @@ describe('FieldValidator', () => {
       expect(validator.validate(9)).toBe('The input field must be at least 10.');
       expect(validator.validate('_'.repeat(9))).toBe('The input field must be at least 10 characters.');
       expect(validator.validate(Array.from('_'.repeat(9)))).toBe('The input field must be at least 10 items.');
-      expect(validator.validate(new File(['_'.repeat(9 * 1024)], ''))).toBe('The input field must be at least 10 kilobytes.');
+      expect(validator.validate(createTestFile(9))).toBe('The input field must be at least 10 kilobytes.');
     });
 
     test('with "notEquals" rule', () => {
@@ -318,7 +319,7 @@ describe('FieldValidator', () => {
       expect(validator.validate(1)).toBe('The input field must be 10.');
       expect(validator.validate('_'.repeat(1))).toBe('The input field must be 10 characters.');
       expect(validator.validate(Array.from('_'.repeat(1)))).toBe('The input field must contain 10 items.');
-      expect(validator.validate(new File(['_'.repeat(1 * 1024)], ''))).toBe('The input field must be 10 kilobytes.');
+      expect(validator.validate(createTestFile(1))).toBe('The input field must be 10 kilobytes.');
     });
 
     test('with "startsWith" rule set to a string', () => {

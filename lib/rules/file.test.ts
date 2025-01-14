@@ -1,11 +1,12 @@
 import { describe, expect, test } from 'vitest';
 import file from './file';
+import { createTestFile } from '@fortress-validator/utils';
 
 describe('Rule "file"', () => {
   const validate = file();
 
   test('should pass with valid input', () => {
-    expect(validate(new File([], ''))).toBe(true);
+    expect(validate(createTestFile(0))).toBe(true);
   });
 
   test('should fail with invalid input', () => {
