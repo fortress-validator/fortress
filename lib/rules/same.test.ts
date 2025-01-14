@@ -6,10 +6,13 @@ describe('Rule "same"', () => {
 
   test('should pass with valid input', () => {
     expect(validate('foo')).toBe(true);
+    expect(validate(['foo'])).toBe(true);
   });
 
   test('should fail with invalid input', () => {
     expect(validate(undefined)).toBe(false);
     expect(validate('bar')).toBe(false);
+    expect(validate(['bar'])).toBe(false);
+    expect(validate(['foo', 'bar'])).toBe(false);
   });
 });

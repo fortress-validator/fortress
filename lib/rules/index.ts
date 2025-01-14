@@ -17,6 +17,10 @@ import email from './email';
 import endsWith from './endsWith';
 import equals from './equals';
 import file from './file';
+import fileBetweenSize from './fileBetweenSize';
+import fileMaxSize from './fileMaxSize';
+import fileMinSize from './fileMinSize';
+import fileSize from './fileSize';
 import _in from './in';
 import integer from './integer';
 import json from './json';
@@ -56,6 +60,10 @@ const rules: Rules = {
   endsWith: endsWith as Rule<unknown>,
   equals: equals as Rule<unknown>,
   file: file as Rule<unknown>,
+  fileBetweenSize: fileBetweenSize as Rule<unknown>,
+  fileMaxSize: fileMaxSize as Rule<unknown>,
+  fileMinSize: fileMinSize as Rule<unknown>,
+  fileSize: fileSize as Rule<unknown>,
   in: _in as Rule<unknown>,
   integer: integer as Rule<unknown>,
   json: json as Rule<unknown>,

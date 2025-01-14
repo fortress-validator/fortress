@@ -6,6 +6,10 @@ import { ContainsAnyRuleArguments } from '~/rules/containsAny';
 import { DifferentRuleArguments } from '~/rules/different';
 import { EndsWithRuleArguments } from '~/rules/endsWith';
 import { EqualsRuleArguments } from '~/rules/equals';
+import { FileBetweenSizeRuleArguments } from '~/rules/fileBetweenSize';
+import { FileMaxSizeRuleArguments } from '~/rules/fileMaxSize';
+import { FileMinSizeRuleArguments } from '~/rules/fileMinSize';
+import { FileSizeRuleArguments } from '~/rules/fileSize';
 import { InRuleArguments } from '~/rules/in';
 import { MaxRuleArguments } from '~/rules/max';
 import { MinRuleArguments } from '~/rules/min';
@@ -27,7 +31,6 @@ const zhTW: Messages = {
     const { min, max } = args as BetweenRuleArguments;
     return {
       array: `此欄位必須介於${formatNumber(min)}到${formatNumber(max)}個項目之間`,
-      file: `此欄位必須介於${formatNumber(min)}到${formatNumber(max)}KB 之間`,
       number: `此欄位必須介於${formatNumber(min)}到${formatNumber(max)}`,
       string: `此欄位必須介於${formatNumber(min)}到${formatNumber(max)}個字元之間`,
     };
@@ -59,6 +62,22 @@ const zhTW: Messages = {
     return `此欄位必須是${value}`;
   },
   file: () => '此欄位必須是檔案',
+  fileBetweenSize: (_, args) => {
+    const { min, max } = args as FileBetweenSizeRuleArguments;
+    return `此欄位必須介於${formatNumber(min)}到${formatNumber(max)}KB 之間`;
+  },
+  fileMaxSize: (_, args) => {
+    const { max } = args as FileMaxSizeRuleArguments;
+    return `此欄位不能大於${formatNumber(max)}KB`;
+  },
+  fileMinSize: (_, args) => {
+    const { min } = args as FileMinSizeRuleArguments;
+    return `此欄位不能小於${formatNumber(min)}KB`;
+  },
+  fileSize: (_, args) => {
+    const { size } = args as FileSizeRuleArguments;
+    return `此欄位必須是${formatNumber(size)}KB`;
+  },
   in: (_, args) => {
     const { values } = args as InRuleArguments;
     return `此欄位必須是以下之一：${values.join(', ')}`;
@@ -70,7 +89,6 @@ const zhTW: Messages = {
     const { max } = args as MaxRuleArguments;
     return {
       array: `此欄位不能大於${formatNumber(max)}個項目`,
-      file: `此欄位不能大於${formatNumber(max)}KB`,
       number: `此欄位不能大於${formatNumber(max)}`,
       string: `此欄位不能大於${formatNumber(max)}個字元`,
     };
@@ -79,7 +97,6 @@ const zhTW: Messages = {
     const { min } = args as MinRuleArguments;
     return {
       array: `此欄位不能小於${formatNumber(min)}個項目`,
-      file: `此欄位不能小於${formatNumber(min)}KB`,
       number: `此欄位不能小於${formatNumber(min)}`,
       string: `此欄位不能小於${formatNumber(min)}個字元`,
     };
@@ -104,7 +121,6 @@ const zhTW: Messages = {
     const { size } = args as SizeRuleArguments;
     return {
       array: `此欄位必須包含${formatNumber(size)}個項目`,
-      file: `此欄位必須是${formatNumber(size)}KB`,
       number: `此欄位必須是${formatNumber(size)}`,
       string: `此欄位必須是${formatNumber(size)}個字元`,
     };

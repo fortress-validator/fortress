@@ -13,9 +13,6 @@ const min: Rule<MaxRuleArguments> = ({ max }) => (input: unknown) => {
   if (typeof input === 'string' || Array.isArray(input)) {
     return input.length <= max;
   }
-  if (input instanceof File) {
-    return input.size <= max * 1024;
-  }
   return false;
 };
 

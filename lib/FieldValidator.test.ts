@@ -123,14 +123,11 @@ describe('FieldValidator', () => {
         .between(10, 20);
 
       expect(validator.validate(9)).toBe('The input field must be between 10 and 20.');
-      expect(validator.validate('_'.repeat(9))).toBe('The input field must be between 10 and 20 characters.');
-      expect(validator.validate(Array.from('_'.repeat(9)))).toBe('The input field must be between 10 and 20 items.');
-      expect(validator.validate(createTestFile(9))).toBe('The input field must be between 10 and 20 kilobytes.');
-
       expect(validator.validate(21)).toBe('The input field must be between 10 and 20.');
+      expect(validator.validate('_'.repeat(9))).toBe('The input field must be between 10 and 20 characters.');
       expect(validator.validate('_'.repeat(21))).toBe('The input field must be between 10 and 20 characters.');
+      expect(validator.validate(Array.from('_'.repeat(9)))).toBe('The input field must be between 10 and 20 items.');
       expect(validator.validate(Array.from('_'.repeat(21)))).toBe('The input field must be between 10 and 20 items.');
-      expect(validator.validate((createTestFile(21)))).toBe('The input field must be between 10 and 20 kilobytes.');
     });
 
     test('with "boolean" rule', () => {
@@ -212,6 +209,35 @@ describe('FieldValidator', () => {
       expect(validator.validate('_')).toBe('The input field must be a file.');
     });
 
+    test('with "fileBetweenSize" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .fileBetweenSize(10, 20);
+
+      expect(validator.validate(createTestFile(9))).toBe('The input field must be between 10 and 20 kilobytes.');
+      expect(validator.validate(createTestFile(21))).toBe('The input field must be between 10 and 20 kilobytes.');
+    });
+
+    test('with "fileMaxSize" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .fileMaxSize(10);
+
+      expect(validator.validate(createTestFile(11))).toBe('The input field must not be greater than 10 kilobytes.');
+    });
+
+    test('with "fileMinSize" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .fileMinSize(10);
+
+      expect(validator.validate(createTestFile(9))).toBe('The input field must be at least 10 kilobytes.');
+    });
+
+    test('with "fileSize" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .fileSize(10);
+
+      expect(validator.validate(createTestFile(1))).toBe('The input field must be 10 kilobytes.');
+    });
+
     test('with "in" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .in(['foo', 'bar']);
@@ -247,7 +273,6 @@ describe('FieldValidator', () => {
       expect(validator.validate(11)).toBe('The input field must not be greater than 10.');
       expect(validator.validate('_'.repeat(11))).toBe('The input field must not be greater than 10 characters.');
       expect(validator.validate(Array.from('_'.repeat(11)))).toBe('The input field must not be greater than 10 items.');
-      expect(validator.validate(createTestFile(11))).toBe('The input field must not be greater than 10 kilobytes.');
     });
 
     test('with "min" rule', () => {
@@ -257,7 +282,6 @@ describe('FieldValidator', () => {
       expect(validator.validate(9)).toBe('The input field must be at least 10.');
       expect(validator.validate('_'.repeat(9))).toBe('The input field must be at least 10 characters.');
       expect(validator.validate(Array.from('_'.repeat(9)))).toBe('The input field must be at least 10 items.');
-      expect(validator.validate(createTestFile(9))).toBe('The input field must be at least 10 kilobytes.');
     });
 
     test('with "notEquals" rule', () => {
@@ -319,7 +343,6 @@ describe('FieldValidator', () => {
       expect(validator.validate(1)).toBe('The input field must be 10.');
       expect(validator.validate('_'.repeat(1))).toBe('The input field must be 10 characters.');
       expect(validator.validate(Array.from('_'.repeat(1)))).toBe('The input field must contain 10 items.');
-      expect(validator.validate(createTestFile(1))).toBe('The input field must be 10 kilobytes.');
     });
 
     test('with "startsWith" rule set to a string', () => {

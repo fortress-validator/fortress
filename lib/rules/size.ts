@@ -13,9 +13,6 @@ const size: Rule<SizeRuleArguments> = ({ size }) => (input: unknown) => {
   if (typeof input === 'string' || Array.isArray(input)) {
     return input.length === size;
   }
-  if (input instanceof File) {
-    return input.size === size * 1024;
-  }
   return false;
 };
 

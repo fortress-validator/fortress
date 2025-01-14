@@ -273,6 +273,34 @@ class FieldValidator {
   }
 
   /**
+   * Passes if the field's value is between the specified minimum and maximum file sizes.
+   */
+  public fileBetweenSize(min: number, max: number): this {
+    return this.apply(this.fileBetweenSize.name, { min, max });
+  }
+
+  /**
+   * Passes if the field's value is not greater than the specified maximum file size.
+   */
+  public fileMaxSize(max: number): this {
+    return this.apply(this.fileMaxSize.name, { max });
+  }
+
+  /**
+   * Passes if the field's value is at least the specified minimum file size.
+   */
+  public fileMinSize(min: number): this {
+    return this.apply(this.fileMinSize.name, { min });
+  }
+
+  /**
+   * Passes if the field's value matches the specified file size.
+   */
+  public fileSize(size: number): this {
+    return this.apply(this.fileSize.name, { size });
+  }
+
+  /**
    * Passes if the field's value is one of the specified values.
    */
   public in(values: unknown[]): this {
@@ -315,17 +343,17 @@ class FieldValidator {
   }
 
   /**
-   * Passes if the field's value or length does not exceed the specified maximum.
+   * Passes if the field's value is not greater than the specified maximum.
    */
-  public max(value: number): this {
-    return this.apply(this.max.name, { max: value });
+  public max(max: number): this {
+    return this.apply(this.max.name, { max });
   }
 
   /**
-   * Passes if the field's value or length is at least the specified minimum.
+   * Passes if the field's value is at least the specified minimum.
    */
-  public min(value: number): this {
-    return this.apply(this.min.name, { min: value });
+  public min(min: number): this {
+    return this.apply(this.min.name, { min });
   }
 
   /**
