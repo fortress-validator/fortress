@@ -10,7 +10,7 @@ const size: Rule<SizeRuleArguments> = ({ size }) => (input: unknown) => {
   if (typeof input === 'number') {
     return input === size;
   }
-  if (typeof input === 'string' || Array.isArray(input)) {
+  if (typeof input === 'string') {
     return input.length === size;
   }
   return false;

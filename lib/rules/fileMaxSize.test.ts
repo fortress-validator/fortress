@@ -3,7 +3,7 @@ import { describe, expect, test } from 'vitest';
 import fileMaxSize from './fileMaxSize';
 
 describe('Rule "fileMaxSize"', () => {
-  const validate = fileMaxSize({ max: 10 });
+  const validate = fileMaxSize({ size: 10 });
 
   test('should pass with valid input', () => {
     expect(validate(createTestFile(10))).toBe(true);

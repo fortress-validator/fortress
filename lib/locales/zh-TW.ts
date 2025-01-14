@@ -1,6 +1,7 @@
 import { Messages } from '@fortress-validator/types';
 import { formatNumber } from '@fortress-validator/utils';
 import { BetweenRuleArguments } from '~/rules/between';
+import { BetweenLengthRuleArguments } from '~/rules/betweenLength';
 import { ContainsAllRuleArguments } from '~/rules/containsAll';
 import { ContainsAnyRuleArguments } from '~/rules/containsAny';
 import { DifferentRuleArguments } from '~/rules/different';
@@ -11,6 +12,7 @@ import { FileMaxSizeRuleArguments } from '~/rules/fileMaxSize';
 import { FileMinSizeRuleArguments } from '~/rules/fileMinSize';
 import { FileSizeRuleArguments } from '~/rules/fileSize';
 import { InRuleArguments } from '~/rules/in';
+import { LengthRuleArguments } from '~/rules/length';
 import { MaxRuleArguments } from '~/rules/max';
 import { MinRuleArguments } from '~/rules/min';
 import { NotEqualsRuleArguments } from '~/rules/notEquals';
@@ -30,10 +32,13 @@ const zhTW: Messages = {
   between: (_, args) => {
     const { min, max } = args as BetweenRuleArguments;
     return {
-      array: `此欄位必須介於${formatNumber(min)}到${formatNumber(max)}個項目之間`,
       number: `此欄位必須介於${formatNumber(min)}到${formatNumber(max)}`,
       string: `此欄位必須介於${formatNumber(min)}到${formatNumber(max)}個字元之間`,
     };
+  },
+  betweenLength: (_, args) => {
+    const { min, max } = args as BetweenLengthRuleArguments;
+    return `此欄位必須介於${formatNumber(min)}到${formatNumber(max)}個項目之間`;
   },
   boolean: () => '此欄位必須是一個布林值',
   containsAll: (_, args) => {
@@ -67,12 +72,12 @@ const zhTW: Messages = {
     return `此欄位必須介於${formatNumber(min)}到${formatNumber(max)}KB 之間`;
   },
   fileMaxSize: (_, args) => {
-    const { max } = args as FileMaxSizeRuleArguments;
-    return `此欄位不能大於${formatNumber(max)}KB`;
+    const { size } = args as FileMaxSizeRuleArguments;
+    return `此欄位不能大於${formatNumber(size)}KB`;
   },
   fileMinSize: (_, args) => {
-    const { min } = args as FileMinSizeRuleArguments;
-    return `此欄位不能小於${formatNumber(min)}KB`;
+    const { size } = args as FileMinSizeRuleArguments;
+    return `此欄位不能小於${formatNumber(size)}KB`;
   },
   fileSize: (_, args) => {
     const { size } = args as FileSizeRuleArguments;
@@ -84,11 +89,14 @@ const zhTW: Messages = {
   },
   integer: () => '此欄位必須是整數',
   json: () => '此欄位必須是有效的 JSON 字串',
+  length: (_, args) => {
+    const { length } = args as LengthRuleArguments;
+    return `此欄位必須包含${formatNumber(length)}個項目`;
+  },
   lowercase: () => '此欄位必須是小寫',
   max: (_, args) => {
     const { max } = args as MaxRuleArguments;
     return {
-      array: `此欄位不能大於${formatNumber(max)}個項目`,
       number: `此欄位不能大於${formatNumber(max)}`,
       string: `此欄位不能大於${formatNumber(max)}個字元`,
     };
@@ -96,7 +104,6 @@ const zhTW: Messages = {
   min: (_, args) => {
     const { min } = args as MinRuleArguments;
     return {
-      array: `此欄位不能小於${formatNumber(min)}個項目`,
       number: `此欄位不能小於${formatNumber(min)}`,
       string: `此欄位不能小於${formatNumber(min)}個字元`,
     };
@@ -120,7 +127,6 @@ const zhTW: Messages = {
   size: (_, args) => {
     const { size } = args as SizeRuleArguments;
     return {
-      array: `此欄位必須包含${formatNumber(size)}個項目`,
       number: `此欄位必須是${formatNumber(size)}`,
       string: `此欄位必須是${formatNumber(size)}個字元`,
     };

@@ -7,6 +7,7 @@ import alphaNum from './alphaNum';
 import array from './array';
 import ascii from './ascii';
 import between from './between';
+import betweenLength from './betweenLength';
 import boolean from './boolean';
 import containsAll from './containsAll';
 import containsAny from './containsAny';
@@ -24,9 +25,12 @@ import fileSize from './fileSize';
 import _in from './in';
 import integer from './integer';
 import json from './json';
+import length from './length';
 import lowercase from './lowercase';
 import max from './max';
+import maxLength from './maxLength';
 import min from './min';
+import minLength from './minLength';
 import notEquals from './notEquals';
 import notIn from './notIn';
 import number from './number';
@@ -50,6 +54,7 @@ const rules: Rules = {
   array: array as Rule<unknown>,
   ascii: ascii as Rule<unknown>,
   between: between as Rule<unknown>,
+  betweenLength: betweenLength as Rule<unknown>,
   boolean: boolean as Rule<unknown>,
   containsAll: containsAll as Rule<unknown>,
   containsAny: containsAny as Rule<unknown>,
@@ -67,9 +72,12 @@ const rules: Rules = {
   in: _in as Rule<unknown>,
   integer: integer as Rule<unknown>,
   json: json as Rule<unknown>,
+  length: length as Rule<unknown>,
   lowercase: lowercase as Rule<unknown>,
   max: max as Rule<unknown>,
+  maxLength: maxLength as Rule<unknown>,
   min: min as Rule<unknown>,
+  minLength: minLength as Rule<unknown>,
   notEquals: notEquals as Rule<unknown>,
   notIn: notIn as Rule<unknown>,
   number: number as Rule<unknown>,

@@ -126,6 +126,12 @@ describe('FieldValidator', () => {
       expect(validator.validate(21)).toBe('The input field must be between 10 and 20.');
       expect(validator.validate('_'.repeat(9))).toBe('The input field must be between 10 and 20 characters.');
       expect(validator.validate('_'.repeat(21))).toBe('The input field must be between 10 and 20 characters.');
+    });
+
+    test('with "betweenLength" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .betweenLength(10, 20);
+
       expect(validator.validate(Array.from('_'.repeat(9)))).toBe('The input field must be between 10 and 20 items.');
       expect(validator.validate(Array.from('_'.repeat(21)))).toBe('The input field must be between 10 and 20 items.');
     });
@@ -259,6 +265,13 @@ describe('FieldValidator', () => {
       expect(validator.validate('_')).toBe('The input field must be a valid JSON string.');
     });
 
+    test('with "length" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .length(10);
+
+      expect(validator.validate(1)).toBe('The input field must be 10 items.');
+    });
+
     test('with "lowercase" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .lowercase();
@@ -272,6 +285,12 @@ describe('FieldValidator', () => {
 
       expect(validator.validate(11)).toBe('The input field must not be greater than 10.');
       expect(validator.validate('_'.repeat(11))).toBe('The input field must not be greater than 10 characters.');
+    });
+
+    test('with "maxLength" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .maxLength(10);
+
       expect(validator.validate(Array.from('_'.repeat(11)))).toBe('The input field must not be greater than 10 items.');
     });
 
@@ -281,6 +300,12 @@ describe('FieldValidator', () => {
 
       expect(validator.validate(9)).toBe('The input field must be at least 10.');
       expect(validator.validate('_'.repeat(9))).toBe('The input field must be at least 10 characters.');
+    });
+
+    test('with "minLength" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .minLength(10);
+
       expect(validator.validate(Array.from('_'.repeat(9)))).toBe('The input field must be at least 10 items.');
     });
 
@@ -342,7 +367,6 @@ describe('FieldValidator', () => {
 
       expect(validator.validate(1)).toBe('The input field must be 10.');
       expect(validator.validate('_'.repeat(1))).toBe('The input field must be 10 characters.');
-      expect(validator.validate(Array.from('_'.repeat(1)))).toBe('The input field must contain 10 items.');
     });
 
     test('with "startsWith" rule set to a string', () => {

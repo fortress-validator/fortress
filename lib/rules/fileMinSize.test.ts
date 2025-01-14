@@ -3,7 +3,7 @@ import { describe, expect, test } from 'vitest';
 import fileMinSize from './fileMinSize';
 
 describe('Rule "fileMinSize"', () => {
-  const validate = fileMinSize({ min: 10 });
+  const validate = fileMinSize({ size: 10 });
 
   test('should pass with valid input', () => {
     expect(validate(createTestFile(10))).toBe(true);

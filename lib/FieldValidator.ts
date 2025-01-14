@@ -196,6 +196,13 @@ class FieldValidator {
   }
 
   /**
+   * Passes if the field's value is between the specified minimum and maximum lengths.
+   */
+  public betweenLength(min: number, max: number): this {
+    return this.apply(this.betweenLength.name, { min, max });
+  }
+
+  /**
    * Passes if the field's value is a boolean.
    */
   public boolean(): this {
@@ -282,15 +289,15 @@ class FieldValidator {
   /**
    * Passes if the field's value is not greater than the specified maximum file size.
    */
-  public fileMaxSize(max: number): this {
-    return this.apply(this.fileMaxSize.name, { max });
+  public fileMaxSize(size: number): this {
+    return this.apply(this.fileMaxSize.name, { size });
   }
 
   /**
    * Passes if the field's value is at least the specified minimum file size.
    */
-  public fileMinSize(min: number): this {
-    return this.apply(this.fileMinSize.name, { min });
+  public fileMinSize(size: number): this {
+    return this.apply(this.fileMinSize.name, { size });
   }
 
   /**
@@ -336,6 +343,13 @@ class FieldValidator {
   }
 
   /**
+   * Passes if the field's value matches the specified length.
+   */
+  public length(length: number): this {
+    return this.apply(this.length.name, { length });
+  }
+
+  /**
    * Passes if the field's value contains only lowercase characters.
    */
   public lowercase(): this {
@@ -350,10 +364,24 @@ class FieldValidator {
   }
 
   /**
+   * Passes if the field's value is not greater than the specified maximum length.
+   */
+  public maxLength(length: number): this {
+    return this.apply(this.maxLength.name, { length });
+  }
+
+  /**
    * Passes if the field's value is at least the specified minimum.
    */
   public min(min: number): this {
     return this.apply(this.min.name, { min });
+  }
+
+  /**
+   * Passes if the field's value is at least the specified minimum length.
+   */
+  public minLength(length: number): this {
+    return this.apply(this.minLength.name, { length });
   }
 
   /**
@@ -415,7 +443,7 @@ class FieldValidator {
   }
 
   /**
-   * Passes if the field's value or length matches the specified size.
+   * Passes if the field's value matches the specified size.
    */
   public size(size: number): this {
     return this.apply(this.size.name, { size });

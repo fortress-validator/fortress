@@ -10,7 +10,7 @@ const min: Rule<MinRuleArguments> = ({ min }) => (input: unknown) => {
   if (typeof input === 'number') {
     return input >= min;
   }
-  if (typeof input === 'string' || Array.isArray(input)) {
+  if (typeof input === 'string') {
     return input.length >= min;
   }
   return false;
