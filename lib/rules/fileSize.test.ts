@@ -9,6 +9,7 @@ describe('Rule "fileSize"', () => {
     expect(validate(createTestFile(10))).toBe(true);
     expect(validate(createTestFile(10.1))).toBe(true);
     expect(validate(createTestFile(10.9))).toBe(true);
+    expect(validate([createTestFile(10)])).toBe(true);
     expect(validate([createTestFile(10), createTestFile(10)])).toBe(true);
   });
 
@@ -17,6 +18,7 @@ describe('Rule "fileSize"', () => {
     expect(validate(createTestFile(1))).toBe(false);
     expect(validate(createTestFile(9.9))).toBe(false);
     expect(validate(createTestFile(11))).toBe(false);
+    expect(validate([createTestFile(1)])).toBe(false);
     expect(validate([createTestFile(1), createTestFile(10)])).toBe(false);
   });
 });

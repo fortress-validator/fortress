@@ -13,6 +13,9 @@ const minRule: Rule<MinRuleArguments> = ({ min }) => (input: unknown) => {
   if (typeof input === 'string') {
     return input.length >= min;
   }
+  if (Array.isArray(input)) {
+    return input.every(item => minRule({ min })(item));
+  }
   return false;
 };
 

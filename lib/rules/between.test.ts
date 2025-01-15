@@ -7,6 +7,10 @@ describe('Rule "between"', () => {
   test('should pass with valid input', () => {
     expect(validate(15)).toBe(true);
     expect(validate('_'.repeat(15))).toBe(true);
+    expect(validate([15])).toBe(true);
+    expect(validate([15, 15])).toBe(true);
+    expect(validate(['_'.repeat(15)])).toBe(true);
+    expect(validate(['_'.repeat(15), '_'.repeat(15)])).toBe(true);
   });
 
   test('should fail with invalid input', () => {
@@ -15,5 +19,13 @@ describe('Rule "between"', () => {
     expect(validate(21)).toBe(false);
     expect(validate('_'.repeat(9))).toBe(false);
     expect(validate('_'.repeat(21))).toBe(false);
+    expect(validate([9])).toBe(false);
+    expect(validate([9, 15])).toBe(false);
+    expect(validate([21])).toBe(false);
+    expect(validate([21, 15])).toBe(false);
+    expect(validate(['_'.repeat(9)])).toBe(false);
+    expect(validate(['_'.repeat(9), '_'.repeat(15)])).toBe(false);
+    expect(validate(['_'.repeat(21)])).toBe(false);
+    expect(validate(['_'.repeat(21)]), '_'.repeat(15)).toBe(false);
   });
 });
