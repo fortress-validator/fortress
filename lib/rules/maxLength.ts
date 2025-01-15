@@ -5,7 +5,7 @@ export interface MaxLengthRuleArguments extends RuleArguments {
   length: number;
 }
 
-const maxLength: Rule<MaxLengthRuleArguments> = ({ length }) => (input: unknown) => {
+const maxLengthRule: Rule<MaxLengthRuleArguments> = ({ length }) => (input: unknown) => {
   if (isEmpty(input)) return false;
   if (Array.isArray(input)) {
     return input.length <= length;
@@ -13,4 +13,4 @@ const maxLength: Rule<MaxLengthRuleArguments> = ({ length }) => (input: unknown)
   return false;
 };
 
-export default maxLength;
+export default maxLengthRule;

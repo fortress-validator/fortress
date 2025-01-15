@@ -5,10 +5,10 @@ export interface InRuleArguments extends RuleArguments {
   values: unknown[];
 }
 
-const _in: Rule<InRuleArguments> = ({ values }) => (input: unknown) => {
+const inRule: Rule<InRuleArguments> = ({ values }) => (input: unknown) => {
   if (isEmpty(input)) return false;
   if (Array.isArray(input)) return input.every(item => values.includes(item));
   return values.includes(input);
 };
 
-export default _in;
+export default inRule;

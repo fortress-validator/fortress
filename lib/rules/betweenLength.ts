@@ -8,9 +8,9 @@ export interface BetweenLengthRuleArguments extends RuleArguments {
   max: number;
 }
 
-const betweenLength: Rule<BetweenLengthRuleArguments> = ({ min, max }) => (input: unknown) => {
+const betweenLengthRule: Rule<BetweenLengthRuleArguments> = ({ min, max }) => (input: unknown) => {
   if (isEmpty(input)) return false;
   return minLengthRule({ length: min })(input) && maxLengthRule({ length: max })(input);
 };
 
-export default betweenLength;
+export default betweenLengthRule;

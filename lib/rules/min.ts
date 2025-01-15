@@ -5,7 +5,7 @@ export interface MinRuleArguments extends RuleArguments {
   min: number;
 }
 
-const min: Rule<MinRuleArguments> = ({ min }) => (input: unknown) => {
+const minRule: Rule<MinRuleArguments> = ({ min }) => (input: unknown) => {
   if (isEmpty(input)) return false;
   if (typeof input === 'number') {
     return input >= min;
@@ -16,4 +16,4 @@ const min: Rule<MinRuleArguments> = ({ min }) => (input: unknown) => {
   return false;
 };
 
-export default min;
+export default minRule;

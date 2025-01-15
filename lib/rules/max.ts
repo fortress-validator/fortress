@@ -5,7 +5,7 @@ export interface MaxRuleArguments extends RuleArguments {
   max: number;
 }
 
-const max: Rule<MaxRuleArguments> = ({ max }) => (input: unknown) => {
+const maxRule: Rule<MaxRuleArguments> = ({ max }) => (input: unknown) => {
   if (isEmpty(input)) return false;
   if (typeof input === 'number') {
     return input <= max;
@@ -16,4 +16,4 @@ const max: Rule<MaxRuleArguments> = ({ max }) => (input: unknown) => {
   return false;
 };
 
-export default max;
+export default maxRule;

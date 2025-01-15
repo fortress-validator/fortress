@@ -5,7 +5,7 @@ export interface LengthRuleArguments extends RuleArguments {
   length: number;
 }
 
-const length: Rule<LengthRuleArguments> = ({ length }) => (input: unknown) => {
+const lengthRule: Rule<LengthRuleArguments> = ({ length }) => (input: unknown) => {
   if (isEmpty(input)) return false;
   if (Array.isArray(input)) {
     return input.length === length;
@@ -13,4 +13,4 @@ const length: Rule<LengthRuleArguments> = ({ length }) => (input: unknown) => {
   return false;
 };
 
-export default length;
+export default lengthRule;

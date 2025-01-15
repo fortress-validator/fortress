@@ -5,7 +5,7 @@ export interface SizeRuleArguments extends RuleArguments {
   size: number;
 }
 
-const size: Rule<SizeRuleArguments> = ({ size }) => (input: unknown) => {
+const sizeRule: Rule<SizeRuleArguments> = ({ size }) => (input: unknown) => {
   if (isEmpty(input)) return false;
   if (typeof input === 'number') {
     return input === size;
@@ -16,4 +16,4 @@ const size: Rule<SizeRuleArguments> = ({ size }) => (input: unknown) => {
   return false;
 };
 
-export default size;
+export default sizeRule;

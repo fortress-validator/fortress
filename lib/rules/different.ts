@@ -6,9 +6,9 @@ export interface DifferentRuleArguments extends RuleArguments {
   value: unknown;
 }
 
-const different: Rule<DifferentRuleArguments> = ({ value }) => (input: unknown) => {
+const differentRule: Rule<DifferentRuleArguments> = ({ value }) => (input: unknown) => {
   if (isEmpty(input)) return false;
   return input !== value;
 };
 
-export default different;
+export default differentRule;

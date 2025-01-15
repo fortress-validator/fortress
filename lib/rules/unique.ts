@@ -6,10 +6,10 @@ export interface UniqueRuleArguments extends RuleArguments {
   ignored?: unknown[] | unknown;
 }
 
-const unique: Rule<UniqueRuleArguments> = ({ values, ignored = [] }) => (input: unknown) => {
+const uniqueRule: Rule<UniqueRuleArguments> = ({ values, ignored = [] }) => (input: unknown) => {
   if (isEmpty(input)) return false;
   if ((Array.isArray(ignored) ? ignored : [ignored]).some(value => value === input)) return true;
   return !values.some(value => value === input);
 };
 
-export default unique;
+export default uniqueRule;

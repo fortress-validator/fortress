@@ -1,7 +1,7 @@
 import { Rule } from '@fortress-validator/types';
 import { isEmpty } from '@fortress-validator/utils';
 
-const json: Rule = () => (input: unknown) => {
+const jsonRule: Rule = () => (input: unknown) => {
   if (isEmpty(input)) return false;
   try {
     JSON.parse(String(input));
@@ -11,4 +11,4 @@ const json: Rule = () => (input: unknown) => {
   }
 };
 
-export default json;
+export default jsonRule;

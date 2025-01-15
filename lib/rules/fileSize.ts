@@ -5,7 +5,7 @@ export interface FileSizeRuleArguments extends RuleArguments {
   size: number;
 }
 
-const fileSize: Rule<FileSizeRuleArguments> = ({ size }) => (input: unknown) => {
+const fileSizeRule: Rule<FileSizeRuleArguments> = ({ size }) => (input: unknown) => {
   if (isEmpty(input)) return false;
   if (input instanceof File) {
     const minSize = size * 1024;
@@ -13,9 +13,9 @@ const fileSize: Rule<FileSizeRuleArguments> = ({ size }) => (input: unknown) => 
     return input.size >= minSize && input.size < maxSize;
   }
   if (Array.isArray(input)) {
-    return input.every(file => fileSize({ size })(file));
+    return input.every(file => fileSizeRule({ size })(file));
   }
   return false;
 };
 
-export default fileSize;
+export default fileSizeRule;

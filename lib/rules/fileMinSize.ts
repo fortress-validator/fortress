@@ -5,15 +5,15 @@ export interface FileMinSizeRuleArguments extends RuleArguments {
   size: number;
 }
 
-const fileMinSize: Rule<FileMinSizeRuleArguments> = ({ size }) => (input: unknown) => {
+const fileMinSizeRule: Rule<FileMinSizeRuleArguments> = ({ size }) => (input: unknown) => {
   if (isEmpty(input)) return false;
   if (input instanceof File) {
     return input.size >= size * 1024;
   }
   if (Array.isArray(input)) {
-    return input.every(file => fileMinSize({ size })(file));
+    return input.every(file => fileMinSizeRule({ size })(file));
   }
   return false;
 };
 
-export default fileMinSize;
+export default fileMinSizeRule;

@@ -6,7 +6,7 @@ export interface SameRuleArguments extends RuleArguments {
   value: unknown;
 }
 
-const same: Rule<SameRuleArguments> = ({ value }) => (input: unknown) => {
+const sameRule: Rule<SameRuleArguments> = ({ value }) => (input: unknown) => {
   if (isEmpty(input)) return false;
   if (Array.isArray(input)) {
     return input.every(item => item === value);
@@ -14,4 +14,4 @@ const same: Rule<SameRuleArguments> = ({ value }) => (input: unknown) => {
   return input === value;
 };
 
-export default same;
+export default sameRule;

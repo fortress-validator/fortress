@@ -5,7 +5,7 @@ export interface MinLengthRuleArguments extends RuleArguments {
   length: number;
 }
 
-const minLength: Rule<MinLengthRuleArguments> = ({ length }) => (input: unknown) => {
+const minLengthRule: Rule<MinLengthRuleArguments> = ({ length }) => (input: unknown) => {
   if (isEmpty(input)) return false;
   if (Array.isArray(input)) {
     return input.length >= length;
@@ -13,4 +13,4 @@ const minLength: Rule<MinLengthRuleArguments> = ({ length }) => (input: unknown)
   return false;
 };
 
-export default minLength;
+export default minLengthRule;

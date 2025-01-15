@@ -1,96 +1,96 @@
 import { Rule, Rules } from '@fortress-validator/types';
-import accepted from './accepted';
-import alpha from './alpha';
-import alphaDash from './alphaDash';
-import alphaDashDot from './alphaDashDot';
-import alphaNum from './alphaNum';
-import array from './array';
-import ascii from './ascii';
-import between from './between';
-import betweenLength from './betweenLength';
-import boolean from './boolean';
-import containsAll from './containsAll';
-import containsAny from './containsAny';
-import declined from './declined';
-import different from './different';
-import distinct from './distinct';
-import email from './email';
-import endsWith from './endsWith';
-import equals from './equals';
-import file from './file';
-import fileBetweenSize from './fileBetweenSize';
-import fileMaxSize from './fileMaxSize';
-import fileMinSize from './fileMinSize';
-import fileSize from './fileSize';
-import _in from './in';
-import integer from './integer';
-import json from './json';
-import length from './length';
-import lowercase from './lowercase';
-import max from './max';
-import maxLength from './maxLength';
-import min from './min';
-import minLength from './minLength';
+import acceptedRule from './accepted';
+import alphaRule from './alpha';
+import alphaDashRule from './alphaDash';
+import alphaDashDotRule from './alphaDashDot';
+import alphaNumRule from './alphaNum';
+import arrayRule from './array';
+import asciiRule from './ascii';
+import betweenRule from './between';
+import betweenLengthRule from './betweenLength';
+import booleanRule from './boolean';
+import containsAllRule from './containsAll';
+import containsAnyRule from './containsAny';
+import declinedRule from './declined';
+import differentRule from './different';
+import distinctRule from './distinct';
+import emailRule from './email';
+import endsWithRule from './endsWith';
+import equalsRule from './equals';
+import fileRule from './file';
+import fileBetweenSizeRule from './fileBetweenSize';
+import fileMaxSizeRule from './fileMaxSize';
+import fileMinSizeRule from './fileMinSize';
+import fileSizeRule from './fileSize';
+import inRule from './in';
+import integerRule from './integer';
+import jsonRule from './json';
+import lengthRule from './length';
+import lowercaseRule from './lowercase';
+import maxRule from './max';
+import maxLengthRule from './maxLength';
+import minRule from './min';
+import minLengthRule from './minLength';
 import notEquals from './notEquals';
-import notIn from './notIn';
-import number from './number';
-import numeric from './numeric';
-import regex from './regex';
-import required from './required';
-import same from './same';
+import notInRule from './notIn';
+import numberRule from './number';
+import numericRule from './numeric';
+import regexRule from './regex';
+import requiredRule from './required';
+import sameRule from './same';
 import size from './size';
-import startsWith from './startsWith';
-import string from './string';
-import unique from './unique';
-import uppercase from './uppercase';
-import url from './url';
+import startsWithRule from './startsWith';
+import stringRule from './string';
+import uniqueRule from './unique';
+import uppercaseRule from './uppercase';
+import urlRule from './url';
 
 const rules: Rules = {
-  accepted: accepted as Rule<unknown>,
-  alpha: alpha as Rule<unknown>,
-  alphaDash: alphaDash as Rule<unknown>,
-  alphaDashDot: alphaDashDot as Rule<unknown>,
-  alphaNum: alphaNum as Rule<unknown>,
-  array: array as Rule<unknown>,
-  ascii: ascii as Rule<unknown>,
-  between: between as Rule<unknown>,
-  betweenLength: betweenLength as Rule<unknown>,
-  boolean: boolean as Rule<unknown>,
-  containsAll: containsAll as Rule<unknown>,
-  containsAny: containsAny as Rule<unknown>,
-  declined: declined as Rule<unknown>,
-  different: different as Rule<unknown>,
-  distinct: distinct as Rule<unknown>,
-  email: email as Rule<unknown>,
-  endsWith: endsWith as Rule<unknown>,
-  equals: equals as Rule<unknown>,
-  file: file as Rule<unknown>,
-  fileBetweenSize: fileBetweenSize as Rule<unknown>,
-  fileMaxSize: fileMaxSize as Rule<unknown>,
-  fileMinSize: fileMinSize as Rule<unknown>,
-  fileSize: fileSize as Rule<unknown>,
-  in: _in as Rule<unknown>,
-  integer: integer as Rule<unknown>,
-  json: json as Rule<unknown>,
-  length: length as Rule<unknown>,
-  lowercase: lowercase as Rule<unknown>,
-  max: max as Rule<unknown>,
-  maxLength: maxLength as Rule<unknown>,
-  min: min as Rule<unknown>,
-  minLength: minLength as Rule<unknown>,
+  accepted: acceptedRule as Rule<unknown>,
+  alpha: alphaRule as Rule<unknown>,
+  alphaDash: alphaDashRule as Rule<unknown>,
+  alphaDashDot: alphaDashDotRule as Rule<unknown>,
+  alphaNum: alphaNumRule as Rule<unknown>,
+  array: arrayRule as Rule<unknown>,
+  ascii: asciiRule as Rule<unknown>,
+  between: betweenRule as Rule<unknown>,
+  betweenLength: betweenLengthRule as Rule<unknown>,
+  boolean: booleanRule as Rule<unknown>,
+  containsAll: containsAllRule as Rule<unknown>,
+  containsAny: containsAnyRule as Rule<unknown>,
+  declined: declinedRule as Rule<unknown>,
+  different: differentRule as Rule<unknown>,
+  distinct: distinctRule as Rule<unknown>,
+  email: emailRule as Rule<unknown>,
+  endsWith: endsWithRule as Rule<unknown>,
+  equals: equalsRule as Rule<unknown>,
+  file: fileRule as Rule<unknown>,
+  fileBetweenSize: fileBetweenSizeRule as Rule<unknown>,
+  fileMaxSize: fileMaxSizeRule as Rule<unknown>,
+  fileMinSize: fileMinSizeRule as Rule<unknown>,
+  fileSize: fileSizeRule as Rule<unknown>,
+  in: inRule as Rule<unknown>,
+  integer: integerRule as Rule<unknown>,
+  json: jsonRule as Rule<unknown>,
+  length: lengthRule as Rule<unknown>,
+  lowercase: lowercaseRule as Rule<unknown>,
+  max: maxRule as Rule<unknown>,
+  maxLength: maxLengthRule as Rule<unknown>,
+  min: minRule as Rule<unknown>,
+  minLength: minLengthRule as Rule<unknown>,
   notEquals: notEquals as Rule<unknown>,
-  notIn: notIn as Rule<unknown>,
-  number: number as Rule<unknown>,
-  numeric: numeric as Rule<unknown>,
-  regex: regex as Rule<unknown>,
-  required: required as Rule<unknown>,
-  same: same as Rule<unknown>,
+  notIn: notInRule as Rule<unknown>,
+  number: numberRule as Rule<unknown>,
+  numeric: numericRule as Rule<unknown>,
+  regex: regexRule as Rule<unknown>,
+  required: requiredRule as Rule<unknown>,
+  same: sameRule as Rule<unknown>,
   size: size as Rule<unknown>,
-  startsWith: startsWith as Rule<unknown>,
-  string: string as Rule<unknown>,
-  unique: unique as Rule<unknown>,
-  uppercase: uppercase as Rule<unknown>,
-  url: url as Rule<unknown>,
+  startsWith: startsWithRule as Rule<unknown>,
+  string: stringRule as Rule<unknown>,
+  unique: uniqueRule as Rule<unknown>,
+  uppercase: uppercaseRule as Rule<unknown>,
+  url: urlRule as Rule<unknown>,
 };
 
 export default rules;

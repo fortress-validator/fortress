@@ -5,10 +5,10 @@ export interface NotInRuleArguments extends RuleArguments {
   values: unknown[];
 }
 
-const notIn: Rule<NotInRuleArguments> = ({ values }) => (input: unknown) => {
+const notInRule: Rule<NotInRuleArguments> = ({ values }) => (input: unknown) => {
   if (isEmpty(input)) return false;
   if (Array.isArray(input)) return input.every(item => !values.includes(item));
   return !values.includes(input);
 };
 
-export default notIn;
+export default notInRule;
