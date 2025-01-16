@@ -36,7 +36,10 @@ const en: Messages = {
   ascii: field => `The ${field} field must only contain ASCII characters and symbols.`,
   between: (field, args) => {
     const { min, max } = args as BetweenRuleArguments;
-    return `The ${field} field must be between ${formatNumber(min)} and ${formatNumber(max)}.`;
+    return {
+      number: `The ${field} field must be between ${formatNumber(min)} and ${formatNumber(max)}.`,
+      array: `The ${field} field must contain items where each item is between ${formatNumber(min)} and ${formatNumber(max)}.`,
+    };
   },
   betweenLength: (field, args) => {
     const { min, max } = args as BetweenLengthRuleArguments;
@@ -71,19 +74,31 @@ const en: Messages = {
   file: field => `The ${field} field must be a file.`,
   fileBetweenSize: (field, args) => {
     const { min, max } = args as FileBetweenSizeRuleArguments;
-    return `The ${field} field must be between ${formatNumber(min)} and ${formatNumber(max)} kilobytes.`;
+    return {
+      file: `The ${field} field must be between ${formatNumber(min)} and ${formatNumber(max)} kilobytes.`,
+      array: `The ${field} field must contain items where each item is between ${formatNumber(min)} and ${formatNumber(max)} kilobytes.`,
+    };
   },
   fileMaxSize: (field, args) => {
     const { size } = args as FileMaxSizeRuleArguments;
-    return `The ${field} field must not be greater than ${formatNumber(size)} kilobytes.`;
+    return {
+      file: `The ${field} field must not be greater than ${formatNumber(size)} kilobytes.`,
+      array: `The ${field} field must contain items where each item is not greater than ${formatNumber(size)} kilobytes.`,
+    };
   },
   fileMinSize: (field, args) => {
     const { size } = args as FileMinSizeRuleArguments;
-    return `The ${field} field must be at least ${formatNumber(size)} kilobytes.`;
+    return {
+      file: `The ${field} field must be at least ${formatNumber(size)} kilobytes.`,
+      array: `The ${field} field must contain items where each item is at least ${formatNumber(size)} kilobytes.`,
+    };
   },
   fileSize: (field, args) => {
     const { size } = args as FileSizeRuleArguments;
-    return `The ${field} field must be ${formatNumber(size)} kilobytes.`;
+    return {
+      file: `The ${field} field must be ${formatNumber(size)} kilobytes.`,
+      array: `The ${field} field must contain items where each item is ${formatNumber(size)} kilobytes.`,
+    };
   },
   in: (field, args) => {
     const { values } = args as InRuleArguments;
@@ -98,7 +113,10 @@ const en: Messages = {
   lowercase: field => `The ${field} field must be lowercase.`,
   max: (field, args) => {
     const { max } = args as MaxRuleArguments;
-    return `The ${field} field must not be greater than ${formatNumber(max)}.`;
+    return {
+      number: `The ${field} field must not be greater than ${formatNumber(max)}.`,
+      array: `The ${field} field must contain items where each item is not greater than ${formatNumber(max)}.`,
+    };
   },
   maxLength: (field, args) => {
     const { length } = args as MaxLengthRuleArguments;
@@ -106,7 +124,10 @@ const en: Messages = {
   },
   min: (field, args) => {
     const { min } = args as MinRuleArguments;
-    return `The ${field} field must be at least ${formatNumber(min)}.`;
+    return {
+      number: `The ${field} field must be at least ${formatNumber(min)}.`,
+      array: `The ${field} field must contain items where each item is at least ${formatNumber(min)}.`,
+    };
   },
   minLength: (field, args) => {
     const { length } = args as MinLengthRuleArguments;
@@ -130,7 +151,10 @@ const en: Messages = {
   },
   size: (field, args) => {
     const { size } = args as SizeRuleArguments;
-    return `The ${field} field must be ${formatNumber(size)}.`;
+    return {
+      number: `The ${field} field must be ${formatNumber(size)}.`,
+      array: `The ${field} field must contain items where each item is ${formatNumber(size)}.`,
+    };
   },
   startsWith: (field, args) => {
     const { values } = args as StartsWitchRuleArguments;
@@ -141,19 +165,31 @@ const en: Messages = {
   string: field => `The ${field} field must be a string.`,
   stringBetweenLength: (field, args) => {
     const { min, max } = args as StringBetweenLengthRuleArguments;
-    return `The ${field} field must be between ${formatNumber(min)} and ${formatNumber(max)} characters.`;
+    return {
+      string: `The ${field} field must be between ${formatNumber(min)} and ${formatNumber(max)} characters.`,
+      array: `The ${field} field must contain items where each item is between ${formatNumber(min)} and ${formatNumber(max)} characters.`,
+    };
   },
   stringLength: (field, args) => {
     const { length } = args as StringLengthRuleArguments;
-    return `The ${field} field must be ${formatNumber(length)} characters.`;
+    return {
+      string: `The ${field} field must be ${formatNumber(length)} characters.`,
+      array: `The ${field} field must contain items where each item is ${formatNumber(length)} characters.`,
+    };
   },
   stringMaxLength: (field, args) => {
     const { length } = args as StringMaxLengthRuleArguments;
-    return `The ${field} field must not be greater than ${formatNumber(length)} characters.`;
+    return {
+      string: `The ${field} field must not be greater than ${formatNumber(length)} characters.`,
+      array: `The ${field} field must contain items where each item is not greater than ${formatNumber(length)} characters.`,
+    };
   },
   stringMinLength: (field, args) => {
     const { length } = args as StringMinLengthRuleArguments;
-    return `The ${field} field must be at least ${formatNumber(length)} characters.`;
+    return {
+      string: `The ${field} field must be at least ${formatNumber(length)} characters.`,
+      array: `The ${field} field must contain items where each item is at least ${formatNumber(length)} characters.`,
+    };
   },
   unique: field => `The ${field} field has already been taken.`,
   uppercase: field => `The ${field} field must be uppercase.`,

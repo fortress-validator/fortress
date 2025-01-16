@@ -35,7 +35,10 @@ const zhTW: Messages = {
   ascii: () => '此欄位只能包含ASCII字元和符號',
   between: (_, args) => {
     const { min, max } = args as BetweenRuleArguments;
-    return `此欄位必須介於${formatNumber(min)}到${formatNumber(max)}`;
+    return {
+      number: `此欄位必須介於${formatNumber(min)}到${formatNumber(max)}`,
+      array: `此欄位中的每個項目都必須介於${formatNumber(min)}到${formatNumber(max)}`,
+    };
   },
   betweenLength: (_, args) => {
     const { min, max } = args as BetweenLengthRuleArguments;
@@ -70,19 +73,31 @@ const zhTW: Messages = {
   file: () => '此欄位必須是檔案',
   fileBetweenSize: (_, args) => {
     const { min, max } = args as FileBetweenSizeRuleArguments;
-    return `此欄位必須介於${formatNumber(min)}到${formatNumber(max)}KB 之間`;
+    return {
+      file: `此欄位必須介於${formatNumber(min)}到${formatNumber(max)} KB之間`,
+      array: `此欄位中的每個項目都必須介於${formatNumber(min)}到${formatNumber(max)} KB之間`,
+    };
   },
   fileMaxSize: (_, args) => {
     const { size } = args as FileMaxSizeRuleArguments;
-    return `此欄位不能大於${formatNumber(size)}KB`;
+    return {
+      file: `此欄位不能大於${formatNumber(size)} KB`,
+      array: `此欄位中的每個項目都不能大於${formatNumber(size)} KB`,
+    };
   },
   fileMinSize: (_, args) => {
     const { size } = args as FileMinSizeRuleArguments;
-    return `此欄位不能小於${formatNumber(size)}KB`;
+    return {
+      file: `此欄位不能小於${formatNumber(size)} KB`,
+      array: `此欄位中的每個項目都不能小於${formatNumber(size)} KB`,
+    };
   },
   fileSize: (_, args) => {
     const { size } = args as FileSizeRuleArguments;
-    return `此欄位必須是${formatNumber(size)}KB`;
+    return {
+      file: `此欄位必須是${formatNumber(size)} KB`,
+      array: `此欄位中的每個項目都必須是${formatNumber(size)} KB`,
+    };
   },
   in: (_, args) => {
     const { values } = args as InRuleArguments;
@@ -97,11 +112,17 @@ const zhTW: Messages = {
   lowercase: () => '此欄位必須是小寫',
   max: (_, args) => {
     const { max } = args as MaxRuleArguments;
-    return `此欄位不能大於${formatNumber(max)}`;
+    return {
+      number: `此欄位不能大於${formatNumber(max)}`,
+      array: `此欄位中的每個項目都不能大於${formatNumber(max)}`,
+    };
   },
   min: (_, args) => {
     const { min } = args as MinRuleArguments;
-    return `此欄位不能小於${formatNumber(min)}`;
+    return {
+      number: `此欄位不能小於${formatNumber(min)}`,
+      array: `此欄位中的每個項目都不能小於${formatNumber(min)}`,
+    };
   },
   notEquals: (_, args) => {
     const { value } = args as NotEqualsRuleArguments;
@@ -121,7 +142,10 @@ const zhTW: Messages = {
   },
   size: (_, args) => {
     const { size } = args as SizeRuleArguments;
-    return `此欄位必須是${formatNumber(size)}`;
+    return {
+      number: `此欄位必須是${formatNumber(size)}`,
+      array: `此欄位中的每個項目都必須是${formatNumber(size)}`,
+    };
   },
   startsWith: (_, args) => {
     const { values } = args as StartsWitchRuleArguments;
@@ -132,19 +156,31 @@ const zhTW: Messages = {
   string: () => '此欄位必須是字串',
   stringBetweenLength: (_, args) => {
     const { min, max } = args as StringBetweenLengthRuleArguments;
-    return `此欄位必須介於${formatNumber(min)}到${formatNumber(max)}個字元之間`;
+    return {
+      string: `此欄位必須介於${formatNumber(min)}到${formatNumber(max)}個字元之間`,
+      array: `此欄位中的每個項目都必須介於${formatNumber(min)}到${formatNumber(max)}個字元之間`,
+    };
   },
   stringLength: (_, args) => {
     const { length } = args as StringLengthRuleArguments;
-    return `此欄位必須是${formatNumber(length)}個字元`;
+    return {
+      string: `此欄位必須是${formatNumber(length)}個字元`,
+      array: `此欄位中的每個項目都必須是${formatNumber(length)}個字元`,
+    };
   },
   stringMaxLength: (_, args) => {
     const { length } = args as StringMaxLengthRuleArguments;
-    return `此欄位不能大於${formatNumber(length)}個字元`;
+    return {
+      string: `此欄位不能大於${formatNumber(length)}個字元`,
+      array: `此欄位中的每個項目都不能大於${formatNumber(length)}個字元`,
+    };
   },
   stringMinLength: (_, args) => {
     const { length } = args as StringMinLengthRuleArguments;
-    return `此欄位不能小於${formatNumber(length)}個字元`;
+    return {
+      string: `此欄位不能小於${formatNumber(length)}個字元`,
+      array: `此欄位中的每個項目都不能小於${formatNumber(length)}個字元`,
+    };
   },
   unique: () => '此欄位已經存在',
   uppercase: () => '此欄位必須是大寫',
