@@ -224,6 +224,13 @@ class FieldValidator {
   }
 
   /**
+   * Passes if the field's value matches the specified date format.
+   */
+  public date(format: string, strict: boolean = true): this {
+    return this.apply(this.date.name, { format, strict });
+  }
+
+  /**
    * Passes if the field's value is considered declined (i.e., 'n', 'no', 'off', '0', 'false').
    */
   public declined(): this {
@@ -249,13 +256,6 @@ class FieldValidator {
    */
   public domain(): this {
     return this.apply(this.domain.name);
-  }
-
-  /**
-   * Passes if the field's value matches the specified date format.
-   */
-  public date(format: string, strict: boolean = true): this {
-    return this.apply(this.date.name, { format, strict });
   }
 
   /**
@@ -448,7 +448,7 @@ class FieldValidator {
   }
 
   /**
-   * Passes if the field's value is not empty when the specified condition is satisfied.
+   * Passes if the field's value is not empty when the specified condition is true.
    */
   public requiredWhen(condition: boolean): this {
     return this
