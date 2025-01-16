@@ -126,7 +126,7 @@ class FieldValidator {
   }
 
   /**
-   * Passes if the field's value is considered accepted (i.e., 'y', 'yes', 'on', '1', 'true').
+   * Passes if the field's value is considered accepted (i.e., "y", "yes", "on", "1", "true").
    */
   public accepted(): this {
     return this.apply(this.accepted.name);
@@ -231,7 +231,7 @@ class FieldValidator {
   }
 
   /**
-   * Passes if the field's value is considered declined (i.e., 'n', 'no', 'off', '0', 'false').
+   * Passes if the field's value is considered declined (i.e., "n", "no", "off", "0", "false").
    */
   public declined(): this {
     return this.apply(this.declined.name);

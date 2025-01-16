@@ -66,7 +66,7 @@ console.log(result);
 
 | Name | Description |
 | --- | --- |
-| `accepted` | Passes if the field's value is considered accepted (i.e., 'y', 'yes', 'on', '1', 'true'). |
+| `accepted` | Passes if the field's value is considered accepted (i.e., "y", "yes", "on", "1", "true"). |
 | `after` | Passes if the field's value is a date that occurs after the specified date. |
 | `alpha` | Passes if the field's value contains only letters. |
 | `alphaDash` | Passes if the field's value contains only letters, numbers, dashes and underscores. |
@@ -81,7 +81,7 @@ console.log(result);
 | `containsAll` | Passes if the field's value contains all the specified values. |
 | `containsAny` | Passes if the field's value contains at least one of the specified values. |
 | `date` | Passes if the field's value matches the specified date format. |
-| `declined` | Passes if the field's value is considered declined (i.e., 'n', 'no', 'off', '0', 'false'). |
+| `declined` | Passes if the field's value is considered declined (i.e., "n", "no", "off", "0", "false"). |
 | `different` | Passes if the field's value is different from the specified value in the given field. |
 | `distinct` | Passes if all the items in the array field's value are unique. |
 | `domain` | Passes if the field's value is a valid domain. |
