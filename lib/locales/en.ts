@@ -60,6 +60,7 @@ const en: Messages = {
     return `The ${field} and ${other} fields must be different.`;
   },
   distinct: field => `The ${field} field must not contain duplicate values.`,
+  domain: field => `The ${field} field must be a valid domain.`,
   email: field => `The ${field} field must be a valid email address.`,
   endsWith: (field, args) => {
     const { values } = args as EndsWithRuleArguments;
@@ -100,6 +101,8 @@ const en: Messages = {
       array: `The ${field} field must contain items where each item is ${formatNumber(size)} kilobytes.`,
     };
   },
+  http: field => `The ${field} field must start with either "http://" or "https://".`,
+  https: field => `The ${field} field must start with "http://".`,
   in: (field, args) => {
     const { values } = args as InRuleArguments;
     return `The ${field} field must be one of the following: ${values.join(', ')}.`;

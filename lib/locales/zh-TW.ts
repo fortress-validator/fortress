@@ -59,6 +59,7 @@ const zhTW: Messages = {
     return `此欄位必須和${other}欄位不同`;
   },
   distinct: () => '此欄位不能包含重複的值',
+  domain: () => '此欄位必須是有效的網域',
   email: () => '此欄位必須是有效的電子郵件地址',
   endsWith: (_, args) => {
     const { values } = args as EndsWithRuleArguments;
@@ -99,6 +100,8 @@ const zhTW: Messages = {
       array: `此欄位中的每個項目都必須是${formatNumber(size)} KB`,
     };
   },
+  http: () => `此欄位必須以 http:// 或 https:// 開頭`,
+  https: () => `此欄位必須以 https:// 開頭`,
   in: (_, args) => {
     const { values } = args as InRuleArguments;
     return `此欄位必須是以下之一：${values.join(', ')}`;

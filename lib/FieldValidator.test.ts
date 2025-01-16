@@ -176,6 +176,13 @@ describe('FieldValidator', () => {
       expect(validator.validate(['foo', 'foo'])).toBe('The input field must not contain duplicate values.');
     });
 
+    test('with "domain" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .domain();
+
+      expect(validator.validate('example.c')).toBe('The input field must be a valid domain.');
+    });
+
     test('with "email" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .email();
@@ -240,6 +247,20 @@ describe('FieldValidator', () => {
         .fileSize(10);
 
       expect(validator.validate(createTestFile(1))).toBe('The input field must be 10 kilobytes.');
+    });
+
+    test('with "http" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .http();
+
+      expect(validator.validate('ftp://')).toBe('The input field must start with either "http://" or "https://".');
+    });
+
+    test('with "https" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .https();
+
+      expect(validator.validate('http://')).toBe('The input field must start with "http://".');
     });
 
     test('with "in" rule', () => {

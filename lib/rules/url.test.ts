@@ -7,6 +7,10 @@ describe('Rule "url"', () => {
   test('should pass with valid input', () => {
     expect(validate('http://example.com')).toBe(true);
     expect(validate('https://example.com')).toBe(true);
+    expect(validate('https://example.com/')).toBe(true);
+    expect(validate('https://example.com#foo')).toBe(true);
+    expect(validate('https://example.com?foo=bar')).toBe(true);
+    expect(validate('https://example.com/foo.txt')).toBe(true);
   });
 
   test('should fail with invalid input', () => {

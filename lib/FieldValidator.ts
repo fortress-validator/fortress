@@ -245,6 +245,13 @@ class FieldValidator {
   }
 
   /**
+   * Passes if the field's value is a valid domain.
+   */
+  public domain(): this {
+    return this.apply(this.domain.name);
+  }
+
+  /**
    * Passes if the field's value matches the specified date format.
    */
   public date(format: string, strict: boolean = true): this {
@@ -305,6 +312,20 @@ class FieldValidator {
    */
   public fileSize(size: number): this {
     return this.apply(this.fileSize.name, { size });
+  }
+
+  /**
+   * Passes if the field's value starts with "http://" or "https://".
+   */
+  public http(): this {
+    return this.apply(this.http.name);
+  }
+
+  /**
+   * Passes if the field's value starts with "https://".
+   */
+  public https(): this {
+    return this.apply(this.https.name);
   }
 
   /**

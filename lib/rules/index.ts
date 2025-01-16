@@ -14,6 +14,7 @@ import containsAnyRule from './containsAny';
 import declinedRule from './declined';
 import differentRule from './different';
 import distinctRule from './distinct';
+import domainRule from './domain';
 import emailRule from './email';
 import endsWithRule from './endsWith';
 import equalsRule from './equals';
@@ -22,6 +23,8 @@ import fileBetweenSizeRule from './fileBetweenSize';
 import fileMaxSizeRule from './fileMaxSize';
 import fileMinSizeRule from './fileMinSize';
 import fileSizeRule from './fileSize';
+import httpRule from './http';
+import httpsRule from './https';
 import inRule from './in';
 import integerRule from './integer';
 import jsonRule from './json';
@@ -65,6 +68,7 @@ const rules: Rules = {
   declined: declinedRule as Rule<unknown>,
   different: differentRule as Rule<unknown>,
   distinct: distinctRule as Rule<unknown>,
+  domain: domainRule as Rule<unknown>,
   email: emailRule as Rule<unknown>,
   endsWith: endsWithRule as Rule<unknown>,
   equals: equalsRule as Rule<unknown>,
@@ -73,6 +77,8 @@ const rules: Rules = {
   fileMaxSize: fileMaxSizeRule as Rule<unknown>,
   fileMinSize: fileMinSizeRule as Rule<unknown>,
   fileSize: fileSizeRule as Rule<unknown>,
+  http: httpRule as Rule<unknown>,
+  https: httpsRule as Rule<unknown>,
   in: inRule as Rule<unknown>,
   integer: integerRule as Rule<unknown>,
   json: jsonRule as Rule<unknown>,
