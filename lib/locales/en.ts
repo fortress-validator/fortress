@@ -63,10 +63,8 @@ const en: Messages = {
   domain: field => `The ${field} field must be a valid domain.`,
   email: field => `The ${field} field must be a valid email address.`,
   endsWith: (field, args) => {
-    const { values } = args as EndsWithRuleArguments;
-    return typeof values === 'string'
-      ? `The ${field} field must end with ${values}.`
-      : `The ${field} field must end with one of the following: ${values.join(', ')}.`;
+    const { value } = args as EndsWithRuleArguments;
+    return `The ${field} field must end with ${value}.`;
   },
   equals: (field, args) => {
     const { value } = args as EqualsRuleArguments;
@@ -160,10 +158,8 @@ const en: Messages = {
     };
   },
   startsWith: (field, args) => {
-    const { values } = args as StartsWitchRuleArguments;
-    return typeof values === 'string'
-      ? `The ${field} field must start with ${values}.`
-      : `The ${field} field must start with one of the following: ${values.join(', ')}.`;
+    const { value } = args as StartsWitchRuleArguments;
+    return `The ${field} field must start with ${value}.`;
   },
   string: field => `The ${field} field must be a string.`,
   stringBetweenLength: (field, args) => {

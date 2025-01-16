@@ -4,7 +4,7 @@ import startsWithRule from './startsWith';
 
 const httpsRule: Rule = () => (input: unknown) => {
   if (isEmpty(input)) return false;
-  return startsWithRule({ values: 'https://' })(input);
+  return startsWithRule({ value: 'https://' })(input);
 };
 
 export default httpsRule;

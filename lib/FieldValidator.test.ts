@@ -190,18 +190,11 @@ describe('FieldValidator', () => {
       expect(validator.validate('foo')).toBe('The input field must be a valid email address.');
     });
 
-    test('with "endsWith" rule set to a string', () => {
+    test('with "endsWith" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .endsWith('foo');
 
       expect(validator.validate('_')).toBe('The input field must end with foo.');
-    });
-
-    test('with "endsWith" rule set to an array', () => {
-      const validator = new FieldValidator(defaultParams)
-        .endsWith(['foo', 'bar']);
-
-      expect(validator.validate('_')).toBe('The input field must end with one of the following: foo, bar.');
     });
 
     test('with "equals" rule', () => {
@@ -385,18 +378,11 @@ describe('FieldValidator', () => {
       expect(validator.validate(1)).toBe('The input field must be 10.');
     });
 
-    test('with "startsWith" rule set to a string', () => {
+    test('with "startsWith" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .startsWith('foo');
 
       expect(validator.validate('_')).toBe('The input field must start with foo.');
-    });
-
-    test('with "startsWith" rule set to an array', () => {
-      const validator = new FieldValidator(defaultParams)
-        .startsWith(['foo', 'bar']);
-
-      expect(validator.validate('_')).toBe('The input field must start with one of the following: foo, bar.');
     });
 
     test('with "string" rule', () => {

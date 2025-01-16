@@ -266,10 +266,10 @@ class FieldValidator {
   }
 
   /**
-   * Passes if the field's value ends with one of the specified values.
+   * Passes if the field's value ends with the specified value.
    */
-  public endsWith(values: string[] | string): this {
-    return this.apply(this.endsWith.name, { values });
+  public endsWith(value: string): this {
+    return this.apply(this.endsWith.name, { value });
   }
 
   /**
@@ -471,10 +471,10 @@ class FieldValidator {
   }
 
   /**
-   * Passes if the field's value starts with one of the specified values.
+   * Passes if the field's value starts with the specified value.
    */
-  public startsWith(values: string[] | string): this {
-    return this.apply(this.startsWith.name, { values });
+  public startsWith(value: string): this {
+    return this.apply(this.startsWith.name, { value });
   }
 
   /**

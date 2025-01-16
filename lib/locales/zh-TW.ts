@@ -62,10 +62,8 @@ const zhTW: Messages = {
   domain: () => '此欄位必須是有效的網域',
   email: () => '此欄位必須是有效的電子郵件地址',
   endsWith: (_, args) => {
-    const { values } = args as EndsWithRuleArguments;
-    return typeof values === 'string'
-      ? `此欄位必須以${values}結尾`
-      : `此欄位必須以以下之一結尾：${values.join(', ')}`;
+    const { value } = args as EndsWithRuleArguments;
+    return `此欄位必須以${value}結尾`;
   },
   equals: (_, args) => {
     const { value } = args as EqualsRuleArguments;
@@ -151,10 +149,8 @@ const zhTW: Messages = {
     };
   },
   startsWith: (_, args) => {
-    const { values } = args as StartsWitchRuleArguments;
-    return typeof values === 'string'
-      ? `此欄位必須以${values}開頭`
-      : `此欄位必須以以下之一開頭：${values.join(', ')}`;
+    const { value } = args as StartsWitchRuleArguments;
+    return `此欄位必須以${value}開頭`;
   },
   string: () => '此欄位必須是字串',
   stringBetweenLength: (_, args) => {
