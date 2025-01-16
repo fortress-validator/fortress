@@ -124,8 +124,6 @@ describe('FieldValidator', () => {
 
       expect(validator.validate(9)).toBe('The input field must be between 10 and 20.');
       expect(validator.validate(21)).toBe('The input field must be between 10 and 20.');
-      expect(validator.validate('_'.repeat(9))).toBe('The input field must be between 10 and 20 characters.');
-      expect(validator.validate('_'.repeat(21))).toBe('The input field must be between 10 and 20 characters.');
     });
 
     test('with "betweenLength" rule', () => {
@@ -284,7 +282,6 @@ describe('FieldValidator', () => {
         .max(10);
 
       expect(validator.validate(11)).toBe('The input field must not be greater than 10.');
-      expect(validator.validate('_'.repeat(11))).toBe('The input field must not be greater than 10 characters.');
     });
 
     test('with "maxLength" rule', () => {
@@ -299,7 +296,6 @@ describe('FieldValidator', () => {
         .min(10);
 
       expect(validator.validate(9)).toBe('The input field must be at least 10.');
-      expect(validator.validate('_'.repeat(9))).toBe('The input field must be at least 10 characters.');
     });
 
     test('with "minLength" rule', () => {
@@ -366,7 +362,6 @@ describe('FieldValidator', () => {
         .size(10);
 
       expect(validator.validate(1)).toBe('The input field must be 10.');
-      expect(validator.validate('_'.repeat(1))).toBe('The input field must be 10 characters.');
     });
 
     test('with "startsWith" rule set to a string', () => {
@@ -390,6 +385,35 @@ describe('FieldValidator', () => {
       expect(validator.validate('')).toBe(true);
       expect(validator.validate(undefined)).toBe('The input field must be a string.');
       expect(validator.validate([])).toBe('The input field must be a string.');
+    });
+
+    test('with "stringBetweenLength" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .stringBetweenLength(10, 20);
+
+      expect(validator.validate('_'.repeat(9))).toBe('The input field must be between 10 and 20 characters.');
+      expect(validator.validate('_'.repeat(21))).toBe('The input field must be between 10 and 20 characters.');
+    });
+
+    test('with "stringLength" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .stringLength(10);
+
+      expect(validator.validate('_'.repeat(1))).toBe('The input field must be 10 characters.');
+    });
+
+    test('with "stringMaxLength" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .stringMaxLength(10);
+
+      expect(validator.validate('_'.repeat(11))).toBe('The input field must not be greater than 10 characters.');
+    });
+
+    test('with "stringMinLength" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .stringMinLength(10);
+
+      expect(validator.validate('_'.repeat(9))).toBe('The input field must be at least 10 characters.');
     });
 
     test('with "unique" rule', () => {

@@ -10,9 +10,6 @@ const maxRule: Rule<MaxRuleArguments> = ({ max }) => (input: unknown) => {
   if (typeof input === 'number') {
     return input <= max;
   }
-  if (typeof input === 'string') {
-    return input.length <= max;
-  }
   if (Array.isArray(input)) {
     return input.every(item => maxRule({ max })(item));
   }

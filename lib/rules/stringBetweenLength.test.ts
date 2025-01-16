@@ -1,0 +1,22 @@
+import { describe, expect, test } from 'vitest';
+import stringBetweenLength from './stringBetweenLength';
+
+describe('Rule "stringBetweenLength"', () => {
+  const validate = stringBetweenLength({ min: 10, max: 20 });
+
+  test('should pass with valid input', () => {
+    expect(validate('_'.repeat(15))).toBe(true);
+    expect(validate(['_'.repeat(15)])).toBe(true);
+    expect(validate(['_'.repeat(15), '_'.repeat(15)])).toBe(true);
+  });
+
+  test('should fail with invalid input', () => {
+    expect(validate(undefined)).toBe(false);
+    expect(validate('_'.repeat(9))).toBe(false);
+    expect(validate('_'.repeat(21))).toBe(false);
+    expect(validate(['_'.repeat(9)])).toBe(false);
+    expect(validate(['_'.repeat(9), '_'.repeat(15)])).toBe(false);
+    expect(validate(['_'.repeat(21)])).toBe(false);
+    expect(validate(['_'.repeat(21)]), '_'.repeat(15)).toBe(false);
+  });
+});

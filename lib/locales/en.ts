@@ -21,6 +21,10 @@ import { NotInRuleArguments } from '~/rules/notIn';
 import { SameRuleArguments } from '~/rules/same';
 import { SizeRuleArguments } from '~/rules/size';
 import { StartsWitchRuleArguments } from '~/rules/startsWith';
+import { StringBetweenLengthRuleArguments } from '~/rules/stringBetweenLength';
+import { StringLengthRuleArguments } from '~/rules/stringLength';
+import { StringMaxLengthRuleArguments } from '~/rules/stringMaxLength';
+import { StringMinLengthRuleArguments } from '~/rules/stringMinLength';
 
 const en: Messages = {
   accepted: field => `The ${field} field must be accepted.`,
@@ -32,10 +36,7 @@ const en: Messages = {
   ascii: field => `The ${field} field must only contain ASCII characters and symbols.`,
   between: (field, args) => {
     const { min, max } = args as BetweenRuleArguments;
-    return {
-      number: `The ${field} field must be between ${formatNumber(min)} and ${formatNumber(max)}.`,
-      string: `The ${field} field must be between ${formatNumber(min)} and ${formatNumber(max)} characters.`,
-    };
+    return `The ${field} field must be between ${formatNumber(min)} and ${formatNumber(max)}.`;
   },
   betweenLength: (field, args) => {
     const { min, max } = args as BetweenLengthRuleArguments;
@@ -97,10 +98,7 @@ const en: Messages = {
   lowercase: field => `The ${field} field must be lowercase.`,
   max: (field, args) => {
     const { max } = args as MaxRuleArguments;
-    return {
-      number: `The ${field} field must not be greater than ${formatNumber(max)}.`,
-      string: `The ${field} field must not be greater than ${formatNumber(max)} characters.`,
-    };
+    return `The ${field} field must not be greater than ${formatNumber(max)}.`;
   },
   maxLength: (field, args) => {
     const { length } = args as MaxLengthRuleArguments;
@@ -108,10 +106,7 @@ const en: Messages = {
   },
   min: (field, args) => {
     const { min } = args as MinRuleArguments;
-    return {
-      number: `The ${field} field must be at least ${formatNumber(min)}.`,
-      string: `The ${field} field must be at least ${formatNumber(min)} characters.`,
-    };
+    return `The ${field} field must be at least ${formatNumber(min)}.`;
   },
   minLength: (field, args) => {
     const { length } = args as MinLengthRuleArguments;
@@ -135,10 +130,7 @@ const en: Messages = {
   },
   size: (field, args) => {
     const { size } = args as SizeRuleArguments;
-    return {
-      number: `The ${field} field must be ${formatNumber(size)}.`,
-      string: `The ${field} field must be ${formatNumber(size)} characters.`,
-    };
+    return `The ${field} field must be ${formatNumber(size)}.`;
   },
   startsWith: (field, args) => {
     const { values } = args as StartsWitchRuleArguments;
@@ -147,6 +139,22 @@ const en: Messages = {
       : `The ${field} field must start with one of the following: ${values.join(', ')}.`;
   },
   string: field => `The ${field} field must be a string.`,
+  stringBetweenLength: (field, args) => {
+    const { min, max } = args as StringBetweenLengthRuleArguments;
+    return `The ${field} field must be between ${formatNumber(min)} and ${formatNumber(max)} characters.`;
+  },
+  stringLength: (field, args) => {
+    const { length } = args as StringLengthRuleArguments;
+    return `The ${field} field must be ${formatNumber(length)} characters.`;
+  },
+  stringMaxLength: (field, args) => {
+    const { length } = args as StringMaxLengthRuleArguments;
+    return `The ${field} field must not be greater than ${formatNumber(length)} characters.`;
+  },
+  stringMinLength: (field, args) => {
+    const { length } = args as StringMinLengthRuleArguments;
+    return `The ${field} field must be at least ${formatNumber(length)} characters.`;
+  },
   unique: field => `The ${field} field has already been taken.`,
   uppercase: field => `The ${field} field must be uppercase.`,
   url: field => `The ${field} field must be a valid URL.`,

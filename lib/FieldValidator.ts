@@ -464,6 +464,34 @@ class FieldValidator {
   }
 
   /**
+   * Passes if the field's value is between the specified minimum and maximum string lengths.
+   */
+  public stringBetweenLength(min: number, max: number): this {
+    return this.apply(this.stringBetweenLength.name, { min, max });
+  }
+
+  /**
+   * Passes if the field's value matches the specified string length.
+   */
+  public stringLength(length: number): this {
+    return this.apply(this.stringLength.name, { length });
+  }
+
+  /**
+   * Passes if the field's value is not greater than the specified maximum string length.
+   */
+  public stringMaxLength(length: number): this {
+    return this.apply(this.stringMaxLength.name, { length });
+  }
+
+  /**
+   * Passes if the field's value is at least the specified minimum string length.
+   */
+  public stringMinLength(length: number): this {
+    return this.apply(this.stringMinLength.name, { length });
+  }
+
+  /**
    * Passes if the field's value contains only unique items, with optional ignored values.
    */
   public unique(values: string[], ignored: unknown[] | unknown = []): this {

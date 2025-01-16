@@ -8,9 +8,6 @@ describe('Rule "max"', () => {
     expect(validate(10)).toBe(true);
     expect(validate([10])).toBe(true);
     expect(validate([10, 9])).toBe(true);
-    expect(validate('_'.repeat(10))).toBe(true);
-    expect(validate(['_'.repeat(10)])).toBe(true);
-    expect(validate(['_'.repeat(10), '_'.repeat(9)])).toBe(true);
   });
 
   test('should fail with invalid input', () => {
@@ -18,8 +15,5 @@ describe('Rule "max"', () => {
     expect(validate(11)).toBe(false);
     expect(validate([11])).toBe(false);
     expect(validate([11, 10])).toBe(false);
-    expect(validate('_'.repeat(11))).toBe(false);
-    expect(validate(['_'.repeat(11)])).toBe(false);
-    expect(validate(['_'.repeat(11), '_'.repeat(10)])).toBe(false);
   });
 });

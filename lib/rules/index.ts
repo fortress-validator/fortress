@@ -41,6 +41,10 @@ import sameRule from './same';
 import size from './size';
 import startsWithRule from './startsWith';
 import stringRule from './string';
+import stringBetweenLengthRule from './stringBetweenLength';
+import stringLengthRule from './stringLength';
+import stringMaxLengthRule from './stringMaxLength';
+import stringMinLengthRule from './stringMinLength';
 import uniqueRule from './unique';
 import uppercaseRule from './uppercase';
 import urlRule from './url';
@@ -88,6 +92,10 @@ const rules: Rules = {
   size: size as Rule<unknown>,
   startsWith: startsWithRule as Rule<unknown>,
   string: stringRule as Rule<unknown>,
+  stringBetweenLength: stringBetweenLengthRule as Rule<unknown>,
+  stringLength: stringLengthRule as Rule<unknown>,
+  stringMaxLength: stringMaxLengthRule as Rule<unknown>,
+  stringMinLength: stringMinLengthRule as Rule<unknown>,
   unique: uniqueRule as Rule<unknown>,
   uppercase: uppercaseRule as Rule<unknown>,
   url: urlRule as Rule<unknown>,

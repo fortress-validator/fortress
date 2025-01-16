@@ -15,7 +15,9 @@ describe('Rule "fileBetweenSize"', () => {
     expect(validate(undefined)).toBe(false);
     expect(validate(createTestFile(9))).toBe(false);
     expect(validate(createTestFile(21))).toBe(false);
+    expect(validate([createTestFile(9)])).toBe(false);
     expect(validate([createTestFile(9), createTestFile(15)])).toBe(false);
+    expect(validate([createTestFile(21)])).toBe(false);
     expect(validate([createTestFile(21), createTestFile(15)])).toBe(false);
   });
 });

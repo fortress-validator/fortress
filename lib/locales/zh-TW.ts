@@ -20,6 +20,10 @@ import { NotInRuleArguments } from '~/rules/notIn';
 import { SameRuleArguments } from '~/rules/same';
 import { SizeRuleArguments } from '~/rules/size';
 import { StartsWitchRuleArguments } from '~/rules/startsWith';
+import { StringBetweenLengthRuleArguments } from '~/rules/stringBetweenLength';
+import { StringLengthRuleArguments } from '~/rules/stringLength';
+import { StringMaxLengthRuleArguments } from '~/rules/stringMaxLength';
+import { StringMinLengthRuleArguments } from '~/rules/stringMinLength';
 
 const zhTW: Messages = {
   accepted: () => '此欄位必須被同意',
@@ -31,10 +35,7 @@ const zhTW: Messages = {
   ascii: () => '此欄位只能包含ASCII字元和符號',
   between: (_, args) => {
     const { min, max } = args as BetweenRuleArguments;
-    return {
-      number: `此欄位必須介於${formatNumber(min)}到${formatNumber(max)}`,
-      string: `此欄位必須介於${formatNumber(min)}到${formatNumber(max)}個字元之間`,
-    };
+    return `此欄位必須介於${formatNumber(min)}到${formatNumber(max)}`;
   },
   betweenLength: (_, args) => {
     const { min, max } = args as BetweenLengthRuleArguments;
@@ -96,17 +97,11 @@ const zhTW: Messages = {
   lowercase: () => '此欄位必須是小寫',
   max: (_, args) => {
     const { max } = args as MaxRuleArguments;
-    return {
-      number: `此欄位不能大於${formatNumber(max)}`,
-      string: `此欄位不能大於${formatNumber(max)}個字元`,
-    };
+    return `此欄位不能大於${formatNumber(max)}`;
   },
   min: (_, args) => {
     const { min } = args as MinRuleArguments;
-    return {
-      number: `此欄位不能小於${formatNumber(min)}`,
-      string: `此欄位不能小於${formatNumber(min)}個字元`,
-    };
+    return `此欄位不能小於${formatNumber(min)}`;
   },
   notEquals: (_, args) => {
     const { value } = args as NotEqualsRuleArguments;
@@ -126,10 +121,7 @@ const zhTW: Messages = {
   },
   size: (_, args) => {
     const { size } = args as SizeRuleArguments;
-    return {
-      number: `此欄位必須是${formatNumber(size)}`,
-      string: `此欄位必須是${formatNumber(size)}個字元`,
-    };
+    return `此欄位必須是${formatNumber(size)}`;
   },
   startsWith: (_, args) => {
     const { values } = args as StartsWitchRuleArguments;
@@ -138,6 +130,22 @@ const zhTW: Messages = {
       : `此欄位必須以以下之一開頭：${values.join(', ')}`;
   },
   string: () => '此欄位必須是字串',
+  stringBetweenLength: (_, args) => {
+    const { min, max } = args as StringBetweenLengthRuleArguments;
+    return `此欄位必須介於${formatNumber(min)}到${formatNumber(max)}個字元之間`;
+  },
+  stringLength: (_, args) => {
+    const { length } = args as StringLengthRuleArguments;
+    return `此欄位必須是${formatNumber(length)}個字元`;
+  },
+  stringMaxLength: (_, args) => {
+    const { length } = args as StringMaxLengthRuleArguments;
+    return `此欄位不能大於${formatNumber(length)}個字元`;
+  },
+  stringMinLength: (_, args) => {
+    const { length } = args as StringMinLengthRuleArguments;
+    return `此欄位不能小於${formatNumber(length)}個字元`;
+  },
   unique: () => '此欄位已經存在',
   uppercase: () => '此欄位必須是大寫',
   url: () => '此欄位必須是有效的網址',

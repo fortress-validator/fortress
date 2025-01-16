@@ -10,9 +10,6 @@ const sizeRule: Rule<SizeRuleArguments> = ({ size }) => (input: unknown) => {
   if (typeof input === 'number') {
     return input === size;
   }
-  if (typeof input === 'string') {
-    return input.length === size;
-  }
   if (Array.isArray(input)) {
     return input.every(item => sizeRule({ size })(item));
   }
