@@ -1,12 +1,12 @@
 # Fortress Validator
 
-A powerful and flexible form validation library, designed to validate your input using method chaining, with support for custom plugins.
+A powerful and flexible form validation library, built to validate inputs through method chaining, with support for custom plugins.
 
 ## Getting Started
 
 ### Using with ES Modules
 
-Import the module and use it in your code:
+To get started with ES Modules, simply import the module and use it in your code:
 
 ```js
 import { FormValidator } from '@fortress-validator/fortress';
@@ -16,7 +16,7 @@ const validator = new FormValidator();
 
 ### Using with UMD Modules
 
-Include the UMD script in your HTML file and use it:
+Alternatively, if you're using UMD modules, include the script in your HTML file and use it in your code:
 
 ```html
 <script src="https://unpkg.com/@fortress-validator/fortress/dist/index.umd.js"></script>
@@ -57,8 +57,7 @@ const result = validator
   .alphaDash()
   .validate('@');
 
-console.log(result);
-// Output:
+// Result:
 // true
 ```
 
@@ -167,8 +166,7 @@ const result = validator
   .apply('multipleOf', { factor: 2 })
   .validate(1);
 
-console.log(result);
-// Output:
+// Result:
 // The input field must be a multiple of 2.
 ```
 
