@@ -1,8 +1,8 @@
-import { Locales, Plugin, Rules } from '@fortress-validator/types';
+import type { Locales, Plugin, Rules } from '@fortress-validator/types';
 import FieldValidator from './FieldValidator';
 import defaultLocales from './locales';
 import defaultRules from './rules';
-import { FormValidatorArguments } from './types';
+import type { FormValidatorArguments } from './types';
 
 class FormValidator {
   private locale: string = 'en';

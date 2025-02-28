@@ -1,6 +1,6 @@
-import Conditions from './Conditions';
-import FieldValidatorArguments from './FieldValidatorArguments';
-import FormValidatorArguments from './FormValidatorArguments';
+import type Conditions from './Conditions';
+import type FieldValidatorArguments from './FieldValidatorArguments';
+import type FormValidatorArguments from './FormValidatorArguments';
 
 export type {
   Conditions,

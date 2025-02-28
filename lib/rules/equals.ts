@@ -1,4 +1,4 @@
-import { Rule, RuleArguments } from '@fortress-validator/types';
+import type { Rule, RuleArguments } from '@fortress-validator/types';
 
 export interface EqualsRuleArguments extends RuleArguments {
   value: unknown;

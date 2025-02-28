@@ -1,6 +1,6 @@
+import { createTestFile } from '@fortress-validator/utils';
 import { describe, expect, test } from 'vitest';
 import fileSize from './fileSize';
-import { createTestFile } from '@fortress-validator/utils';
 
 describe('Rule "fileSize"', () => {
   const validate = fileSize({ size: 10 });

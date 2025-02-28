@@ -1,4 +1,4 @@
-import { Locales, Rules } from '@fortress-validator/types';
+import type { Locales, Rules } from '@fortress-validator/types';
 
 interface FormValidatorArguments {
   name: string;

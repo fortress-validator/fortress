@@ -1,6 +1,6 @@
-import { Locales, Message, Messages, Rule, RuleArguments, RuleFunction, Rules } from '@fortress-validator/types';
+import type { Locales, Message, Messages, Rule, RuleArguments, RuleFunction, Rules } from '@fortress-validator/types';
 import { formatMessage, getType, isEmpty } from '@fortress-validator/utils';
-import { Conditions, FieldValidatorArguments } from './types';
+import type { Conditions, FieldValidatorArguments } from './types';
 
 class FieldValidator {
   private name: string;
@@ -210,7 +210,7 @@ class FieldValidator {
   }
 
   /**
-   * Passes if the field's value contains all the specified values.
+   * Passes if the field's value contains all of the specified values.
    */
   public containsAll(values: unknown[]): this {
     return this.apply(this.containsAll.name, { values });
@@ -329,13 +329,6 @@ class FieldValidator {
   }
 
   /**
-   * Passes if the field's value is one of the specified values.
-   */
-  public in(values: unknown[]): this {
-    return this.apply(this.in.name, { values });
-  }
-
-  /**
    * Passes if the field's value is an integer.
    */
   public integer(): this {
@@ -406,6 +399,20 @@ class FieldValidator {
   }
 
   /**
+   * Passes if the field's value does not contain all of the specified values together.
+   */
+  public notContainsAll(values: unknown[]): this {
+    return this.apply(this.notContainsAll.name, { values });
+  }
+
+  /**
+   * Passes if the field's value does not contain any of the specified values.
+   */
+  public notContainsAny(values: unknown[]): this {
+    return this.apply(this.notContainsAny.name, { values });
+  }
+
+  /**
    * Passes if the field's value is not equal to the specified value.
    */
   public notEquals(value: unknown): this {
@@ -415,8 +422,8 @@ class FieldValidator {
   /**
    * Passes if the field's value is not one of the specified values.
    */
-  public notIn(values: string[]): this {
-    return this.apply(this.notIn.name, { values });
+  public notOneOf(values: string[]): this {
+    return this.apply(this.notOneOf.name, { values });
   }
 
   /**
@@ -431,6 +438,13 @@ class FieldValidator {
    */
   public numeric(): this {
     return this.apply(this.numeric.name);
+  }
+
+  /**
+   * Passes if the field's value is one of the specified values.
+   */
+  public oneOf(values: unknown[]): this {
+    return this.apply(this.oneOf.name, { values });
   }
 
   /**
@@ -492,6 +506,20 @@ class FieldValidator {
   }
 
   /**
+   * Passes if the field's value contains all of the specified text.
+   */
+  public stringContainsAll(values: string[]): this {
+    return this.apply(this.stringContainsAll.name, { values });
+  }
+
+  /**
+   * Passes if the field's value contains at least one of the specified text.
+   */
+  public stringContainsAny(values: string[]): this {
+    return this.apply(this.stringContainsAny.name, { values });
+  }
+
+  /**
    * Passes if the field's value matches the specified string length.
    */
   public stringLength(length: number): this {
@@ -510,6 +538,20 @@ class FieldValidator {
    */
   public stringMinLength(length: number): this {
     return this.apply(this.stringMinLength.name, { length });
+  }
+
+  /**
+   * Passes if the field's value does not contain all of the specified text together.
+   */
+  public stringNotContainsAll(values: string[]): this {
+    return this.apply(this.stringNotContainsAll.name, { values });
+  }
+
+  /**
+   * Passes if the field's value does not contain any of the specified text.
+   */
+  public stringNotContainsAny(values: string[]): this {
+    return this.apply(this.stringNotContainsAny.name, { values });
   }
 
   /**

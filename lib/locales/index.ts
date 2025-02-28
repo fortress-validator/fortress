@@ -1,4 +1,4 @@
-import { Locales } from '@fortress-validator/types';
+import type { Locales } from '@fortress-validator/types';
 import en from './en';
 import zhTW from './zh-TW';
 

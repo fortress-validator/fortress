@@ -1,4 +1,4 @@
-import { Rule } from '@fortress-validator/types';
+import type { Rule } from '@fortress-validator/types';
 
 const arrayRule: Rule = () => (input: unknown) => {
   return Array.isArray(input);

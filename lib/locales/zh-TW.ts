@@ -1,29 +1,37 @@
-import { Messages } from '@fortress-validator/types';
+import type { Messages } from '@fortress-validator/types';
 import { formatNumber } from '@fortress-validator/utils';
-import { BetweenRuleArguments } from '~/rules/between';
-import { BetweenLengthRuleArguments } from '~/rules/betweenLength';
-import { ContainsAllRuleArguments } from '~/rules/containsAll';
-import { ContainsAnyRuleArguments } from '~/rules/containsAny';
-import { DifferentRuleArguments } from '~/rules/different';
-import { EndsWithRuleArguments } from '~/rules/endsWith';
-import { EqualsRuleArguments } from '~/rules/equals';
-import { FileBetweenSizeRuleArguments } from '~/rules/fileBetweenSize';
-import { FileMaxSizeRuleArguments } from '~/rules/fileMaxSize';
-import { FileMinSizeRuleArguments } from '~/rules/fileMinSize';
-import { FileSizeRuleArguments } from '~/rules/fileSize';
-import { InRuleArguments } from '~/rules/in';
-import { LengthRuleArguments } from '~/rules/length';
-import { MaxRuleArguments } from '~/rules/max';
-import { MinRuleArguments } from '~/rules/min';
-import { NotEqualsRuleArguments } from '~/rules/notEquals';
-import { NotInRuleArguments } from '~/rules/notIn';
-import { SameRuleArguments } from '~/rules/same';
-import { SizeRuleArguments } from '~/rules/size';
-import { StartsWitchRuleArguments } from '~/rules/startsWith';
-import { StringBetweenLengthRuleArguments } from '~/rules/stringBetweenLength';
-import { StringLengthRuleArguments } from '~/rules/stringLength';
-import { StringMaxLengthRuleArguments } from '~/rules/stringMaxLength';
-import { StringMinLengthRuleArguments } from '~/rules/stringMinLength';
+import type { BetweenRuleArguments } from '~/rules/between';
+import type { BetweenLengthRuleArguments } from '~/rules/betweenLength';
+import type { ContainsAllRuleArguments } from '~/rules/containsAll';
+import type { ContainsAnyRuleArguments } from '~/rules/containsAny';
+import type { DifferentRuleArguments } from '~/rules/different';
+import type { EndsWithRuleArguments } from '~/rules/endsWith';
+import type { EqualsRuleArguments } from '~/rules/equals';
+import type { FileBetweenSizeRuleArguments } from '~/rules/fileBetweenSize';
+import type { FileMaxSizeRuleArguments } from '~/rules/fileMaxSize';
+import type { FileMinSizeRuleArguments } from '~/rules/fileMinSize';
+import type { FileSizeRuleArguments } from '~/rules/fileSize';
+import type { LengthRuleArguments } from '~/rules/length';
+import type { MaxRuleArguments } from '~/rules/max';
+import type { MaxLengthRuleArguments } from '~/rules/maxLength';
+import type { MinRuleArguments } from '~/rules/min';
+import type { MinLengthRuleArguments } from '~/rules/minLength';
+import type { NotContainsAllRuleArguments } from '~/rules/notContainsAll';
+import type { NotContainsAnyRuleArguments } from '~/rules/notContainsAny';
+import type { NotEqualsRuleArguments } from '~/rules/notEquals';
+import type { NotOneOfRuleArguments } from '~/rules/notOneOf';
+import type { OneOfRuleArguments } from '~/rules/oneOf';
+import type { SameRuleArguments } from '~/rules/same';
+import type { SizeRuleArguments } from '~/rules/size';
+import type { StartsWitchRuleArguments } from '~/rules/startsWith';
+import type { StringBetweenLengthRuleArguments } from '~/rules/stringBetweenLength';
+import type { StringContainsAllRuleArguments } from '~/rules/stringContainsAll';
+import type { StringContainsAnyRuleArguments } from '~/rules/stringContainsAny';
+import type { StringLengthRuleArguments } from '~/rules/stringLength';
+import type { StringMaxLengthRuleArguments } from '~/rules/stringMaxLength';
+import type { StringMinLengthRuleArguments } from '~/rules/stringMinLength';
+import type { StringNotContainsAllRuleArguments } from '~/rules/stringNotContainsAll';
+import type { StringNotContainsAnyRuleArguments } from '~/rules/stringNotContainsAny';
 
 const zhTW: Messages = {
   accepted: () => '此欄位必須被同意',
@@ -100,10 +108,6 @@ const zhTW: Messages = {
   },
   http: () => `此欄位必須以 http:// 或 https:// 開頭`,
   https: () => `此欄位必須以 https:// 開頭`,
-  in: (_, args) => {
-    const { values } = args as InRuleArguments;
-    return `此欄位必須是以下之一：${values.join(', ')}`;
-  },
   integer: () => '此欄位必須是整數',
   json: () => '此欄位必須是有效的 JSON 字串',
   length: (_, args) => {
@@ -118,6 +122,10 @@ const zhTW: Messages = {
       array: `此欄位中的每個項目都不能大於${formatNumber(max)}`,
     };
   },
+  maxLength: (_, args) => {
+    const { length } = args as MaxLengthRuleArguments;
+    return `此欄位不能大於${formatNumber(length)}個項目`;
+  },
   min: (_, args) => {
     const { min } = args as MinRuleArguments;
     return {
@@ -125,16 +133,32 @@ const zhTW: Messages = {
       array: `此欄位中的每個項目都不能小於${formatNumber(min)}`,
     };
   },
+  minLength: (_, args) => {
+    const { length } = args as MinLengthRuleArguments;
+    return `此欄位不能小於${formatNumber(length)}個項目`;
+  },
+  notContainsAll: (_, args) => {
+    const { values } = args as NotContainsAllRuleArguments;
+    return `此欄位不能同時包含以下所有值：${values.join(', ')}`;
+  },
+  notContainsAny: (_, args) => {
+    const { values } = args as NotContainsAnyRuleArguments;
+    return `此欄位不能包含以下任何值：${values.join(', ')}`;
+  },
   notEquals: (_, args) => {
     const { value } = args as NotEqualsRuleArguments;
     return `此欄位不能是${value}`;
   },
-  notIn: (_, args) => {
-    const { values } = args as NotInRuleArguments;
-    return `此欄位不能是以下之一：${values.join(', ')}`;
+  notOneOf: (_, args) => {
+    const { values } = args as NotOneOfRuleArguments;
+    return `此欄位不能是以下任何值：${values.join(', ')}`;
   },
   number: () => '此欄位必須是數字',
   numeric: () => '此欄位必須是數字',
+  oneOf: (_, args) => {
+    const { values } = args as OneOfRuleArguments;
+    return `此欄位必須是以下任何值：${values.join(', ')}`;
+  },
   regex: () => '此欄位必須符合所需的格式',
   required: () => '此欄位為必填',
   same: (_, args) => {
@@ -160,6 +184,14 @@ const zhTW: Messages = {
       array: `此欄位中的每個項目都必須介於${formatNumber(min)}到${formatNumber(max)}個字元之間`,
     };
   },
+  stringContainsAll: (_, args) => {
+    const { values } = args as StringContainsAllRuleArguments;
+    return `此欄位必須包含以下所有文字：${values.join(', ')}`;
+  },
+  stringContainsAny: (_, args) => {
+    const { values } = args as StringContainsAnyRuleArguments;
+    return `此欄位必須包含以下其中一個文字：${values.join(', ')}`;
+  },
   stringLength: (_, args) => {
     const { length } = args as StringLengthRuleArguments;
     return {
@@ -180,6 +212,14 @@ const zhTW: Messages = {
       string: `此欄位不能小於${formatNumber(length)}個字元`,
       array: `此欄位中的每個項目都不能小於${formatNumber(length)}個字元`,
     };
+  },
+  stringNotContainsAll: (_, args) => {
+    const { values } = args as StringNotContainsAllRuleArguments;
+    return `此欄位不能同時包含以下所有文字：${values.join(', ')}`;
+  },
+  stringNotContainsAny: (_, args) => {
+    const { values } = args as StringNotContainsAnyRuleArguments;
+    return `此欄位不能包含以下任何文字：${values.join(', ')}`;
   },
   unique: () => '此欄位已經存在',
   uppercase: () => '此欄位必須是大寫',

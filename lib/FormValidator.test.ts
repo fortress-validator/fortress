@@ -1,6 +1,6 @@
 import pluginDate from '@fortress-validator/plugin-date';
 import pluginJSONSchema from '@fortress-validator/plugin-json-schema';
-import { Rule } from '@fortress-validator/types';
+import type { Rule } from '@fortress-validator/types';
 import { describe, expect, test } from 'vitest';
 import FormValidator from './FormValidator';
 

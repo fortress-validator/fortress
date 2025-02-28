@@ -1,30 +1,37 @@
-import { Messages } from '@fortress-validator/types';
+import type { Messages } from '@fortress-validator/types';
 import { formatNumber } from '@fortress-validator/utils';
-import { BetweenRuleArguments } from '~/rules/between';
-import { BetweenLengthRuleArguments } from '~/rules/betweenLength';
-import { ContainsAllRuleArguments } from '~/rules/containsAll';
-import { ContainsAnyRuleArguments } from '~/rules/containsAny';
-import { DifferentRuleArguments } from '~/rules/different';
-import { EndsWithRuleArguments } from '~/rules/endsWith';
-import { EqualsRuleArguments } from '~/rules/equals';
-import { FileBetweenSizeRuleArguments } from '~/rules/fileBetweenSize';
-import { FileMaxSizeRuleArguments } from '~/rules/fileMaxSize';
-import { FileMinSizeRuleArguments } from '~/rules/fileMinSize';
-import { FileSizeRuleArguments } from '~/rules/fileSize';
-import { InRuleArguments } from '~/rules/in';
-import { LengthRuleArguments } from '~/rules/length';
-import { MaxRuleArguments } from '~/rules/max';
-import { MaxLengthRuleArguments } from '~/rules/maxLength';
-import { MinRuleArguments } from '~/rules/min';
-import { MinLengthRuleArguments } from '~/rules/minLength';
-import { NotInRuleArguments } from '~/rules/notIn';
-import { SameRuleArguments } from '~/rules/same';
-import { SizeRuleArguments } from '~/rules/size';
-import { StartsWitchRuleArguments } from '~/rules/startsWith';
-import { StringBetweenLengthRuleArguments } from '~/rules/stringBetweenLength';
-import { StringLengthRuleArguments } from '~/rules/stringLength';
-import { StringMaxLengthRuleArguments } from '~/rules/stringMaxLength';
-import { StringMinLengthRuleArguments } from '~/rules/stringMinLength';
+import type { BetweenRuleArguments } from '~/rules/between';
+import type { BetweenLengthRuleArguments } from '~/rules/betweenLength';
+import type { ContainsAllRuleArguments } from '~/rules/containsAll';
+import type { ContainsAnyRuleArguments } from '~/rules/containsAny';
+import type { DifferentRuleArguments } from '~/rules/different';
+import type { EndsWithRuleArguments } from '~/rules/endsWith';
+import type { EqualsRuleArguments } from '~/rules/equals';
+import type { FileBetweenSizeRuleArguments } from '~/rules/fileBetweenSize';
+import type { FileMaxSizeRuleArguments } from '~/rules/fileMaxSize';
+import type { FileMinSizeRuleArguments } from '~/rules/fileMinSize';
+import type { FileSizeRuleArguments } from '~/rules/fileSize';
+import type { LengthRuleArguments } from '~/rules/length';
+import type { MaxRuleArguments } from '~/rules/max';
+import type { MaxLengthRuleArguments } from '~/rules/maxLength';
+import type { MinRuleArguments } from '~/rules/min';
+import type { MinLengthRuleArguments } from '~/rules/minLength';
+import type { NotContainsAllRuleArguments } from '~/rules/notContainsAll';
+import type { NotContainsAnyRuleArguments } from '~/rules/notContainsAny';
+import type { NotEqualsRuleArguments } from '~/rules/notEquals';
+import type { NotOneOfRuleArguments } from '~/rules/notOneOf';
+import type { OneOfRuleArguments } from '~/rules/oneOf';
+import type { SameRuleArguments } from '~/rules/same';
+import type { SizeRuleArguments } from '~/rules/size';
+import type { StartsWitchRuleArguments } from '~/rules/startsWith';
+import type { StringBetweenLengthRuleArguments } from '~/rules/stringBetweenLength';
+import type { StringContainsAllRuleArguments } from '~/rules/stringContainsAll';
+import type { StringContainsAnyRuleArguments } from '~/rules/stringContainsAny';
+import type { StringLengthRuleArguments } from '~/rules/stringLength';
+import type { StringMaxLengthRuleArguments } from '~/rules/stringMaxLength';
+import type { StringMinLengthRuleArguments } from '~/rules/stringMinLength';
+import type { StringNotContainsAllRuleArguments } from '~/rules/stringNotContainsAll';
+import type { StringNotContainsAnyRuleArguments } from '~/rules/stringNotContainsAny';
 
 const en: Messages = {
   accepted: field => `The ${field} field must be accepted.`,
@@ -48,11 +55,11 @@ const en: Messages = {
   boolean: field => `The ${field} field must be a boolean value.`,
   containsAll: (field, args) => {
     const { values } = args as ContainsAllRuleArguments;
-    return `The ${field} field must contain all of the following: ${values.join(', ')}.`;
+    return `The ${field} field must contain all of the following values: ${values.join(', ')}.`;
   },
   containsAny: (field, args) => {
     const { values } = args as ContainsAnyRuleArguments;
-    return `The ${field} field must contain at least one of the following: ${values.join(', ')}.`;
+    return `The ${field} field must contain at least one of the following values: ${values.join(', ')}.`;
   },
   declined: field => `The ${field} field must be declined.`,
   different: (field, args) => {
@@ -101,10 +108,6 @@ const en: Messages = {
   },
   http: field => `The ${field} field must start with either "http://" or "https://".`,
   https: field => `The ${field} field must start with "http://".`,
-  in: (field, args) => {
-    const { values } = args as InRuleArguments;
-    return `The ${field} field must be one of the following: ${values.join(', ')}.`;
-  },
   integer: field => `The ${field} field must be an integer.`,
   json: field => `The ${field} field must be a valid JSON string.`,
   length: (field, args) => {
@@ -134,16 +137,28 @@ const en: Messages = {
     const { length } = args as MinLengthRuleArguments;
     return `The ${field} field must be at least ${formatNumber(length)} items.`;
   },
+  notContainsAll: (field, args) => {
+    const { values } = args as NotContainsAllRuleArguments;
+    return `The ${field} field must not contain all of the following values together: ${values.join(', ')}.`;
+  },
+  notContainsAny: (field, args) => {
+    const { values } = args as NotContainsAnyRuleArguments;
+    return `The ${field} field must not contain any of the following values: ${values.join(', ')}.`;
+  },
   notEquals: (field, args) => {
-    const { value } = args as EqualsRuleArguments;
+    const { value } = args as NotEqualsRuleArguments;
     return `The ${field} field must not be equal to ${value}.`;
   },
-  notIn: (field, args) => {
-    const { values } = args as NotInRuleArguments;
-    return `The ${field} field must not be one of the following: ${values.join(', ')}.`;
+  notOneOf: (field, args) => {
+    const { values } = args as NotOneOfRuleArguments;
+    return `The ${field} field must not be one of the following values: ${values.join(', ')}.`;
   },
   number: field => `The ${field} field must be a number.`,
   numeric: field => `The ${field} field must be a number.`,
+  oneOf: (field, args) => {
+    const { values } = args as OneOfRuleArguments;
+    return `The ${field} field must be one of the following values: ${values.join(', ')}.`;
+  },
   regex: field => `The ${field} field must match the required format.`,
   required: field => `The ${field} field is required.`,
   same: (field, args) => {
@@ -169,6 +184,14 @@ const en: Messages = {
       array: `The ${field} field must contain items where each item is between ${formatNumber(min)} and ${formatNumber(max)} characters.`,
     };
   },
+  stringContainsAll: (field, args) => {
+    const { values } = args as StringContainsAllRuleArguments;
+    return `The ${field} field must contain all of the following text: ${values.join(', ')}.`;
+  },
+  stringContainsAny: (field, args) => {
+    const { values } = args as StringContainsAnyRuleArguments;
+    return `The ${field} field must contain at least one of the following text: ${values.join(', ')}.`;
+  },
   stringLength: (field, args) => {
     const { length } = args as StringLengthRuleArguments;
     return {
@@ -189,6 +212,14 @@ const en: Messages = {
       string: `The ${field} field must be at least ${formatNumber(length)} characters.`,
       array: `The ${field} field must contain items where each item is at least ${formatNumber(length)} characters.`,
     };
+  },
+  stringNotContainsAll: (field, args) => {
+    const { values } = args as StringNotContainsAllRuleArguments;
+    return `The ${field} field must not contain all of the following text together: ${values.join(', ')}.`;
+  },
+  stringNotContainsAny: (field, args) => {
+    const { values } = args as StringNotContainsAnyRuleArguments;
+    return `The ${field} field must not contain any of the following text: ${values.join(', ')}.`;
   },
   unique: field => `The ${field} field has already been taken.`,
   uppercase: field => `The ${field} field must be uppercase.`,

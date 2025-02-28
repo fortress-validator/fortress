@@ -1,6 +1,6 @@
+import { createTestFile } from '@fortress-validator/utils';
 import { describe, expect, test } from 'vitest';
 import file from './file';
-import { createTestFile } from '@fortress-validator/utils';
 
 describe('Rule "file"', () => {
   const validate = file();

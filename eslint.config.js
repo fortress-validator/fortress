@@ -28,6 +28,7 @@ export default [
   },
   {
     rules: {
+      '@typescript-eslint/consistent-type-imports': 'error',
       'curly': ['error', 'multi-line'],
       'dot-notation': 'error',
       'no-console': ['warn', { allow: ['warn', 'error', 'debug'] }],

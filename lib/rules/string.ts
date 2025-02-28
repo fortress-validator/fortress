@@ -1,4 +1,4 @@
-import { Rule } from '@fortress-validator/types';
+import type { Rule } from '@fortress-validator/types';
 
 const stringRule: Rule = () => (input: unknown) => {
   return typeof input === 'string';

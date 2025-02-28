@@ -1,4 +1,4 @@
-import { Plugin } from '@fortress-validator/types';
+import type { Plugin } from '@fortress-validator/types';
 
 interface FormValidatorArguments {
   fallbackLocale?: string;

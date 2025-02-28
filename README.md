@@ -77,7 +77,7 @@ const result = validator
 | `between` | Passes if the field's value is between the specified minimum and maximum values. |
 | `betweenLength` | Passes if the field's value is between the specified minimum and maximum lengths. |
 | `boolean` | Passes if the field's value is a boolean. |
-| `containsAll` | Passes if the field's value contains all the specified values. |
+| `containsAll` | Passes if the field's value contains all of the specified values. |
 | `containsAny` | Passes if the field's value contains at least one of the specified values. |
 | `date` | Passes if the field's value matches the specified date format. |
 | `declined` | Passes if the field's value is considered declined (i.e., "n", "no", "off", "0", "false"). |
@@ -94,7 +94,6 @@ const result = validator
 | `fileSize` | Passes if the field's value matches the specified file size. |
 | `http` | Passes if the field's value starts with "http://" or "https://". |
 | `https` | Passes if the field's value starts with "https://". |
-| `in` | Passes if the field's value is one of the specified values. |
 | `integer` | Passes if the field's value is an integer. |
 | `iso8601` | Passes if the field's value is a valid ISO 8601 date. |
 | `json` | Passes if the field's value is a valid JSON string. |
@@ -105,10 +104,13 @@ const result = validator
 | `maxLength` | Passes if the field's value is not greater than the specified maximum length. |
 | `min` | Passes if the field's value is at least the specified minimum. |
 | `minLength` | Passes if the field's value is at least the specified minimum length. |
+| `notContainsAll` | Passes if the field's value does not contain all of the specified values together. |
+| `notContainsAny` | Passes if the field's value does not contain any of the specified values. |
 | `notEquals` | Passes if the field's value is not equal to the specified value. |
-| `notIn` | Passes if the field's value is not one of the specified values. |
+| `notOneOf` | Passes if the field's value is not one of the specified values. |
 | `number` | Passes if the field's value is a number. |
 | `numeric` | Passes if the field's value contains only numeric characters. |
+| `oneOf` | Passes if the field's value is one of the specified values. |
 | `regex` | Passes if the field's value matches the specified regular expression. |
 | `required` | Passes if the field's value is not empty. |
 | `requiredWhen` | Passes if the field's value is not empty when the specified condition is true. |
@@ -117,9 +119,13 @@ const result = validator
 | `startsWith` | Passes if the field's value starts with the specified value. |
 | `string` | Passes if the field's value is a string. |
 | `stringBetweenLength` | Passes if the field's value is between the specified minimum and maximum string lengths. |
+| `stringContainsAll` | Passes if the field's value contains all of the specified text. |
+| `stringContainsAny` | Passes if the field's value contains at least one of the specified text. |
 | `stringLength` | Passes if the field's value matches the specified string length. |
 | `stringMaxLength` | Passes if the field's value is not greater than the specified maximum string length. |
 | `stringMinLength` | Passes if the field's value is at least the specified minimum string length. |
+| `stringNotContainsAll` | Passes if the field's value does not contain all of the specified text together. |
+| `stringNotContainsAny` | Passes if the field's value does not contain any of the specified text. |
 | `unique` | Passes if the field's value contains only unique items, with optional ignored values. |
 | `uppercase` | Passes if the field's value contains only uppercase characters. |
 | `url` | Passes if the field's value is a valid URL. |

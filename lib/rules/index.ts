@@ -1,4 +1,4 @@
-import { Rule, Rules } from '@fortress-validator/types';
+import type { Rule, Rules } from '@fortress-validator/types';
 import acceptedRule from './accepted';
 import alphaRule from './alpha';
 import alphaDashRule from './alphaDash';
@@ -25,7 +25,6 @@ import fileMinSizeRule from './fileMinSize';
 import fileSizeRule from './fileSize';
 import httpRule from './http';
 import httpsRule from './https';
-import inRule from './in';
 import integerRule from './integer';
 import jsonRule from './json';
 import lengthRule from './length';
@@ -34,10 +33,13 @@ import maxRule from './max';
 import maxLengthRule from './maxLength';
 import minRule from './min';
 import minLengthRule from './minLength';
+import notContainsAll from './notContainsAll';
+import notContainsAny from './notContainsAny';
 import notEquals from './notEquals';
-import notInRule from './notIn';
+import notOneOfRule from './notOneOf';
 import numberRule from './number';
 import numericRule from './numeric';
+import oneOfRule from './oneOf';
 import regexRule from './regex';
 import requiredRule from './required';
 import sameRule from './same';
@@ -48,6 +50,8 @@ import stringBetweenLengthRule from './stringBetweenLength';
 import stringLengthRule from './stringLength';
 import stringMaxLengthRule from './stringMaxLength';
 import stringMinLengthRule from './stringMinLength';
+import stringNotContainsAll from './stringNotContainsAll';
+import stringNotContainsAny from './stringNotContainsAny';
 import uniqueRule from './unique';
 import uppercaseRule from './uppercase';
 import urlRule from './url';
@@ -79,7 +83,6 @@ const rules: Rules = {
   fileSize: fileSizeRule as Rule<unknown>,
   http: httpRule as Rule<unknown>,
   https: httpsRule as Rule<unknown>,
-  in: inRule as Rule<unknown>,
   integer: integerRule as Rule<unknown>,
   json: jsonRule as Rule<unknown>,
   length: lengthRule as Rule<unknown>,
@@ -88,10 +91,13 @@ const rules: Rules = {
   maxLength: maxLengthRule as Rule<unknown>,
   min: minRule as Rule<unknown>,
   minLength: minLengthRule as Rule<unknown>,
+  notContainsAll: notContainsAll as Rule<unknown>,
+  notContainsAny: notContainsAny as Rule<unknown>,
   notEquals: notEquals as Rule<unknown>,
-  notIn: notInRule as Rule<unknown>,
+  notOneOf: notOneOfRule as Rule<unknown>,
   number: numberRule as Rule<unknown>,
   numeric: numericRule as Rule<unknown>,
+  oneOf: oneOfRule as Rule<unknown>,
   regex: regexRule as Rule<unknown>,
   required: requiredRule as Rule<unknown>,
   same: sameRule as Rule<unknown>,
@@ -99,9 +105,13 @@ const rules: Rules = {
   startsWith: startsWithRule as Rule<unknown>,
   string: stringRule as Rule<unknown>,
   stringBetweenLength: stringBetweenLengthRule as Rule<unknown>,
+  stringContainsAll: containsAllRule as Rule<unknown>,
+  stringContainsAny: containsAnyRule as Rule<unknown>,
   stringLength: stringLengthRule as Rule<unknown>,
   stringMaxLength: stringMaxLengthRule as Rule<unknown>,
   stringMinLength: stringMinLengthRule as Rule<unknown>,
+  stringNotContainsAll: stringNotContainsAll as Rule<unknown>,
+  stringNotContainsAny: stringNotContainsAny as Rule<unknown>,
   unique: uniqueRule as Rule<unknown>,
   uppercase: uppercaseRule as Rule<unknown>,
   url: urlRule as Rule<unknown>,

@@ -1,4 +1,4 @@
-import { Rule } from '@fortress-validator/types';
+import type { Rule } from '@fortress-validator/types';
 import { isEmpty } from '@fortress-validator/utils';
 import startsWithRule from './startsWith';
 

@@ -145,14 +145,14 @@ describe('FieldValidator', () => {
       const validator = new FieldValidator(defaultParams)
         .containsAll(['foo', 'bar']);
 
-      expect(validator.validate(['foo', 'baz'])).toBe('The input field must contain all of the following: foo, bar.');
+      expect(validator.validate(['foo', 'baz'])).toBe('The input field must contain all of the following values: foo, bar.');
     });
 
     test('with "containsAny" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .containsAny(['foo', 'bar']);
 
-      expect(validator.validate(['baz'])).toBe('The input field must contain at least one of the following: foo, bar.');
+      expect(validator.validate(['baz'])).toBe('The input field must contain at least one of the following values: foo, bar.');
     });
 
     test('with "declined" rule', () => {
@@ -256,13 +256,6 @@ describe('FieldValidator', () => {
       expect(validator.validate('http://')).toBe('The input field must start with "http://".');
     });
 
-    test('with "in" rule', () => {
-      const validator = new FieldValidator(defaultParams)
-        .in(['foo', 'bar']);
-
-      expect(validator.validate('baz')).toBe('The input field must be one of the following: foo, bar.');
-    });
-
     test('with "integer" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .integer();
@@ -319,6 +312,20 @@ describe('FieldValidator', () => {
       expect(validator.validate(Array.from('_'.repeat(9)))).toBe('The input field must be at least 10 items.');
     });
 
+    test('with "notContainsAll" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .notContainsAll(['foo', 'bar']);
+
+      expect(validator.validate(['foo', 'bar'])).toBe('The input field must not contain all of the following values together: foo, bar.');
+    });
+
+    test('with "notContainsAny" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .notContainsAny(['foo', 'bar']);
+
+      expect(validator.validate(['foo', 'baz'])).toBe('The input field must not contain any of the following values: foo, bar.');
+    });
+
     test('with "notEquals" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .notEquals(undefined);
@@ -327,11 +334,11 @@ describe('FieldValidator', () => {
       expect(validator.validate(undefined)).toBe('The input field must not be equal to undefined.');
     });
 
-    test('with "notIn" rule', () => {
+    test('with "notOneOf" rule', () => {
       const validator = new FieldValidator(defaultParams)
-        .notIn(['foo', 'bar']);
+        .notOneOf(['foo', 'bar']);
 
-      expect(validator.validate('foo')).toBe('The input field must not be one of the following: foo, bar.');
+      expect(validator.validate('foo')).toBe('The input field must not be one of the following values: foo, bar.');
     });
 
     test('with "number" rule', () => {
@@ -346,6 +353,13 @@ describe('FieldValidator', () => {
         .numeric();
 
       expect(validator.validate('foo')).toBe('The input field must be a number.');
+    });
+
+    test('with "oneOf" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .oneOf(['foo', 'bar']);
+
+      expect(validator.validate('baz')).toBe('The input field must be one of the following values: foo, bar.');
     });
 
     test('with "regex" rule', () => {
@@ -402,6 +416,20 @@ describe('FieldValidator', () => {
       expect(validator.validate('_'.repeat(21))).toBe('The input field must be between 10 and 20 characters.');
     });
 
+    test('with "stringContainsAll" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .stringContainsAll(['foo', 'bar']);
+
+      expect(validator.validate('_foo_bar_')).toBe('The input field must contain all of the following text: foo, bar.');
+    });
+
+    test('with "stringContainsAny" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .stringContainsAny(['foo', 'bar']);
+
+      expect(validator.validate('_foo_baz_')).toBe('The input field must contain at least one of the following text: foo, bar.');
+    });
+
     test('with "stringLength" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .stringLength(10);
@@ -421,6 +449,20 @@ describe('FieldValidator', () => {
         .stringMinLength(10);
 
       expect(validator.validate('_'.repeat(9))).toBe('The input field must be at least 10 characters.');
+    });
+
+    test('with "stringNotContainsAll" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .stringNotContainsAll(['foo', 'bar']);
+
+      expect(validator.validate('_foo_bar_')).toBe('The input field must not contain all of the following text together: foo, bar.');
+    });
+
+    test('with "stringNotContainsAny" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .stringNotContainsAny(['foo', 'bar']);
+
+      expect(validator.validate('_foo_baz_')).toBe('The input field must not contain any of the following text: foo, bar.');
     });
 
     test('with "unique" rule', () => {
