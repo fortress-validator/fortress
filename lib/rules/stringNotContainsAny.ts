@@ -5,7 +5,7 @@ export interface StringNotContainsAnyRuleArguments extends RuleArguments {
   values: string[];
 }
 
-const stringContainsAnyRule: Rule<StringNotContainsAnyRuleArguments> = ({ values }) => (input: unknown) => {
+const stringNotContainsAnyRule: Rule<StringNotContainsAnyRuleArguments> = ({ values }) => (input: unknown) => {
   if (isEmpty(input)) return false;
   if (typeof input === 'string') {
     return !values.some(value => (input).includes(value));
@@ -13,4 +13,4 @@ const stringContainsAnyRule: Rule<StringNotContainsAnyRuleArguments> = ({ values
   return false;
 };
 
-export default stringContainsAnyRule;
+export default stringNotContainsAnyRule;
