@@ -145,14 +145,14 @@ describe('FieldValidator', () => {
       const validator = new FieldValidator(defaultParams)
         .containsAll(['foo', 'bar']);
 
-      expect(validator.validate(['foo', 'baz'])).toBe('The input field must contain all of the following values: foo, bar.');
+      expect(validator.validate(['foo', 'baz'])).toBe('The input field must contain all of the following values: "foo", "bar".');
     });
 
     test('with "containsAny" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .containsAny(['foo', 'bar']);
 
-      expect(validator.validate(['baz'])).toBe('The input field must contain at least one of the following values: foo, bar.');
+      expect(validator.validate(['baz'])).toBe('The input field must contain at least one of the following values: "foo", "bar".');
     });
 
     test('with "declined" rule', () => {
@@ -316,14 +316,14 @@ describe('FieldValidator', () => {
       const validator = new FieldValidator(defaultParams)
         .notContainsAll(['foo', 'bar']);
 
-      expect(validator.validate(['foo', 'bar'])).toBe('The input field must not contain all of the following values together: foo, bar.');
+      expect(validator.validate(['foo', 'bar'])).toBe('The input field must not contain all of the following values together: "foo", "bar".');
     });
 
     test('with "notContainsAny" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .notContainsAny(['foo', 'bar']);
 
-      expect(validator.validate(['foo', 'baz'])).toBe('The input field must not contain any of the following values: foo, bar.');
+      expect(validator.validate(['foo', 'baz'])).toBe('The input field must not contain any of the following values: "foo", "bar".');
     });
 
     test('with "notEquals" rule', () => {
@@ -338,7 +338,7 @@ describe('FieldValidator', () => {
       const validator = new FieldValidator(defaultParams)
         .notOneOf(['foo', 'bar']);
 
-      expect(validator.validate('foo')).toBe('The input field must not be one of the following values: foo, bar.');
+      expect(validator.validate('foo')).toBe('The input field must not be one of the following values: "foo", "bar".');
     });
 
     test('with "number" rule', () => {
@@ -359,7 +359,7 @@ describe('FieldValidator', () => {
       const validator = new FieldValidator(defaultParams)
         .oneOf(['foo', 'bar']);
 
-      expect(validator.validate('baz')).toBe('The input field must be one of the following values: foo, bar.');
+      expect(validator.validate('baz')).toBe('The input field must be one of the following values: "foo", "bar".');
     });
 
     test('with "regex" rule', () => {
@@ -420,14 +420,14 @@ describe('FieldValidator', () => {
       const validator = new FieldValidator(defaultParams)
         .stringContainsAll(['foo', 'bar']);
 
-      expect(validator.validate('_foo_bar_')).toBe('The input field must contain all of the following text: foo, bar.');
+      expect(validator.validate('_foo_bar_')).toBe('The input field must contain all of the following text: "foo", "bar".');
     });
 
     test('with "stringContainsAny" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .stringContainsAny(['foo', 'bar']);
 
-      expect(validator.validate('_foo_baz_')).toBe('The input field must contain at least one of the following text: foo, bar.');
+      expect(validator.validate('_foo_baz_')).toBe('The input field must contain at least one of the following text: "foo", "bar".');
     });
 
     test('with "stringLength" rule', () => {
@@ -455,14 +455,14 @@ describe('FieldValidator', () => {
       const validator = new FieldValidator(defaultParams)
         .stringNotContainsAll(['foo', 'bar']);
 
-      expect(validator.validate('_foo_bar_')).toBe('The input field must not contain all of the following text together: foo, bar.');
+      expect(validator.validate('_foo_bar_')).toBe('The input field must not contain all of the following text together: "foo", "bar".');
     });
 
     test('with "stringNotContainsAny" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .stringNotContainsAny(['foo', 'bar']);
 
-      expect(validator.validate('_foo_baz_')).toBe('The input field must not contain any of the following text: foo, bar.');
+      expect(validator.validate('_foo_baz_')).toBe('The input field must not contain any of the following text: "foo", "bar".');
     });
 
     test('with "unique" rule', () => {

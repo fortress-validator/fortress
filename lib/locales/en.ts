@@ -55,11 +55,11 @@ const en: Messages = {
   boolean: field => `The ${field} field must be a boolean value.`,
   containsAll: (field, args) => {
     const { values } = args as ContainsAllRuleArguments;
-    return `The ${field} field must contain all of the following values: ${values.join(', ')}.`;
+    return `The ${field} field must contain all of the following values: ${values.map(v => `"${v}"`).join(', ')}.`;
   },
   containsAny: (field, args) => {
     const { values } = args as ContainsAnyRuleArguments;
-    return `The ${field} field must contain at least one of the following values: ${values.join(', ')}.`;
+    return `The ${field} field must contain at least one of the following values: ${values.map(v => `"${v}"`).join(', ')}.`;
   },
   declined: field => `The ${field} field must be declined.`,
   different: (field, args) => {
@@ -139,11 +139,11 @@ const en: Messages = {
   },
   notContainsAll: (field, args) => {
     const { values } = args as NotContainsAllRuleArguments;
-    return `The ${field} field must not contain all of the following values together: ${values.join(', ')}.`;
+    return `The ${field} field must not contain all of the following values together: ${values.map(v => `"${v}"`).join(', ')}.`;
   },
   notContainsAny: (field, args) => {
     const { values } = args as NotContainsAnyRuleArguments;
-    return `The ${field} field must not contain any of the following values: ${values.join(', ')}.`;
+    return `The ${field} field must not contain any of the following values: ${values.map(v => `"${v}"`).join(', ')}.`;
   },
   notEquals: (field, args) => {
     const { value } = args as NotEqualsRuleArguments;
@@ -151,13 +151,13 @@ const en: Messages = {
   },
   notOneOf: (field, args) => {
     const { values } = args as NotOneOfRuleArguments;
-    return `The ${field} field must not be one of the following values: ${values.join(', ')}.`;
+    return `The ${field} field must not be one of the following values: ${values.map(v => `"${v}"`).join(', ')}.`;
   },
   number: field => `The ${field} field must be a number.`,
   numeric: field => `The ${field} field must be a number.`,
   oneOf: (field, args) => {
     const { values } = args as OneOfRuleArguments;
-    return `The ${field} field must be one of the following values: ${values.join(', ')}.`;
+    return `The ${field} field must be one of the following values: ${values.map(v => `"${v}"`).join(', ')}.`;
   },
   regex: field => `The ${field} field must match the required format.`,
   required: field => `The ${field} field is required.`,
@@ -186,11 +186,11 @@ const en: Messages = {
   },
   stringContainsAll: (field, args) => {
     const { values } = args as StringContainsAllRuleArguments;
-    return `The ${field} field must contain all of the following text: ${values.join(', ')}.`;
+    return `The ${field} field must contain all of the following text: ${values.map(v => `"${v}"`).join(', ')}.`;
   },
   stringContainsAny: (field, args) => {
     const { values } = args as StringContainsAnyRuleArguments;
-    return `The ${field} field must contain at least one of the following text: ${values.join(', ')}.`;
+    return `The ${field} field must contain at least one of the following text: ${values.map(v => `"${v}"`).join(', ')}.`;
   },
   stringLength: (field, args) => {
     const { length } = args as StringLengthRuleArguments;
@@ -215,11 +215,11 @@ const en: Messages = {
   },
   stringNotContainsAll: (field, args) => {
     const { values } = args as StringNotContainsAllRuleArguments;
-    return `The ${field} field must not contain all of the following text together: ${values.join(', ')}.`;
+    return `The ${field} field must not contain all of the following text together: ${values.map(v => `"${v}"`).join(', ')}.`;
   },
   stringNotContainsAny: (field, args) => {
     const { values } = args as StringNotContainsAnyRuleArguments;
-    return `The ${field} field must not contain any of the following text: ${values.join(', ')}.`;
+    return `The ${field} field must not contain any of the following text: ${values.map(v => `"${v}"`).join(', ')}.`;
   },
   unique: field => `The ${field} field has already been taken.`,
   uppercase: field => `The ${field} field must be uppercase.`,
