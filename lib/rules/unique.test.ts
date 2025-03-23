@@ -2,7 +2,7 @@ import { describe, expect, test } from 'vitest';
 import unique from './unique';
 
 describe('Rule "unique"', () => {
-  describe('without ignored', () => {
+  describe('without "ignored"', () => {
     const validate = unique({ values: ['foo', 'bar'] });
 
     test('should pass with valid input', () => {
@@ -16,7 +16,7 @@ describe('Rule "unique"', () => {
     });
   });
 
-  describe('with ignored set to a string', () => {
+  describe('with "ignored" set to a string', () => {
     const validate = unique({ values: ['foo', 'bar'], ignored: 'foo' });
 
     test('should pass with valid input', () => {
@@ -30,7 +30,7 @@ describe('Rule "unique"', () => {
     });
   });
 
-  describe('with ignored set to an array', () => {
+  describe('with "ignored" set to an array', () => {
     const validate = unique({ values: ['foo', 'bar'], ignored: ['foo'] });
 
     test('should pass with valid input', () => {

@@ -92,9 +92,13 @@ const result = validator
 | `fileMaxSize` | Passes if the field's value is not greater than the specified maximum file size. |
 | `fileMinSize` | Passes if the field's value is at least the specified minimum file size. |
 | `fileSize` | Passes if the field's value matches the specified file size. |
-| `http` | Passes if the field's value starts with "http://" or "https://". |
+| `http` | Passes if the field's value starts with "http://". |
+| `httpOrHttps` | Passes if the field's value starts with "http://" or "https://". |
 | `https` | Passes if the field's value starts with "https://". |
 | `integer` | Passes if the field's value is an integer. |
+| `ip` | Passes if the field's value is a valid IP address. |
+| `ipv4` | Passes if the field's value is a valid IPv4 address. |
+| `ipv6` | Passes if the field's value is a valid IPv6 address. |
 | `iso8601` | Passes if the field's value is a valid ISO 8601 date. |
 | `json` | Passes if the field's value is a valid JSON string. |
 | `jsonSchema` | Passes if the field's value matches the specified JSON schema. |
@@ -111,6 +115,7 @@ const result = validator
 | `number` | Passes if the field's value is a number. |
 | `numeric` | Passes if the field's value contains only numeric characters. |
 | `oneOf` | Passes if the field's value is one of the specified values. |
+| `protocol` | Passes if the field's value starts with the specified protocol. |
 | `regex` | Passes if the field's value matches the specified regular expression. |
 | `required` | Passes if the field's value is not empty. |
 | `requiredWhen` | Passes if the field's value is not empty when the specified condition is true. |

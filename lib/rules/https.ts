@@ -1,10 +1,10 @@
 import type { Rule } from '@fortress-validator/types';
 import { isEmpty } from '@fortress-validator/utils';
-import startsWithRule from './startsWith';
+import protocolRule from './protocol';
 
 const httpsRule: Rule = () => (input: unknown) => {
   if (isEmpty(input)) return false;
-  return startsWithRule({ value: 'https://' })(input);
+  return protocolRule({ values: ['https'] })(input);
 };
 
 export default httpsRule;

@@ -1,5 +1,5 @@
 import type { Messages } from '@fortress-validator/types';
-import { formatNumber } from '@fortress-validator/utils';
+import { formatNumber, quote } from '@fortress-validator/utils';
 import type { BetweenRuleArguments } from '~/rules/between';
 import type { BetweenLengthRuleArguments } from '~/rules/betweenLength';
 import type { ContainsAllRuleArguments } from '~/rules/containsAll';
@@ -21,6 +21,7 @@ import type { NotContainsAnyRuleArguments } from '~/rules/notContainsAny';
 import type { NotEqualsRuleArguments } from '~/rules/notEquals';
 import type { NotOneOfRuleArguments } from '~/rules/notOneOf';
 import type { OneOfRuleArguments } from '~/rules/oneOf';
+import type { ProtocolRuleArguments } from '~/rules/protocol';
 import type { SameRuleArguments } from '~/rules/same';
 import type { SizeRuleArguments } from '~/rules/size';
 import type { StartsWitchRuleArguments } from '~/rules/startsWith';
@@ -55,11 +56,11 @@ const en: Messages = {
   boolean: field => `The ${field} field must be a boolean value.`,
   containsAll: (field, args) => {
     const { values } = args as ContainsAllRuleArguments;
-    return `The ${field} field must contain all of the following values: ${values.map(v => `"${v}"`).join(', ')}.`;
+    return `The ${field} field must contain all of the following values: ${values.map(quote).join(', ')}.`;
   },
   containsAny: (field, args) => {
     const { values } = args as ContainsAnyRuleArguments;
-    return `The ${field} field must contain at least one of the following values: ${values.map(v => `"${v}"`).join(', ')}.`;
+    return `The ${field} field must contain at least one of the following values: ${values.map(quote).join(', ')}.`;
   },
   declined: field => `The ${field} field must be declined.`,
   different: (field, args) => {
@@ -106,9 +107,13 @@ const en: Messages = {
       array: `The ${field} field must contain items where each item is ${formatNumber(size)} kilobytes.`,
     };
   },
-  http: field => `The ${field} field must start with either "http://" or "https://".`,
-  https: field => `The ${field} field must start with "http://".`,
+  http: field => `The ${field} field must start with the "http://" protocol.`,
+  httpOrHttps: field => `The ${field} field must start with the "http://" or "https://" protocols.`,
+  https: field => `The ${field} field must start with the "https://" protocol.`,
   integer: field => `The ${field} field must be an integer.`,
+  ip: field => `The ${field} field must be a valid IP address.`,
+  ipv4: field => `The ${field} field must be a valid IPv4 address.`,
+  ipv6: field => `The ${field} field must be a valid IPv6 address.`,
   json: field => `The ${field} field must be a valid JSON string.`,
   length: (field, args) => {
     const { length } = args as LengthRuleArguments;
@@ -139,11 +144,11 @@ const en: Messages = {
   },
   notContainsAll: (field, args) => {
     const { values } = args as NotContainsAllRuleArguments;
-    return `The ${field} field must not contain all of the following values together: ${values.map(v => `"${v}"`).join(', ')}.`;
+    return `The ${field} field must not contain all of the following values together: ${values.map(quote).join(', ')}.`;
   },
   notContainsAny: (field, args) => {
     const { values } = args as NotContainsAnyRuleArguments;
-    return `The ${field} field must not contain any of the following values: ${values.map(v => `"${v}"`).join(', ')}.`;
+    return `The ${field} field must not contain any of the following values: ${values.map(quote).join(', ')}.`;
   },
   notEquals: (field, args) => {
     const { value } = args as NotEqualsRuleArguments;
@@ -151,13 +156,21 @@ const en: Messages = {
   },
   notOneOf: (field, args) => {
     const { values } = args as NotOneOfRuleArguments;
-    return `The ${field} field must not be one of the following values: ${values.map(v => `"${v}"`).join(', ')}.`;
+    return `The ${field} field must not be one of the following values: ${values.map(quote).join(', ')}.`;
   },
   number: field => `The ${field} field must be a number.`,
   numeric: field => `The ${field} field must be a number.`,
   oneOf: (field, args) => {
     const { values } = args as OneOfRuleArguments;
-    return `The ${field} field must be one of the following values: ${values.map(v => `"${v}"`).join(', ')}.`;
+    return `The ${field} field must be one of the following values: ${values.map(quote).join(', ')}.`;
+  },
+  protocol: (field, args) => {
+    const { values } = args as ProtocolRuleArguments;
+    if (values.length === 1) {
+      const [value] = values;
+      return `The ${field} field must start with the "${value}://" protocol.`;
+    }
+    return `The ${field} field must start with one of the following protocols: ${values.map(v => `${v}://`).map(quote).join(', ')}.`;
   },
   regex: field => `The ${field} field must match the required format.`,
   required: field => `The ${field} field is required.`,
@@ -186,11 +199,11 @@ const en: Messages = {
   },
   stringContainsAll: (field, args) => {
     const { values } = args as StringContainsAllRuleArguments;
-    return `The ${field} field must contain all of the following text: ${values.map(v => `"${v}"`).join(', ')}.`;
+    return `The ${field} field must contain all of the following text: ${values.map(quote).join(', ')}.`;
   },
   stringContainsAny: (field, args) => {
     const { values } = args as StringContainsAnyRuleArguments;
-    return `The ${field} field must contain at least one of the following text: ${values.map(v => `"${v}"`).join(', ')}.`;
+    return `The ${field} field must contain at least one of the following text: ${values.map(quote).join(', ')}.`;
   },
   stringLength: (field, args) => {
     const { length } = args as StringLengthRuleArguments;
@@ -215,11 +228,11 @@ const en: Messages = {
   },
   stringNotContainsAll: (field, args) => {
     const { values } = args as StringNotContainsAllRuleArguments;
-    return `The ${field} field must not contain all of the following text together: ${values.map(v => `"${v}"`).join(', ')}.`;
+    return `The ${field} field must not contain all of the following text together: ${values.map(quote).join(', ')}.`;
   },
   stringNotContainsAny: (field, args) => {
     const { values } = args as StringNotContainsAnyRuleArguments;
-    return `The ${field} field must not contain any of the following text: ${values.map(v => `"${v}"`).join(', ')}.`;
+    return `The ${field} field must not contain any of the following text: ${values.map(quote).join(', ')}.`;
   },
   unique: field => `The ${field} field has already been taken.`,
   uppercase: field => `The ${field} field must be uppercase.`,

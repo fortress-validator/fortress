@@ -1,19 +1,17 @@
 import { describe, expect, test } from 'vitest';
-import https from './https';
+import httpOrHttps from './httpOrHttps';
 
-describe('Rule "https"', () => {
-  const validate = https();
+describe('Rule "httpOrHttps"', () => {
+  const validate = httpOrHttps();
 
   test('should pass with valid input', () => {
-    expect(validate('https://')).toBe(true);
+    expect(validate('http://example.com')).toBe(true);
     expect(validate('https://example.com')).toBe(true);
-    expect(validate('https://127.0.0.1')).toBe(true);
-    expect(validate('https://localhost')).toBe(true);
   });
 
   test('should fail with invalid input', () => {
     expect(validate(undefined)).toBe(false);
-    expect(validate('http://example.com')).toBe(false);
+    expect(validate('ftp://')).toBe(false);
     expect(validate('ftp://example.com')).toBe(false);
   });
 });

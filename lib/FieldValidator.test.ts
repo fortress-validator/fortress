@@ -210,7 +210,7 @@ describe('FieldValidator', () => {
         .file();
 
       expect(validator.validate(undefined)).toBe(true);
-      expect(validator.validate('_')).toBe('The input field must be a file.');
+      expect(validator.validate('foo')).toBe('The input field must be a file.');
     });
 
     test('with "fileBetweenSize" rule', () => {
@@ -246,14 +246,122 @@ describe('FieldValidator', () => {
       const validator = new FieldValidator(defaultParams)
         .http();
 
-      expect(validator.validate('ftp://')).toBe('The input field must start with either "http://" or "https://".');
+      expect(validator.validate('ftp://')).toBe('The input field must start with the "http://" protocol.');
+    });
+
+    test('with "http" and "ip" rules', () => {
+      const validator = new FieldValidator(defaultParams)
+        .http()
+        .ip();
+
+      expect(validator.validate('http://127.0.0.1')).toBe(true);
+      expect(validator.validate('http://[2001:0db8:85a3:0000:0000:8a2e:0370:7334]')).toBe(true);
+      expect(validator.validate('http://256.256.256.256')).toBe('The input field must be a valid IP address.');
+      expect(validator.validate('http://[F:F:F:F:F:F:F:G]')).toBe('The input field must be a valid IP address.');
+      expect(validator.validate('127.0.0.1')).toBe('The input field must start with the "http://" protocol.');
+      expect(validator.validate('2001:0db8:85a3:0000:0000:8a2e:0370:7334')).toBe('The input field must start with the "http://" protocol.');
+    });
+
+    test('with "http" and "ipv4" rules', () => {
+      const validator = new FieldValidator(defaultParams)
+        .http()
+        .ipv4();
+
+      expect(validator.validate('http://127.0.0.1')).toBe(true);
+      expect(validator.validate('http://256.256.256.256')).toBe('The input field must be a valid IPv4 address.');
+      expect(validator.validate('127.0.0.1')).toBe('The input field must start with the "http://" protocol.');
+    });
+
+    test('with "http" and "ipv6" rules', () => {
+      const validator = new FieldValidator(defaultParams)
+        .ipv6()
+        .http();
+
+      expect(validator.validate('http://[2001:0db8:85a3:0000:0000:8a2e:0370:7334]')).toBe(true);
+      expect(validator.validate('http://[F:F:F:F:F:F:F:G]')).toBe('The input field must be a valid IPv6 address.');
+      expect(validator.validate('2001:0db8:85a3:0000:0000:8a2e:0370:7334')).toBe('The input field must start with the "http://" protocol.');
+    });
+
+    test('with "httpOrHttps" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .httpOrHttps();
+
+      expect(validator.validate('ftp://')).toBe('The input field must start with the "http://" or "https://" protocols.');
+    });
+
+    test('with "httpOrHttps" and "ip" rules', () => {
+      const validator = new FieldValidator(defaultParams)
+        .httpOrHttps()
+        .ip();
+
+      expect(validator.validate('http://127.0.0.1')).toBe(true);
+      expect(validator.validate('http://[2001:0db8:85a3:0000:0000:8a2e:0370:7334]')).toBe(true);
+      expect(validator.validate('https://127.0.0.1')).toBe(true);
+      expect(validator.validate('https://[2001:0db8:85a3:0000:0000:8a2e:0370:7334]')).toBe(true);
+      expect(validator.validate('http://256.256.256.256')).toBe('The input field must be a valid IP address.');
+      expect(validator.validate('http://[F:F:F:F:F:F:F:G]')).toBe('The input field must be a valid IP address.');
+      expect(validator.validate('https://256.256.256.256')).toBe('The input field must be a valid IP address.');
+      expect(validator.validate('https://[F:F:F:F:F:F:F:G]')).toBe('The input field must be a valid IP address.');
+      expect(validator.validate('127.0.0.1')).toBe('The input field must start with the "http://" or "https://" protocols.');
+      expect(validator.validate('2001:0db8:85a3:0000:0000:8a2e:0370:7334')).toBe('The input field must start with the "http://" or "https://" protocols.');
+    });
+
+    test('with "httpOrHttps" and "ipv4" rules', () => {
+      const validator = new FieldValidator(defaultParams)
+        .httpOrHttps()
+        .ipv4();
+
+      expect(validator.validate('http://127.0.0.1')).toBe(true);
+      expect(validator.validate('https://127.0.0.1')).toBe(true);
+      expect(validator.validate('127.0.0.1')).toBe('The input field must start with the "http://" or "https://" protocols.');
+    });
+
+    test('with "httpOrHttps" and "ipv6" rules', () => {
+      const validator = new FieldValidator(defaultParams)
+        .ipv6()
+        .httpOrHttps();
+
+      expect(validator.validate('http://[2001:0db8:85a3:0000:0000:8a2e:0370:7334]')).toBe(true);
+      expect(validator.validate('https://[2001:0db8:85a3:0000:0000:8a2e:0370:7334]')).toBe(true);
+      expect(validator.validate('2001:0db8:85a3:0000:0000:8a2e:0370:7334')).toBe('The input field must start with the "http://" or "https://" protocols.');
     });
 
     test('with "https" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .https();
 
-      expect(validator.validate('http://')).toBe('The input field must start with "http://".');
+      expect(validator.validate('http://')).toBe('The input field must start with the "https://" protocol.');
+    });
+
+    test('with "https" and "ip" rules', () => {
+      const validator = new FieldValidator(defaultParams)
+        .https()
+        .ip();
+
+      expect(validator.validate('https://127.0.0.1')).toBe(true);
+      expect(validator.validate('https://[2001:0db8:85a3:0000:0000:8a2e:0370:7334]')).toBe(true);
+      expect(validator.validate('https://256.256.256.256')).toBe('The input field must be a valid IP address.');
+      expect(validator.validate('https://[F:F:F:F:F:F:F:G]')).toBe('The input field must be a valid IP address.');
+      expect(validator.validate('127.0.0.1')).toBe('The input field must start with the "https://" protocol.');
+      expect(validator.validate('2001:0db8:85a3:0000:0000:8a2e:0370:7334')).toBe('The input field must start with the "https://" protocol.');
+    });
+
+    test('with "https" and "ipv4" rules', () => {
+      const validator = new FieldValidator(defaultParams)
+        .https()
+        .ipv4();
+
+      expect(validator.validate('https://127.0.0.1')).toBe(true);
+      expect(validator.validate('127.0.0.1')).toBe('The input field must start with the "https://" protocol.');
+    });
+
+    test('with "https" and "ipv6" rules', () => {
+      const validator = new FieldValidator(defaultParams)
+        .ipv6()
+        .https();
+
+      expect(validator.validate('https://[2001:0db8:85a3:0000:0000:8a2e:0370:7334]')).toBe(true);
+      expect(validator.validate('2001:0db8:85a3:0000:0000:8a2e:0370:7334')).toBe('The input field must start with the "https://" protocol.');
     });
 
     test('with "integer" rule', () => {
@@ -263,11 +371,33 @@ describe('FieldValidator', () => {
       expect(validator.validate('foo')).toBe('The input field must be an integer.');
     });
 
+    test('with "ip" rule"', () => {
+      const validator = new FieldValidator(defaultParams)
+        .ip();
+
+      expect(validator.validate('256.256.256.256')).toBe('The input field must be a valid IP address.');
+      expect(validator.validate('F:F:F:F:F:F:F:G')).toBe('The input field must be a valid IP address.');
+    });
+
+    test('with "ipv4" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .ipv4();
+
+      expect(validator.validate('256.256.256.256')).toBe('The input field must be a valid IPv4 address.');
+    });
+
+    test('with "ipv6" rule"', () => {
+      const validator = new FieldValidator(defaultParams)
+        .ipv6();
+
+      expect(validator.validate('F:F:F:F:F:F:F:G')).toBe('The input field must be a valid IPv6 address.');
+    });
+
     test('with "json" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .json();
 
-      expect(validator.validate('_')).toBe('The input field must be a valid JSON string.');
+      expect(validator.validate('foo')).toBe('The input field must be a valid JSON string.');
     });
 
     test('with "length" rule', () => {
@@ -339,6 +469,22 @@ describe('FieldValidator', () => {
         .notOneOf(['foo', 'bar']);
 
       expect(validator.validate('foo')).toBe('The input field must not be one of the following values: "foo", "bar".');
+    });
+
+    test('with "protocol" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .protocol(['http', 'https']);
+
+      expect(validator.validate('ftp://')).toBe('The input field must start with one of the following protocols: "http://", "https://".');
+    });
+
+    test('with "protocol" and "url" rules', () => {
+      const validator = new FieldValidator(defaultParams)
+        .protocol('http')
+        .url();
+
+      expect(validator.validate('http://localhost')).toBe(true);
+      expect(validator.validate('localhost')).toBe('The input field must start with the "http://" protocol.');
     });
 
     test('with "number" rule', () => {
@@ -486,7 +632,7 @@ describe('FieldValidator', () => {
       expect(validator.validate('foo')).toBe('The input field must be a valid URL.');
     });
 
-    test('with "when" condition set to true', () => {
+    test('with "when" set to true', () => {
       const validator = new FieldValidator(defaultParams)
         .when(true)
         .alphaDash();
@@ -494,7 +640,7 @@ describe('FieldValidator', () => {
       expect(validator.validate('@')).toBe('The input field must only contain letters, numbers, dashes and underscores.');
     });
 
-    test('with "when" condition set to false', () => {
+    test('with "when" set to false', () => {
       const validator = new FieldValidator(defaultParams)
         .when(false)
         .alphaDash();

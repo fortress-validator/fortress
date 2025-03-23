@@ -1,5 +1,5 @@
 import type { Messages } from '@fortress-validator/types';
-import { formatNumber } from '@fortress-validator/utils';
+import { formatNumber, quote } from '@fortress-validator/utils';
 import type { BetweenRuleArguments } from '~/rules/between';
 import type { BetweenLengthRuleArguments } from '~/rules/betweenLength';
 import type { ContainsAllRuleArguments } from '~/rules/containsAll';
@@ -21,6 +21,7 @@ import type { NotContainsAnyRuleArguments } from '~/rules/notContainsAny';
 import type { NotEqualsRuleArguments } from '~/rules/notEquals';
 import type { NotOneOfRuleArguments } from '~/rules/notOneOf';
 import type { OneOfRuleArguments } from '~/rules/oneOf';
+import type { ProtocolRuleArguments } from '~/rules/protocol';
 import type { SameRuleArguments } from '~/rules/same';
 import type { SizeRuleArguments } from '~/rules/size';
 import type { StartsWitchRuleArguments } from '~/rules/startsWith';
@@ -40,7 +41,7 @@ const zhTW: Messages = {
   alphaDashDot: () => '此欄位只能包含字母、數字、連接號、底線和點',
   alphaNum: () => '此欄位只能包含字母和數字',
   array: () => '此欄位必須是一個陣列',
-  ascii: () => '此欄位只能包含ASCII字元和符號',
+  ascii: () => '此欄位只能包含 ASCII 字元和符號',
   between: (_, args) => {
     const { min, max } = args as BetweenRuleArguments;
     return {
@@ -55,11 +56,11 @@ const zhTW: Messages = {
   boolean: () => '此欄位必須是一個布林值',
   containsAll: (_, args) => {
     const { values } = args as ContainsAllRuleArguments;
-    return `此欄位必須包含以下所有項目：${values.join(', ')}`;
+    return `此欄位必須包含以下所有項目：${values.map(quote).join(', ')}`;
   },
   containsAny: (_, args) => {
     const { values } = args as ContainsAnyRuleArguments;
-    return `此欄位必須包含以下其中一個項目：${values.join(', ')}`;
+    return `此欄位必須包含以下其中一個項目：${values.map(quote).join(', ')}`;
   },
   declined: () => '此欄位必須被拒絕',
   different: (_, args) => {
@@ -81,8 +82,8 @@ const zhTW: Messages = {
   fileBetweenSize: (_, args) => {
     const { min, max } = args as FileBetweenSizeRuleArguments;
     return {
-      file: `此欄位必須介於${formatNumber(min)}到${formatNumber(max)} KB之間`,
-      array: `此欄位中的每個項目都必須介於${formatNumber(min)}到${formatNumber(max)} KB之間`,
+      file: `此欄位必須介於${formatNumber(min)}到${formatNumber(max)} KB 之間`,
+      array: `此欄位中的每個項目都必須介於${formatNumber(min)}到${formatNumber(max)} KB 之間`,
     };
   },
   fileMaxSize: (_, args) => {
@@ -106,9 +107,13 @@ const zhTW: Messages = {
       array: `此欄位中的每個項目都必須是${formatNumber(size)} KB`,
     };
   },
-  http: () => `此欄位必須以 http:// 或 https:// 開頭`,
-  https: () => `此欄位必須以 https:// 開頭`,
+  http: () => `此欄位必須以 "http://" 協議開頭`,
+  httpOrHttps: () => `此欄位必須以 "http://" 或 "https://" 協議開頭`,
+  https: () => `此欄位必須以 "https://" 協議開頭`,
   integer: () => '此欄位必須是整數',
+  ip: () => '此欄位必須是有效的 IP 位址',
+  ipv4: () => '此欄位必須是有效的 IPv4 位址',
+  ipv6: () => '此欄位必須是有效的 IPv6 位址',
   json: () => '此欄位必須是有效的 JSON 字串',
   length: (_, args) => {
     const { length } = args as LengthRuleArguments;
@@ -139,11 +144,11 @@ const zhTW: Messages = {
   },
   notContainsAll: (_, args) => {
     const { values } = args as NotContainsAllRuleArguments;
-    return `此欄位不能同時包含以下所有值：${values.join(', ')}`;
+    return `此欄位不能同時包含以下所有值：${values.map(quote).join(', ')}`;
   },
   notContainsAny: (_, args) => {
     const { values } = args as NotContainsAnyRuleArguments;
-    return `此欄位不能包含以下任何值：${values.join(', ')}`;
+    return `此欄位不能包含以下任何值：${values.map(quote).join(', ')}`;
   },
   notEquals: (_, args) => {
     const { value } = args as NotEqualsRuleArguments;
@@ -151,13 +156,21 @@ const zhTW: Messages = {
   },
   notOneOf: (_, args) => {
     const { values } = args as NotOneOfRuleArguments;
-    return `此欄位不能是以下任何值：${values.join(', ')}`;
+    return `此欄位不能是以下任何值：${values.map(quote).join(', ')}`;
   },
   number: () => '此欄位必須是數字',
   numeric: () => '此欄位必須是數字',
   oneOf: (_, args) => {
     const { values } = args as OneOfRuleArguments;
-    return `此欄位必須是以下任何值：${values.join(', ')}`;
+    return `此欄位必須是以下其中一個值：${values.map(quote).join(', ')}`;
+  },
+  protocol: (_, args) => {
+    const { values } = args as ProtocolRuleArguments;
+    if (values.length === 1) {
+      const [value] = values;
+      return `此欄位必須以 "${value}://" 協議開頭`;
+    }
+    return `此欄位必須以以下其中一個協議開頭：${values.map(v => `${v}://`).map(quote).join(', ')}`;
   },
   regex: () => '此欄位必須符合所需的格式',
   required: () => '此欄位為必填',
@@ -186,11 +199,11 @@ const zhTW: Messages = {
   },
   stringContainsAll: (_, args) => {
     const { values } = args as StringContainsAllRuleArguments;
-    return `此欄位必須包含以下所有文字：${values.join(', ')}`;
+    return `此欄位必須包含以下所有文字：${values.map(quote).join(', ')}`;
   },
   stringContainsAny: (_, args) => {
     const { values } = args as StringContainsAnyRuleArguments;
-    return `此欄位必須包含以下其中一個文字：${values.join(', ')}`;
+    return `此欄位必須包含以下其中一個文字：${values.map(quote).join(', ')}`;
   },
   stringLength: (_, args) => {
     const { length } = args as StringLengthRuleArguments;
@@ -215,15 +228,15 @@ const zhTW: Messages = {
   },
   stringNotContainsAll: (_, args) => {
     const { values } = args as StringNotContainsAllRuleArguments;
-    return `此欄位不能同時包含以下所有文字：${values.join(', ')}`;
+    return `此欄位不能同時包含以下所有文字：${values.map(quote).join(', ')}`;
   },
   stringNotContainsAny: (_, args) => {
     const { values } = args as StringNotContainsAnyRuleArguments;
-    return `此欄位不能包含以下任何文字：${values.join(', ')}`;
+    return `此欄位不能包含以下任何文字：${values.map(quote).join(', ')}`;
   },
   unique: () => '此欄位已經存在',
   uppercase: () => '此欄位必須是大寫',
-  url: () => '此欄位必須是有效的網址',
+  url: () => '此欄位必須是有效的 URL',
 };
 
 export default zhTW;

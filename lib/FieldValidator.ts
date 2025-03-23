@@ -13,11 +13,13 @@ class FieldValidator {
 
   private rules: Rules;
 
-  private ruleFunctions: RuleFunction[] = [];
+  private ruleFunctions: Record<string, RuleFunction> = {};
 
   private conditions: Conditions = {};
 
   private shouldSkip: boolean = false;
+
+  private appliedProtocols: Record<string, boolean> = {};
 
   constructor({
     name,
@@ -91,12 +93,12 @@ class FieldValidator {
   private pushRuleFunction(ruleName: string, args: RuleArguments): this {
     if (ruleName in this.conditions && !this.conditions[ruleName]) return this;
     const ruleFunction = this.buildRuleFunction(ruleName, args);
-    this.ruleFunctions.push(ruleFunction);
+    this.ruleFunctions[ruleName] = ruleFunction;
     return this;
   }
 
   public getRuleFunctions(): RuleFunction[] {
-    return this.ruleFunctions;
+    return Object.values(this.ruleFunctions);
   }
 
   /**
@@ -111,7 +113,8 @@ class FieldValidator {
    */
   public validate(value: unknown): boolean | string {
     if (this.shouldSkip) return true;
-    for (const ruleFunction of this.ruleFunctions) {
+    const ruleFunctions = this.getRuleFunctions();
+    for (const ruleFunction of ruleFunctions) {
       const result = ruleFunction(value);
       if (typeof result === 'string') return result;
     }
@@ -315,16 +318,27 @@ class FieldValidator {
   }
 
   /**
-   * Passes if the field's value starts with "http://" or "https://".
+   * Passes if the field's value starts with the "http://" protocol.
    */
   public http(): this {
+    this.appliedProtocols[this.http.name] = true;
     return this.apply(this.http.name);
   }
 
   /**
-   * Passes if the field's value starts with "https://".
+   * Passes if the field's value starts with the "http://" or "https://" protocols.
+   */
+  public httpOrHttps(): this {
+    this.appliedProtocols[this.http.name] = true;
+    this.appliedProtocols[this.https.name] = true;
+    return this.apply(this.httpOrHttps.name);
+  }
+
+  /**
+   * Passes if the field's value starts with the "https://" protocol.
    */
   public https(): this {
+    this.appliedProtocols[this.https.name] = true;
     return this.apply(this.https.name);
   }
 
@@ -333,6 +347,30 @@ class FieldValidator {
    */
   public integer(): this {
     return this.apply(this.integer.name);
+  }
+
+  /**
+   * Passes if the field's value is a valid IP address.
+   */
+  public ip(): this {
+    const includeProtocol = Object.keys(this.appliedProtocols).length > 0;
+    return this.apply(this.ip.name, { includeProtocol });
+  }
+
+  /**
+   * Passes if the field's value is a valid IPv4 address.
+   */
+  public ipv4(): this {
+    const includeProtocol = Object.keys(this.appliedProtocols).length > 0;
+    return this.apply(this.ipv4.name, { includeProtocol });
+  }
+
+  /**
+   * Passes if the field's value is a valid IPv6 address.
+   */
+  public ipv6(): this {
+    const includeProtocol = Object.keys(this.appliedProtocols).length > 0;
+    return this.apply(this.ipv6.name, { includeProtocol });
   }
 
   /**
@@ -424,6 +462,15 @@ class FieldValidator {
    */
   public notOneOf(values: string[]): this {
     return this.apply(this.notOneOf.name, { values });
+  }
+
+  /**
+   * Passes if the field's value starts with the specified protocol.
+   */
+  public protocol(protocol: string | string[]): this {
+    const values = Array.isArray(protocol) ? protocol : [protocol];
+    values.forEach(value => (this.appliedProtocols[value] = true));
+    return this.apply(this.protocol.name, { values });
   }
 
   /**

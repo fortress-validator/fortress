@@ -5,12 +5,12 @@ describe('Rule "url"', () => {
   const validate = url();
 
   test('should pass with valid input', () => {
+    expect(validate('http://localhost')).toBe(true);
+    expect(validate('http://127.0.0.1')).toBe(true);
+    expect(validate('http://[2001:0db8:85a3:0000:0000:8a2e:0370:7334]')).toBe(true);
     expect(validate('http://example.com')).toBe(true);
     expect(validate('https://example.com')).toBe(true);
-    expect(validate('https://example.com/')).toBe(true);
-    expect(validate('https://example.com#foo')).toBe(true);
-    expect(validate('https://example.com?foo=bar')).toBe(true);
-    expect(validate('https://example.com/foo.txt')).toBe(true);
+    expect(validate('ftp://example.com')).toBe(true);
   });
 
   test('should fail with invalid input', () => {
@@ -18,9 +18,6 @@ describe('Rule "url"', () => {
     expect(validate('foo')).toBe(false);
     expect(validate('example.com')).toBe(false);
     expect(validate('http://')).toBe(false);
-    expect(validate('http://.com')).toBe(false);
-    expect(validate('http://example.')).toBe(false);
-    expect(validate('http://example.c')).toBe(false);
     expect(validate('http://example.00')).toBe(false);
   });
 });

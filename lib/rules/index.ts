@@ -24,8 +24,12 @@ import fileMaxSize from './fileMaxSize';
 import fileMinSize from './fileMinSize';
 import fileSize from './fileSize';
 import http from './http';
+import httpOrHttps from './httpOrHttps';
 import https from './https';
 import integer from './integer';
+import ip from './ip';
+import ipv4 from './ipv4';
+import ipv6 from './ipv6';
 import json from './json';
 import length from './length';
 import lowercase from './lowercase';
@@ -40,6 +44,7 @@ import notOneOf from './notOneOf';
 import number from './number';
 import numeric from './numeric';
 import oneOf from './oneOf';
+import protocol from './protocol';
 import regex from './regex';
 import required from './required';
 import same from './same';
@@ -82,8 +87,12 @@ const rules: Rules = {
   fileMinSize: fileMinSize as Rule<unknown>,
   fileSize: fileSize as Rule<unknown>,
   http: http as Rule<unknown>,
+  httpOrHttps: httpOrHttps as Rule<unknown>,
   https: https as Rule<unknown>,
   integer: integer as Rule<unknown>,
+  ip: ip as Rule<unknown>,
+  ipv4: ipv4 as Rule<unknown>,
+  ipv6: ipv6 as Rule<unknown>,
   json: json as Rule<unknown>,
   length: length as Rule<unknown>,
   lowercase: lowercase as Rule<unknown>,
@@ -98,6 +107,7 @@ const rules: Rules = {
   number: number as Rule<unknown>,
   numeric: numeric as Rule<unknown>,
   oneOf: oneOf as Rule<unknown>,
+  protocol: protocol as Rule<unknown>,
   regex: regex as Rule<unknown>,
   required: required as Rule<unknown>,
   same: same as Rule<unknown>,
