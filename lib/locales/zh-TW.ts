@@ -31,7 +31,7 @@ import type { OneOfRuleArguments } from '~/rules/oneOf';
 import type { ProtocolRuleArguments } from '~/rules/protocol';
 import type { SameRuleArguments } from '~/rules/same';
 import type { SizeRuleArguments } from '~/rules/size';
-import type { StartsWitchRuleArguments } from '~/rules/startsWith';
+import type { StartsWithRuleArguments } from '~/rules/startsWith';
 import type { StringContainsAllRuleArguments } from '~/rules/stringContainsAll';
 import type { StringContainsAnyRuleArguments } from '~/rules/stringContainsAny';
 import type { StringLengthRuleArguments } from '~/rules/stringLength';
@@ -237,7 +237,7 @@ const zhTW: Messages = {
     };
   },
   startsWith: (_, args) => {
-    const { value } = args as StartsWitchRuleArguments;
+    const { value } = args as StartsWithRuleArguments;
     return `此欄位必須以${value}開頭`;
   },
   string: () => '此欄位必須是字串',
