@@ -72,10 +72,15 @@ const result = validator
 | `alphaDashDot` | Passes if the field's value contains only letters, numbers, dashes, underscores and dots. |
 | `alphaNum` | Passes if the field's value contains only letters and numbers. |
 | `array` | Passes if the field's value is an array. |
+| `arrayLength` | Passes if the field's length matches the specified length. |
+| `arrayLengthBetween` | Passes if the field's length is between the specified minimum and maximum lengths. |
+| `arrayLengthGt` | Passes if the field's length is greater than the specified length. |
+| `arrayLengthGte` | Passes if the field's length is greater than or equal to the specified length. |
+| `arrayLengthLt` | Passes if the field's length is less than the specified length. |
+| `arrayLengthLte` | Passes if the field's length is less than or equal to the specified length. |
 | `ascii` | Passes if the field's value contains only ASCII characters and symbols. |
 | `before` | Passes if the field's value is a date that occurs before the specified date. |
 | `between` | Passes if the field's value is between the specified minimum and maximum values. |
-| `betweenLength` | Passes if the field's value is between the specified minimum and maximum lengths. |
 | `boolean` | Passes if the field's value is a boolean. |
 | `containsAll` | Passes if the field's value contains all of the specified values. |
 | `containsAny` | Passes if the field's value contains at least one of the specified values. |
@@ -88,13 +93,17 @@ const result = validator
 | `endsWith` | Passes if the field's value ends with the specified value. |
 | `equals` | Passes if the field's value is equal to the specified value. |
 | `file` | Passes if the field's value is a file. |
-| `fileBetweenSize` | Passes if the field's value is between the specified minimum and maximum file sizes. |
-| `fileMaxSize` | Passes if the field's value is not greater than the specified maximum file size. |
-| `fileMinSize` | Passes if the field's value is at least the specified minimum file size. |
-| `fileSize` | Passes if the field's value matches the specified file size. |
-| `http` | Passes if the field's value starts with "http://". |
-| `httpOrHttps` | Passes if the field's value starts with "http://" or "https://". |
-| `https` | Passes if the field's value starts with "https://". |
+| `fileSize` | Passes if the field's file size matches the specified file size. |
+| `fileSizeBetween` | Passes if the field's file size is between the specified minimum and maximum file sizes. |
+| `fileSizeGt` | Passes if the field's file size is greater than the specified file size. |
+| `fileSizeGte` | Passes if the field's file size is greater than or equal to the specified file size. |
+| `fileSizeLt` | Passes if the field's file size is less than the specified file size. |
+| `fileSizeLte` | Passes if the field's file size is less than or equal to the specified file size. |
+| `gt` | Passes if the field's value is greater than the specified value. |
+| `gte` | Passes if the field's value is greater than or equal to the specified value. |
+| `http` | Passes if the field's value starts with the "http://" protocol. |
+| `httpOrHttps` | Passes if the field's value starts with the "http://" or "https://" protocols. |
+| `https` | Passes if the field's value starts with the "https://" protocol. |
 | `integer` | Passes if the field's value is an integer. |
 | `ip` | Passes if the field's value is a valid IP address. |
 | `ipv4` | Passes if the field's value is a valid IPv4 address. |
@@ -102,18 +111,17 @@ const result = validator
 | `iso8601` | Passes if the field's value is a valid ISO 8601 date. |
 | `json` | Passes if the field's value is a valid JSON string. |
 | `jsonSchema` | Passes if the field's value matches the specified JSON schema. |
-| `length` | Passes if the field's value matches the specified length. |
 | `lowercase` | Passes if the field's value contains only lowercase characters. |
-| `max` | Passes if the field's value is not greater than the specified maximum. |
-| `maxLength` | Passes if the field's value is not greater than the specified maximum length. |
-| `min` | Passes if the field's value is at least the specified minimum. |
-| `minLength` | Passes if the field's value is at least the specified minimum length. |
+| `lt` | Passes if the field's value is less than the specified value. |
+| `lte` | Passes if the field's value is less than or equal to the specified value. |
 | `notContainsAll` | Passes if the field's value does not contain all of the specified values together. |
 | `notContainsAny` | Passes if the field's value does not contain any of the specified values. |
 | `notEquals` | Passes if the field's value is not equal to the specified value. |
 | `notOneOf` | Passes if the field's value is not one of the specified values. |
+| `notSubsetOf` | Passes if the field's value is not a subset of the specified values. |
 | `number` | Passes if the field's value is a number. |
 | `numeric` | Passes if the field's value contains only numeric characters. |
+| `object` | Passes if the field's value is an object. |
 | `oneOf` | Passes if the field's value is one of the specified values. |
 | `protocol` | Passes if the field's value starts with the specified protocol. |
 | `regex` | Passes if the field's value matches the specified regular expression. |
@@ -123,14 +131,17 @@ const result = validator
 | `size` | Passes if the field's value matches the specified size. |
 | `startsWith` | Passes if the field's value starts with the specified value. |
 | `string` | Passes if the field's value is a string. |
-| `stringBetweenLength` | Passes if the field's value is between the specified minimum and maximum string lengths. |
 | `stringContainsAll` | Passes if the field's value contains all of the specified text. |
 | `stringContainsAny` | Passes if the field's value contains at least one of the specified text. |
-| `stringLength` | Passes if the field's value matches the specified string length. |
-| `stringMaxLength` | Passes if the field's value is not greater than the specified maximum string length. |
-| `stringMinLength` | Passes if the field's value is at least the specified minimum string length. |
+| `stringLength` | Passes if the field's string length matches the specified string length. |
+| `stringLengthBetween` | Passes if the field's string length is between the specified minimum and maximum string lengths. |
+| `stringLengthGt` | Passes if the field's string length is greater than the specified string length. |
+| `stringLengthGte` | Passes if the field's string length is greater than or equal to the specified string length. |
+| `stringLengthLt` | Passes if the field's string length is less than the specified string length. |
+| `stringLengthLte` | Passes if the field's string length is less than or equal to the specified string length. |
 | `stringNotContainsAll` | Passes if the field's value does not contain all of the specified text together. |
 | `stringNotContainsAny` | Passes if the field's value does not contain any of the specified text. |
+| `subsetOf` | Passes if the field's value is a subset of the specified values. |
 | `unique` | Passes if the field's value contains only unique items, with optional ignored values. |
 | `uppercase` | Passes if the field's value contains only uppercase characters. |
 | `url` | Passes if the field's value is a valid URL. |

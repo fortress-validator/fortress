@@ -5,9 +5,14 @@ import alphaDash from './alphaDash';
 import alphaDashDot from './alphaDashDot';
 import alphaNum from './alphaNum';
 import array from './array';
+import arrayLength from './arrayLength';
+import arrayLengthBetween from './arrayLengthBetween';
+import arrayLengthGt from './arrayLengthGt';
+import arrayLengthGte from './arrayLengthGte';
+import arrayLengthLt from './arrayLengthLt';
+import arrayLengthLte from './arrayLengthLte';
 import ascii from './ascii';
 import between from './between';
-import betweenLength from './betweenLength';
 import boolean from './boolean';
 import containsAll from './containsAll';
 import containsAny from './containsAny';
@@ -19,10 +24,14 @@ import email from './email';
 import endsWith from './endsWith';
 import equals from './equals';
 import file from './file';
-import fileBetweenSize from './fileBetweenSize';
-import fileMaxSize from './fileMaxSize';
-import fileMinSize from './fileMinSize';
 import fileSize from './fileSize';
+import fileSizeBetween from './fileSizeBetween';
+import fileSizeGt from './fileSizeGt';
+import fileSizeGte from './fileSizeGte';
+import fileSizeLt from './fileSizeLt';
+import fileSizeLte from './fileSizeLte';
+import gt from './gt';
+import gte from './gte';
 import http from './http';
 import httpOrHttps from './httpOrHttps';
 import https from './https';
@@ -31,18 +40,17 @@ import ip from './ip';
 import ipv4 from './ipv4';
 import ipv6 from './ipv6';
 import json from './json';
-import length from './length';
 import lowercase from './lowercase';
-import max from './max';
-import maxLength from './maxLength';
-import min from './min';
-import minLength from './minLength';
+import lt from './lt';
+import lte from './lte';
 import notContainsAll from './notContainsAll';
 import notContainsAny from './notContainsAny';
 import notEquals from './notEquals';
 import notOneOf from './notOneOf';
+import notSubsetOf from './notSubsetOf';
 import number from './number';
 import numeric from './numeric';
+import object from './object';
 import oneOf from './oneOf';
 import protocol from './protocol';
 import regex from './regex';
@@ -51,12 +59,17 @@ import same from './same';
 import size from './size';
 import startsWith from './startsWith';
 import string from './string';
-import stringBetweenLength from './stringBetweenLength';
+import stringContainsAll from './stringContainsAll';
+import stringContainsAny from './stringContainsAny';
 import stringLength from './stringLength';
-import stringMaxLength from './stringMaxLength';
-import stringMinLength from './stringMinLength';
+import stringLengthBetween from './stringLengthBetween';
+import stringLengthGt from './stringLengthGt';
+import stringLengthGte from './stringLengthGte';
+import stringLengthLt from './stringLengthLt';
+import stringLengthLte from './stringLengthLte';
 import stringNotContainsAll from './stringNotContainsAll';
 import stringNotContainsAny from './stringNotContainsAny';
+import subsetOf from './subsetOf';
 import unique from './unique';
 import uppercase from './uppercase';
 import url from './url';
@@ -68,9 +81,14 @@ const rules: Rules = {
   alphaDashDot: alphaDashDot as Rule<unknown>,
   alphaNum: alphaNum as Rule<unknown>,
   array: array as Rule<unknown>,
+  arrayLength: arrayLength as Rule<unknown>,
+  arrayLengthBetween: arrayLengthBetween as Rule<unknown>,
+  arrayLengthGt: arrayLengthGt as Rule<unknown>,
+  arrayLengthGte: arrayLengthGte as Rule<unknown>,
+  arrayLengthLt: arrayLengthLt as Rule<unknown>,
+  arrayLengthLte: arrayLengthLte as Rule<unknown>,
   ascii: ascii as Rule<unknown>,
   between: between as Rule<unknown>,
-  betweenLength: betweenLength as Rule<unknown>,
   boolean: boolean as Rule<unknown>,
   containsAll: containsAll as Rule<unknown>,
   containsAny: containsAny as Rule<unknown>,
@@ -82,10 +100,14 @@ const rules: Rules = {
   endsWith: endsWith as Rule<unknown>,
   equals: equals as Rule<unknown>,
   file: file as Rule<unknown>,
-  fileBetweenSize: fileBetweenSize as Rule<unknown>,
-  fileMaxSize: fileMaxSize as Rule<unknown>,
-  fileMinSize: fileMinSize as Rule<unknown>,
   fileSize: fileSize as Rule<unknown>,
+  fileSizeBetween: fileSizeBetween as Rule<unknown>,
+  fileSizeGt: fileSizeGt as Rule<unknown>,
+  fileSizeGte: fileSizeGte as Rule<unknown>,
+  fileSizeLt: fileSizeLt as Rule<unknown>,
+  fileSizeLte: fileSizeLte as Rule<unknown>,
+  gt: gt as Rule<unknown>,
+  gte: gte as Rule<unknown>,
   http: http as Rule<unknown>,
   httpOrHttps: httpOrHttps as Rule<unknown>,
   https: https as Rule<unknown>,
@@ -94,18 +116,17 @@ const rules: Rules = {
   ipv4: ipv4 as Rule<unknown>,
   ipv6: ipv6 as Rule<unknown>,
   json: json as Rule<unknown>,
-  length: length as Rule<unknown>,
   lowercase: lowercase as Rule<unknown>,
-  max: max as Rule<unknown>,
-  maxLength: maxLength as Rule<unknown>,
-  min: min as Rule<unknown>,
-  minLength: minLength as Rule<unknown>,
+  lt: lt as Rule<unknown>,
+  lte: lte as Rule<unknown>,
   notContainsAll: notContainsAll as Rule<unknown>,
   notContainsAny: notContainsAny as Rule<unknown>,
   notEquals: notEquals as Rule<unknown>,
   notOneOf: notOneOf as Rule<unknown>,
+  notSubsetOf: notSubsetOf as Rule<unknown>,
   number: number as Rule<unknown>,
   numeric: numeric as Rule<unknown>,
+  object: object as Rule<unknown>,
   oneOf: oneOf as Rule<unknown>,
   protocol: protocol as Rule<unknown>,
   regex: regex as Rule<unknown>,
@@ -114,14 +135,17 @@ const rules: Rules = {
   size: size as Rule<unknown>,
   startsWith: startsWith as Rule<unknown>,
   string: string as Rule<unknown>,
-  stringBetweenLength: stringBetweenLength as Rule<unknown>,
-  stringContainsAll: containsAll as Rule<unknown>,
-  stringContainsAny: containsAny as Rule<unknown>,
+  stringContainsAll: stringContainsAll as Rule<unknown>,
+  stringContainsAny: stringContainsAny as Rule<unknown>,
   stringLength: stringLength as Rule<unknown>,
-  stringMaxLength: stringMaxLength as Rule<unknown>,
-  stringMinLength: stringMinLength as Rule<unknown>,
+  stringLengthBetween: stringLengthBetween as Rule<unknown>,
+  stringLengthGt: stringLengthGt as Rule<unknown>,
+  stringLengthGte: stringLengthGte as Rule<unknown>,
+  stringLengthLt: stringLengthLt as Rule<unknown>,
+  stringLengthLte: stringLengthLte as Rule<unknown>,
   stringNotContainsAll: stringNotContainsAll as Rule<unknown>,
   stringNotContainsAny: stringNotContainsAny as Rule<unknown>,
+  subsetOf: subsetOf as Rule<unknown>,
   unique: unique as Rule<unknown>,
   uppercase: uppercase as Rule<unknown>,
   url: url as Rule<unknown>,

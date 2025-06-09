@@ -178,6 +178,48 @@ class FieldValidator {
   }
 
   /**
+   * Passes if the field's length matches the specified length.
+   */
+  public arrayLength(length: number): this {
+    return this.apply(this.arrayLength.name, { length });
+  }
+
+  /**
+   * Passes if the field's length is between the specified minimum and maximum lengths.
+   */
+  public arrayLengthBetween(min: number, max: number): this {
+    return this.apply(this.arrayLengthBetween.name, { min, max });
+  }
+
+  /**
+   * Passes if the field's length is greater than the specified length.
+   */
+  public arrayLengthGt(length: number): this {
+    return this.apply(this.arrayLengthGt.name, { length });
+  }
+
+  /**
+   * Passes if the field's length is greater than or equal to the specified length.
+   */
+  public arrayLengthGte(length: number): this {
+    return this.apply(this.arrayLengthGte.name, { length });
+  }
+
+  /**
+   * Passes if the field's length is less than the specified length.
+   */
+  public arrayLengthLt(length: number): this {
+    return this.apply(this.arrayLengthLt.name, { length });
+  }
+
+  /**
+   * Passes if the field's length is less than or equal to the specified length.
+   */
+  public arrayLengthLte(length: number): this {
+    return this.apply(this.arrayLengthLte.name, { length });
+  }
+
+  /**
    * Passes if the field's value contains only ASCII characters and symbols.
    */
   public ascii(): this {
@@ -196,13 +238,6 @@ class FieldValidator {
    */
   public between(min: number, max: number): this {
     return this.apply(this.between.name, { min, max });
-  }
-
-  /**
-   * Passes if the field's value is between the specified minimum and maximum lengths.
-   */
-  public betweenLength(min: number, max: number): this {
-    return this.apply(this.betweenLength.name, { min, max });
   }
 
   /**
@@ -290,31 +325,59 @@ class FieldValidator {
   }
 
   /**
-   * Passes if the field's value is between the specified minimum and maximum file sizes.
-   */
-  public fileBetweenSize(min: number, max: number): this {
-    return this.apply(this.fileBetweenSize.name, { min, max });
-  }
-
-  /**
-   * Passes if the field's value is not greater than the specified maximum file size.
-   */
-  public fileMaxSize(size: number): this {
-    return this.apply(this.fileMaxSize.name, { size });
-  }
-
-  /**
-   * Passes if the field's value is at least the specified minimum file size.
-   */
-  public fileMinSize(size: number): this {
-    return this.apply(this.fileMinSize.name, { size });
-  }
-
-  /**
-   * Passes if the field's value matches the specified file size.
+   * Passes if the field's file size matches the specified file size.
    */
   public fileSize(size: number): this {
     return this.apply(this.fileSize.name, { size });
+  }
+
+  /**
+   * Passes if the field's file size is between the specified minimum and maximum file sizes.
+   */
+  public fileSizeBetween(min: number, max: number): this {
+    return this.apply(this.fileSizeBetween.name, { min, max });
+  }
+
+  /**
+   * Passes if the field's file size is greater than the specified file size.
+   */
+  public fileSizeGt(size: number): this {
+    return this.apply(this.fileSizeGt.name, { size });
+  }
+
+  /**
+   * Passes if the field's file size is greater than or equal to the specified file size.
+   */
+  public fileSizeGte(size: number): this {
+    return this.apply(this.fileSizeGte.name, { size });
+  }
+
+  /**
+   * Passes if the field's file size is less than the specified file size.
+   */
+  public fileSizeLt(size: number): this {
+    return this.apply(this.fileSizeLt.name, { size });
+  }
+
+  /**
+   * Passes if the field's file size is less than or equal to the specified file size.
+   */
+  public fileSizeLte(size: number): this {
+    return this.apply(this.fileSizeLte.name, { size });
+  }
+
+  /**
+   * Passes if the field's value is greater than the specified value.
+   */
+  public gt(value: number): this {
+    return this.apply(this.gt.name, { value });
+  }
+
+  /**
+   * Passes if the field's value is greater than or equal to the specified value.
+   */
+  public gte(value: number): this {
+    return this.apply(this.gte.name, { value });
   }
 
   /**
@@ -395,13 +458,6 @@ class FieldValidator {
   }
 
   /**
-   * Passes if the field's value matches the specified length.
-   */
-  public length(length: number): this {
-    return this.apply(this.length.name, { length });
-  }
-
-  /**
    * Passes if the field's value contains only lowercase characters.
    */
   public lowercase(): this {
@@ -409,31 +465,17 @@ class FieldValidator {
   }
 
   /**
-   * Passes if the field's value is not greater than the specified maximum.
+   * Passes if the field's value is less than the specified value.
    */
-  public max(max: number): this {
-    return this.apply(this.max.name, { max });
+  public lt(value: number): this {
+    return this.apply(this.lt.name, { value });
   }
 
   /**
-   * Passes if the field's value is not greater than the specified maximum length.
+   * Passes if the field's value is less than or equal to the specified value.
    */
-  public maxLength(length: number): this {
-    return this.apply(this.maxLength.name, { length });
-  }
-
-  /**
-   * Passes if the field's value is at least the specified minimum.
-   */
-  public min(min: number): this {
-    return this.apply(this.min.name, { min });
-  }
-
-  /**
-   * Passes if the field's value is at least the specified minimum length.
-   */
-  public minLength(length: number): this {
-    return this.apply(this.minLength.name, { length });
+  public lte(value: number): this {
+    return this.apply(this.lte.name, { value });
   }
 
   /**
@@ -465,12 +507,10 @@ class FieldValidator {
   }
 
   /**
-   * Passes if the field's value starts with the specified protocol.
+   * Passes if the field's value is not a subset of the specified values.
    */
-  public protocol(protocol: string | string[]): this {
-    const values = Array.isArray(protocol) ? protocol : [protocol];
-    values.forEach(value => (this.appliedProtocols[value] = true));
-    return this.apply(this.protocol.name, { values });
+  public notSubsetOf(values: string[]): this {
+    return this.apply(this.notSubsetOf.name, { values });
   }
 
   /**
@@ -488,10 +528,26 @@ class FieldValidator {
   }
 
   /**
+   * Passes if the field's value is an object.
+   */
+  public object(): this {
+    return this.apply(this.object.name);
+  }
+
+  /**
    * Passes if the field's value is one of the specified values.
    */
   public oneOf(values: unknown[]): this {
     return this.apply(this.oneOf.name, { values });
+  }
+
+  /**
+   * Passes if the field's value starts with the specified protocol.
+   */
+  public protocol(protocol: string | string[]): this {
+    const values = Array.isArray(protocol) ? protocol : [protocol];
+    values.forEach(value => (this.appliedProtocols[value] = true));
+    return this.apply(this.protocol.name, { values });
   }
 
   /**
@@ -546,13 +602,6 @@ class FieldValidator {
   }
 
   /**
-   * Passes if the field's value is between the specified minimum and maximum string lengths.
-   */
-  public stringBetweenLength(min: number, max: number): this {
-    return this.apply(this.stringBetweenLength.name, { min, max });
-  }
-
-  /**
    * Passes if the field's value contains all of the specified text.
    */
   public stringContainsAll(values: string[]): this {
@@ -567,24 +616,45 @@ class FieldValidator {
   }
 
   /**
-   * Passes if the field's value matches the specified string length.
+   * Passes if the field's string length matches the specified string length.
    */
   public stringLength(length: number): this {
     return this.apply(this.stringLength.name, { length });
   }
 
   /**
-   * Passes if the field's value is not greater than the specified maximum string length.
+   * Passes if the field's string length is between the specified minimum and maximum string lengths.
    */
-  public stringMaxLength(length: number): this {
-    return this.apply(this.stringMaxLength.name, { length });
+  public stringLengthBetween(min: number, max: number): this {
+    return this.apply(this.stringLengthBetween.name, { min, max });
   }
 
   /**
-   * Passes if the field's value is at least the specified minimum string length.
+   * Passes if the field's string length is greater than the specified string length.
    */
-  public stringMinLength(length: number): this {
-    return this.apply(this.stringMinLength.name, { length });
+  public stringLengthGt(length: number): this {
+    return this.apply(this.stringLengthGt.name, { length });
+  }
+
+  /**
+   * Passes if the field's string length is greater than or equal to the specified string length.
+   */
+  public stringLengthGte(length: number): this {
+    return this.apply(this.stringLengthGte.name, { length });
+  }
+
+  /**
+   * Passes if the field's string length is less than the specified string length.
+   */
+  public stringLengthLt(length: number): this {
+    return this.apply(this.stringLengthLt.name, { length });
+  }
+
+  /**
+   * Passes if the field's string length is less than or equal to the specified string length.
+   */
+  public stringLengthLte(length: number): this {
+    return this.apply(this.stringLengthLte.name, { length });
   }
 
   /**
@@ -599,6 +669,13 @@ class FieldValidator {
    */
   public stringNotContainsAny(values: string[]): this {
     return this.apply(this.stringNotContainsAny.name, { values });
+  }
+
+  /**
+   * Passes if the field's value is a subset of the specified values.
+   */
+  public subsetOf(values: string[]): this {
+    return this.apply(this.subsetOf.name, { values });
   }
 
   /**

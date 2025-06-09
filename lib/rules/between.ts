@@ -1,7 +1,7 @@
 import type { Rule, RuleArguments } from '@fortress-validator/types';
 import { isEmpty } from '@fortress-validator/utils';
-import maxRule from './max';
-import minRule from './min';
+import gteRule from './gte';
+import lteRule from './lte';
 
 export interface BetweenRuleArguments extends RuleArguments {
   min: number;
@@ -10,7 +10,7 @@ export interface BetweenRuleArguments extends RuleArguments {
 
 const betweenRule: Rule<BetweenRuleArguments> = ({ min, max }) => (input: unknown) => {
   if (isEmpty(input)) return false;
-  return minRule({ min })(input) && maxRule({ max })(input);
+  return gteRule({ value: min })(input) && lteRule({ value: max })(input);
 };
 
 export default betweenRule;

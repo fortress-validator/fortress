@@ -111,6 +111,49 @@ describe('FieldValidator', () => {
       expect(validator.validate('')).toBe('The input field must be an array.');
     });
 
+    test('with "arrayLength" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .arrayLength(10);
+
+      expect(validator.validate(1)).toBe('The input field must be 10 items.');
+    });
+
+    test('with "arrayLengthBetween" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .arrayLengthBetween(10, 20);
+
+      expect(validator.validate(Array.from('_'.repeat(9)))).toBe('The input field must be between 10 and 20 items.');
+      expect(validator.validate(Array.from('_'.repeat(21)))).toBe('The input field must be between 10 and 20 items.');
+    });
+
+    test('with "arrayLengthGt" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .arrayLengthGt(10);
+
+      expect(validator.validate(Array.from('_'.repeat(10)))).toBe('The input field must be greater than 10 items.');
+    });
+
+    test('with "arrayLengthGte" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .arrayLengthGte(10);
+
+      expect(validator.validate(Array.from('_'.repeat(9)))).toBe('The input field must be greater than or equal to 10 items.');
+    });
+
+    test('with "arrayLengthLt" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .arrayLengthLt(10);
+
+      expect(validator.validate(Array.from('_'.repeat(10)))).toBe('The input field must be less than 10 items.');
+    });
+
+    test('with "arrayLengthLte" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .arrayLengthLte(10);
+
+      expect(validator.validate(Array.from('_'.repeat(11)))).toBe('The input field must be less than or equal to 10 items.');
+    });
+
     test('with "ascii" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .ascii();
@@ -124,14 +167,6 @@ describe('FieldValidator', () => {
 
       expect(validator.validate(9)).toBe('The input field must be between 10 and 20.');
       expect(validator.validate(21)).toBe('The input field must be between 10 and 20.');
-    });
-
-    test('with "betweenLength" rule', () => {
-      const validator = new FieldValidator(defaultParams)
-        .betweenLength(10, 20);
-
-      expect(validator.validate(Array.from('_'.repeat(9)))).toBe('The input field must be between 10 and 20 items.');
-      expect(validator.validate(Array.from('_'.repeat(21)))).toBe('The input field must be between 10 and 20 items.');
     });
 
     test('with "boolean" rule', () => {
@@ -213,33 +248,61 @@ describe('FieldValidator', () => {
       expect(validator.validate('foo')).toBe('The input field must be a file.');
     });
 
-    test('with "fileBetweenSize" rule', () => {
-      const validator = new FieldValidator(defaultParams)
-        .fileBetweenSize(10, 20);
-
-      expect(validator.validate(createTestFile(9))).toBe('The input field must be between 10 and 20 kilobytes.');
-      expect(validator.validate(createTestFile(21))).toBe('The input field must be between 10 and 20 kilobytes.');
-    });
-
-    test('with "fileMaxSize" rule', () => {
-      const validator = new FieldValidator(defaultParams)
-        .fileMaxSize(10);
-
-      expect(validator.validate(createTestFile(11))).toBe('The input field must not be greater than 10 kilobytes.');
-    });
-
-    test('with "fileMinSize" rule', () => {
-      const validator = new FieldValidator(defaultParams)
-        .fileMinSize(10);
-
-      expect(validator.validate(createTestFile(9))).toBe('The input field must be at least 10 kilobytes.');
-    });
-
     test('with "fileSize" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .fileSize(10);
 
       expect(validator.validate(createTestFile(1))).toBe('The input field must be 10 kilobytes.');
+    });
+
+    test('with "fileSizeBetween" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .fileSizeBetween(10, 20);
+
+      expect(validator.validate(createTestFile(9))).toBe('The input field must be between 10 and 20 kilobytes.');
+      expect(validator.validate(createTestFile(21))).toBe('The input field must be between 10 and 20 kilobytes.');
+    });
+
+    test('with "fileSizeGt" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .fileSizeGt(10);
+
+      expect(validator.validate(createTestFile(10))).toBe('The input field must be greater than 10 kilobytes.');
+    });
+
+    test('with "fileSizeGte" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .fileSizeGte(10);
+
+      expect(validator.validate(createTestFile(9))).toBe('The input field must be greater than or equal to 10 kilobytes.');
+    });
+
+    test('with "fileSizeLt" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .fileSizeLt(10);
+
+      expect(validator.validate(createTestFile(10))).toBe('The input field must be less than 10 kilobytes.');
+    });
+
+    test('with "fileSizeLte" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .fileSizeLte(10);
+
+      expect(validator.validate(createTestFile(11))).toBe('The input field must be less than or equal to 10 kilobytes.');
+    });
+
+    test('with "gt" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .gt(10);
+
+      expect(validator.validate(10)).toBe('The input field must be greater than 10.');
+    });
+
+    test('with "gte" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .gte(10);
+
+      expect(validator.validate(9)).toBe('The input field must be greater than or equal to 10.');
     });
 
     test('with "http" rule', () => {
@@ -400,13 +463,6 @@ describe('FieldValidator', () => {
       expect(validator.validate('foo')).toBe('The input field must be a valid JSON string.');
     });
 
-    test('with "length" rule', () => {
-      const validator = new FieldValidator(defaultParams)
-        .length(10);
-
-      expect(validator.validate(1)).toBe('The input field must be 10 items.');
-    });
-
     test('with "lowercase" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .lowercase();
@@ -414,32 +470,18 @@ describe('FieldValidator', () => {
       expect(validator.validate('FOO')).toBe('The input field must be lowercase.');
     });
 
-    test('with "max" rule', () => {
+    test('with "lt" rule', () => {
       const validator = new FieldValidator(defaultParams)
-        .max(10);
+        .lt(10);
 
-      expect(validator.validate(11)).toBe('The input field must not be greater than 10.');
+      expect(validator.validate(10)).toBe('The input field must be less than 10.');
     });
 
-    test('with "maxLength" rule', () => {
+    test('with "lte" rule', () => {
       const validator = new FieldValidator(defaultParams)
-        .maxLength(10);
+        .lte(10);
 
-      expect(validator.validate(Array.from('_'.repeat(11)))).toBe('The input field must not be greater than 10 items.');
-    });
-
-    test('with "min" rule', () => {
-      const validator = new FieldValidator(defaultParams)
-        .min(10);
-
-      expect(validator.validate(9)).toBe('The input field must be at least 10.');
-    });
-
-    test('with "minLength" rule', () => {
-      const validator = new FieldValidator(defaultParams)
-        .minLength(10);
-
-      expect(validator.validate(Array.from('_'.repeat(9)))).toBe('The input field must be at least 10 items.');
+      expect(validator.validate(11)).toBe('The input field must be less than or equal to 10.');
     });
 
     test('with "notContainsAll" rule', () => {
@@ -471,20 +513,11 @@ describe('FieldValidator', () => {
       expect(validator.validate('foo')).toBe('The input field must not be one of the following values: "foo", "bar".');
     });
 
-    test('with "protocol" rule', () => {
+    test('with "notSubsetOf" rule', () => {
       const validator = new FieldValidator(defaultParams)
-        .protocol(['http', 'https']);
+        .notSubsetOf(['foo', 'bar']);
 
-      expect(validator.validate('ftp://')).toBe('The input field must start with one of the following protocols: "http://", "https://".');
-    });
-
-    test('with "protocol" and "url" rules', () => {
-      const validator = new FieldValidator(defaultParams)
-        .protocol('http')
-        .url();
-
-      expect(validator.validate('http://localhost')).toBe(true);
-      expect(validator.validate('localhost')).toBe('The input field must start with the "http://" protocol.');
+      expect(validator.validate(['foo'])).toBe('The input field must not be a subset of the following values: "foo", "bar".');
     });
 
     test('with "number" rule', () => {
@@ -501,11 +534,34 @@ describe('FieldValidator', () => {
       expect(validator.validate('foo')).toBe('The input field must be a number.');
     });
 
+    test('with "object" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .object();
+
+      expect(validator.validate('foo')).toBe('The input field must be an object.');
+    });
+
     test('with "oneOf" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .oneOf(['foo', 'bar']);
 
       expect(validator.validate('baz')).toBe('The input field must be one of the following values: "foo", "bar".');
+    });
+
+    test('with "protocol" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .protocol(['http', 'https']);
+
+      expect(validator.validate('ftp://')).toBe('The input field must start with one of the following protocols: "http://", "https://".');
+    });
+
+    test('with "protocol" and "url" rules', () => {
+      const validator = new FieldValidator(defaultParams)
+        .protocol('http')
+        .url();
+
+      expect(validator.validate('http://localhost')).toBe(true);
+      expect(validator.validate('localhost')).toBe('The input field must start with the "http://" protocol.');
     });
 
     test('with "regex" rule', () => {
@@ -554,26 +610,18 @@ describe('FieldValidator', () => {
       expect(validator.validate([])).toBe('The input field must be a string.');
     });
 
-    test('with "stringBetweenLength" rule', () => {
-      const validator = new FieldValidator(defaultParams)
-        .stringBetweenLength(10, 20);
-
-      expect(validator.validate('_'.repeat(9))).toBe('The input field must be between 10 and 20 characters.');
-      expect(validator.validate('_'.repeat(21))).toBe('The input field must be between 10 and 20 characters.');
-    });
-
     test('with "stringContainsAll" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .stringContainsAll(['foo', 'bar']);
 
-      expect(validator.validate('_foo_bar_')).toBe('The input field must contain all of the following text: "foo", "bar".');
+      expect(validator.validate('_foo_')).toBe('The input field must contain all of the following text: "foo", "bar".');
     });
 
     test('with "stringContainsAny" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .stringContainsAny(['foo', 'bar']);
 
-      expect(validator.validate('_foo_baz_')).toBe('The input field must contain at least one of the following text: "foo", "bar".');
+      expect(validator.validate('_baz_')).toBe('The input field must contain at least one of the following text: "foo", "bar".');
     });
 
     test('with "stringLength" rule', () => {
@@ -583,18 +631,40 @@ describe('FieldValidator', () => {
       expect(validator.validate('_'.repeat(1))).toBe('The input field must be 10 characters.');
     });
 
-    test('with "stringMaxLength" rule', () => {
+    test('with "stringLengthBetween" rule', () => {
       const validator = new FieldValidator(defaultParams)
-        .stringMaxLength(10);
+        .stringLengthBetween(10, 20);
 
-      expect(validator.validate('_'.repeat(11))).toBe('The input field must not be greater than 10 characters.');
+      expect(validator.validate('_'.repeat(9))).toBe('The input field must be between 10 and 20 characters.');
+      expect(validator.validate('_'.repeat(21))).toBe('The input field must be between 10 and 20 characters.');
     });
 
-    test('with "stringMinLength" rule', () => {
+    test('with "stringLengthGt" rule', () => {
       const validator = new FieldValidator(defaultParams)
-        .stringMinLength(10);
+        .stringLengthGt(10);
 
-      expect(validator.validate('_'.repeat(9))).toBe('The input field must be at least 10 characters.');
+      expect(validator.validate('_'.repeat(10))).toBe('The input field must be greater than 10 characters.');
+    });
+
+    test('with "stringLengthGte" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .stringLengthGte(10);
+
+      expect(validator.validate('_'.repeat(9))).toBe('The input field must be greater than or equal to 10 characters.');
+    });
+
+    test('with "stringLengthLt" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .stringLengthLt(10);
+
+      expect(validator.validate('_'.repeat(10))).toBe('The input field must be less than 10 characters.');
+    });
+
+    test('with "stringLengthLte" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .stringLengthLte(10);
+
+      expect(validator.validate('_'.repeat(11))).toBe('The input field must be less than or equal to 10 characters.');
     });
 
     test('with "stringNotContainsAll" rule', () => {
@@ -609,6 +679,13 @@ describe('FieldValidator', () => {
         .stringNotContainsAny(['foo', 'bar']);
 
       expect(validator.validate('_foo_baz_')).toBe('The input field must not contain any of the following text: "foo", "bar".');
+    });
+
+    test('with "subsetOf" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .subsetOf(['foo', 'bar']);
+
+      expect(validator.validate(['baz'])).toBe('The input field must be a subset of the following values: "foo", "bar".');
     });
 
     test('with "unique" rule', () => {
