@@ -44,7 +44,7 @@ describe('FieldValidator', () => {
     test('the message in the specified fallback locale', () => {
       const validator = new FieldValidator({
         name: 'Input',
-        locale: 'ja',
+        locale: 'ko',
         fallbackLocale: 'zh-TW',
         locales: defaultLocales,
         rules: defaultRules,
@@ -56,8 +56,8 @@ describe('FieldValidator', () => {
     test('the default message', () => {
       const validator = new FieldValidator({
         name: 'Input',
-        locale: 'ja',
-        fallbackLocale: 'ja',
+        locale: 'ko',
+        fallbackLocale: 'ko',
         locales: defaultLocales,
         rules: defaultRules,
       });

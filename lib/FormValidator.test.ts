@@ -23,11 +23,11 @@ describe('FormValidator', () => {
 
   describe('should throw', () => {
     test('an error for a non-existent default locale', () => {
-      expect(() => new FormValidator({ locale: 'ja' })).toThrowError('The "ja" locale is not registered.');
+      expect(() => new FormValidator({ locale: 'ko' })).toThrowError('The "ko" locale is not registered.');
     });
 
     test('an error for a non-existent fallback locale', () => {
-      expect(() => new FormValidator({ fallbackLocale: 'ja' })).toThrowError('The "ja" fallback locale is not registered.');
+      expect(() => new FormValidator({ fallbackLocale: 'ko' })).toThrowError('The "ko" fallback locale is not registered.');
     });
   });
 
