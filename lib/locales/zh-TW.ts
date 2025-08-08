@@ -24,8 +24,10 @@ import type { LtRuleArguments } from '~/rules/lt';
 import type { LteRuleArguments } from '~/rules/lte';
 import type { NotContainsAllRuleArguments } from '~/rules/notContainsAll';
 import type { NotContainsAnyRuleArguments } from '~/rules/notContainsAny';
+import type { NotEndsWithRuleArguments } from '~/rules/notEndsWith';
 import type { NotEqualsRuleArguments } from '~/rules/notEquals';
 import type { NotOneOfRuleArguments } from '~/rules/notOneOf';
+import type { NotStartsWithRuleArguments } from '~/rules/notStartsWith';
 import type { NotSubsetOfRuleArguments } from '~/rules/notSubsetOf';
 import type { OneOfRuleArguments } from '~/rules/oneOf';
 import type { ProtocolRuleArguments } from '~/rules/protocol';
@@ -102,7 +104,7 @@ const zhTW: Messages = {
   email: () => '此欄位必須是有效的電子郵件地址',
   endsWith: (_, args) => {
     const { value } = args as EndsWithRuleArguments;
-    return `此欄位必須以${value}結尾`;
+    return `此欄位必須以${quote(value)}結尾`;
   },
   equals: (_, args) => {
     const { value } = args as EqualsRuleArguments;
@@ -192,6 +194,10 @@ const zhTW: Messages = {
     const { values } = args as NotContainsAllRuleArguments;
     return `此欄位不能同時包含以下所有值：${values.map(quote).join(', ')}`;
   },
+  notEndsWith: (_, args) => {
+    const { value } = args as NotEndsWithRuleArguments;
+    return `此欄位不能以${quote(value)}結尾`;
+  },
   notContainsAny: (_, args) => {
     const { values } = args as NotContainsAnyRuleArguments;
     return `此欄位不能包含以下任何值：${values.map(quote).join(', ')}`;
@@ -204,6 +210,11 @@ const zhTW: Messages = {
     const { values } = args as NotOneOfRuleArguments;
     return `此欄位不能是以下任何值：${values.map(quote).join(', ')}`;
   },
+  notStartsWith: (_, args) => {
+    const { value } = args as NotStartsWithRuleArguments;
+    return `此欄位不能以${quote(value)}開頭`;
+  },
+  notStartsWithNumber: () => '此欄位不能以數字開頭',
   notSubsetOf: (_, args) => {
     const { values } = args as NotSubsetOfRuleArguments;
     return `此欄位不能是以下項目的子集：${values.map(quote).join(', ')}`;
@@ -238,8 +249,9 @@ const zhTW: Messages = {
   },
   startsWith: (_, args) => {
     const { value } = args as StartsWithRuleArguments;
-    return `此欄位必須以${value}開頭`;
+    return `此欄位必須以${quote(value)}開頭`;
   },
+  startsWithNumber: () => '此欄位必須以數字開頭',
   string: () => '此欄位必須是字串',
   stringContainsAll: (_, args) => {
     const { values } = args as StringContainsAllRuleArguments;

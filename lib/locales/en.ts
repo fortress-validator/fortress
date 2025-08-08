@@ -24,8 +24,10 @@ import type { LtRuleArguments } from '~/rules/lt';
 import type { LteRuleArguments } from '~/rules/lte';
 import type { NotContainsAllRuleArguments } from '~/rules/notContainsAll';
 import type { NotContainsAnyRuleArguments } from '~/rules/notContainsAny';
+import type { NotEndsWithRuleArguments } from '~/rules/notEndsWith';
 import type { NotEqualsRuleArguments } from '~/rules/notEquals';
 import type { NotOneOfRuleArguments } from '~/rules/notOneOf';
+import type { NotStartsWithRuleArguments } from '~/rules/notStartsWith';
 import type { NotSubsetOfRuleArguments } from '~/rules/notSubsetOf';
 import type { OneOfRuleArguments } from '~/rules/oneOf';
 import type { ProtocolRuleArguments } from '~/rules/protocol';
@@ -102,7 +104,7 @@ const en: Messages = {
   email: field => `The ${field} field must be a valid email address.`,
   endsWith: (field, args) => {
     const { value } = args as EndsWithRuleArguments;
-    return `The ${field} field must end with ${value}.`;
+    return `The ${field} field must end with ${quote(value)}.`;
   },
   equals: (field, args) => {
     const { value } = args as EqualsRuleArguments;
@@ -192,6 +194,10 @@ const en: Messages = {
     const { values } = args as NotContainsAllRuleArguments;
     return `The ${field} field must not contain all of the following values together: ${values.map(quote).join(', ')}.`;
   },
+  notEndsWith: (field, args) => {
+    const { value } = args as NotEndsWithRuleArguments;
+    return `The ${field} field must not end with ${quote(value)}.`;
+  },
   notContainsAny: (field, args) => {
     const { values } = args as NotContainsAnyRuleArguments;
     return `The ${field} field must not contain any of the following values: ${values.map(quote).join(', ')}.`;
@@ -204,6 +210,11 @@ const en: Messages = {
     const { values } = args as NotOneOfRuleArguments;
     return `The ${field} field must not be one of the following values: ${values.map(quote).join(', ')}.`;
   },
+  notStartsWith: (field, args) => {
+    const { value } = args as NotStartsWithRuleArguments;
+    return `The ${field} field must not start with ${quote(value)}.`;
+  },
+  notStartsWithNumber: field => `The ${field} field must not start with a number.`,
   notSubsetOf: (field, args) => {
     const { values } = args as NotSubsetOfRuleArguments;
     return `The ${field} field must not be a subset of the following values: ${values.map(quote).join(', ')}.`;
@@ -238,8 +249,9 @@ const en: Messages = {
   },
   startsWith: (field, args) => {
     const { value } = args as StartsWithRuleArguments;
-    return `The ${field} field must start with ${value}.`;
+    return `The ${field} field must start with ${quote(value)}.`;
   },
+  startsWithNumber: field => `The ${field} field must start with a number.`,
   string: field => `The ${field} field must be a string.`,
   stringContainsAll: (field, args) => {
     const { values } = args as StringContainsAllRuleArguments;

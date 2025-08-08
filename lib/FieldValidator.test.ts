@@ -229,7 +229,7 @@ describe('FieldValidator', () => {
       const validator = new FieldValidator(defaultParams)
         .endsWith('foo');
 
-      expect(validator.validate('_')).toBe('The input field must end with foo.');
+      expect(validator.validate('_')).toBe('The input field must end with "foo".');
     });
 
     test('with "equals" rule', () => {
@@ -498,6 +498,13 @@ describe('FieldValidator', () => {
       expect(validator.validate(['foo', 'baz'])).toBe('The input field must not contain any of the following values: "foo", "bar".');
     });
 
+    test('with "notEndsWith" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .notEndsWith('foo');
+
+      expect(validator.validate('foo')).toBe('The input field must not end with "foo".');
+    });
+
     test('with "notEquals" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .notEquals(undefined);
@@ -511,6 +518,20 @@ describe('FieldValidator', () => {
         .notOneOf(['foo', 'bar']);
 
       expect(validator.validate('foo')).toBe('The input field must not be one of the following values: "foo", "bar".');
+    });
+
+    test('with "notStartsWith" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .notStartsWith('foo');
+
+      expect(validator.validate('foo')).toBe('The input field must not start with "foo".');
+    });
+
+    test('with "notStartsWith" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .notStartsWithNumber();
+
+      expect(validator.validate('0')).toBe('The input field must not start with a number.');
     });
 
     test('with "notSubsetOf" rule', () => {
@@ -598,7 +619,14 @@ describe('FieldValidator', () => {
       const validator = new FieldValidator(defaultParams)
         .startsWith('foo');
 
-      expect(validator.validate('_')).toBe('The input field must start with foo.');
+      expect(validator.validate('_')).toBe('The input field must start with "foo".');
+    });
+
+    test('with "startsWithNumber" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .startsWithNumber();
+
+      expect(validator.validate('_')).toBe('The input field must start with a number.');
     });
 
     test('with "string" rule', () => {

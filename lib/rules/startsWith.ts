@@ -7,7 +7,7 @@ export interface StartsWithRuleArguments extends RuleArguments {
 
 const startsWithRule: Rule<StartsWithRuleArguments> = ({ value }) => (input: unknown) => {
   if (isEmpty(input)) return false;
-  return String(input).startsWith(value);
+  return String(input).toLowerCase().startsWith(value.toLowerCase());
 };
 
 export default startsWithRule;

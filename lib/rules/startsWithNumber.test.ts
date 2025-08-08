@@ -1,12 +1,12 @@
 import { describe, expect, test } from 'vitest';
-import startsWith from './startsWith';
+import startsWithNumber from './startsWithNumber';
 
-describe('Rule "startsWith"', () => {
-  const validate = startsWith({ value: 'foo' });
+describe('Rule "startsWithNumber"', () => {
+  const validate = startsWithNumber();
 
   test('should pass with valid input', () => {
-    expect(validate('foo_')).toBe(true);
-    expect(validate('FOO_')).toBe(true);
+    expect(validate('0')).toBe(true);
+    expect(validate('0.0')).toBe(true);
   });
 
   test('should fail with invalid input', () => {

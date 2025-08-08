@@ -87,7 +87,7 @@ const result = validator
 | `date` | Passes if the field's value matches the specified date format. |
 | `declined` | Passes if the field's value is considered declined (i.e., "n", "no", "off", "0", "false"). |
 | `different` | Passes if the field's value is different from the specified value in the given field. |
-| `distinct` | Passes if all the items in the array field's value are unique. |
+| `distinct` | Passes if the field's value contains only unique items. |
 | `domain` | Passes if the field's value is a valid domain. |
 | `email` | Passes if the field's value is a valid email address. |
 | `endsWith` | Passes if the field's value ends with the specified value. |
@@ -116,8 +116,11 @@ const result = validator
 | `lte` | Passes if the field's value is less than or equal to the specified value. |
 | `notContainsAll` | Passes if the field's value does not contain all of the specified values together. |
 | `notContainsAny` | Passes if the field's value does not contain any of the specified values. |
+| `notEndsWith` | Passes if the field's value does not end with the specified value. |
 | `notEquals` | Passes if the field's value is not equal to the specified value. |
 | `notOneOf` | Passes if the field's value is not one of the specified values. |
+| `notStartsWith` | Passes if the field's value does not start with the specified value. |
+| `notStartsWithNumber` | Passes if the field's value does not start with a number. |
 | `notSubsetOf` | Passes if the field's value is not a subset of the specified values. |
 | `number` | Passes if the field's value is a number. |
 | `numeric` | Passes if the field's value contains only numeric characters. |
@@ -130,6 +133,7 @@ const result = validator
 | `same` | Passes if the field's value is the same as the specified value in the given field. |
 | `size` | Passes if the field's value matches the specified size. |
 | `startsWith` | Passes if the field's value starts with the specified value. |
+| `startsWithNumber` | Passes if the field's value starts with a number. |
 | `string` | Passes if the field's value is a string. |
 | `stringContainsAll` | Passes if the field's value contains all of the specified text. |
 | `stringContainsAny` | Passes if the field's value contains at least one of the specified text. |
@@ -142,7 +146,7 @@ const result = validator
 | `stringNotContainsAll` | Passes if the field's value does not contain all of the specified text together. |
 | `stringNotContainsAny` | Passes if the field's value does not contain any of the specified text. |
 | `subsetOf` | Passes if the field's value is a subset of the specified values. |
-| `unique` | Passes if the field's value contains only unique items, with optional ignored values. |
+| `unique` | Passes if the field's value does not exist in the provided values. |
 | `uppercase` | Passes if the field's value contains only uppercase characters. |
 | `url` | Passes if the field's value is a valid URL. |
 

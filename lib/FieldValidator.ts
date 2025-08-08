@@ -283,7 +283,7 @@ class FieldValidator {
   }
 
   /**
-   * Passes if all the items in the array field's value are unique.
+   * Passes if the field's value contains only unique items.
    */
   public distinct(): this {
     return this.apply(this.distinct.name);
@@ -493,6 +493,13 @@ class FieldValidator {
   }
 
   /**
+   * Passes if the field's value does not end with the specified value.
+   */
+  public notEndsWith(value: string): this {
+    return this.apply(this.notEndsWith.name, { value });
+  }
+
+  /**
    * Passes if the field's value is not equal to the specified value.
    */
   public notEquals(value: unknown): this {
@@ -504,6 +511,20 @@ class FieldValidator {
    */
   public notOneOf(values: string[]): this {
     return this.apply(this.notOneOf.name, { values });
+  }
+
+  /**
+   * Passes if the field's value does not start with the specified value.
+   */
+  public notStartsWith(value: string): this {
+    return this.apply(this.notStartsWith.name, { value });
+  }
+
+  /**
+   * Passes if the field's value does not start with a number.
+   */
+  public notStartsWithNumber(): this {
+    return this.apply(this.notStartsWithNumber.name);
   }
 
   /**
@@ -595,6 +616,13 @@ class FieldValidator {
   }
 
   /**
+   * Passes if the field's value starts with a number.
+   */
+  public startsWithNumber(): this {
+    return this.apply(this.startsWithNumber.name);
+  }
+
+  /**
    * Passes if the field's value is a string.
    */
   public string(): this {
@@ -679,7 +707,7 @@ class FieldValidator {
   }
 
   /**
-   * Passes if the field's value contains only unique items, with optional ignored values.
+   * Passes if the field's value does not exist in the provided values.
    */
   public unique(values: string[], ignored: unknown[] | unknown = []): this {
     return this.apply(this.unique.name, { values, ignored });

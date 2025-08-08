@@ -6,6 +6,7 @@ describe('Rule "endsWith"', () => {
 
   test('should pass with valid input', () => {
     expect(validate('_foo')).toBe(true);
+    expect(validate('_FOO')).toBe(true);
   });
 
   test('should fail with invalid input', () => {

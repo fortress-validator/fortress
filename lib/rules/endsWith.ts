@@ -7,7 +7,7 @@ export interface EndsWithRuleArguments extends RuleArguments {
 
 const endsWithRule: Rule<EndsWithRuleArguments> = ({ value }) => (input: unknown) => {
   if (isEmpty(input)) return false;
-  return String(input).endsWith(value);
+  return String(input).toLowerCase().endsWith(value.toLowerCase());
 };
 
 export default endsWithRule;

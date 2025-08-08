@@ -45,8 +45,11 @@ import lt from './lt';
 import lte from './lte';
 import notContainsAll from './notContainsAll';
 import notContainsAny from './notContainsAny';
+import notEndsWithRule from './notEndsWith';
 import notEquals from './notEquals';
 import notOneOf from './notOneOf';
+import notStartsWith from './notStartsWith';
+import notStartsWithNumber from './notStartsWithNumber';
 import notSubsetOf from './notSubsetOf';
 import number from './number';
 import numeric from './numeric';
@@ -58,6 +61,7 @@ import required from './required';
 import same from './same';
 import size from './size';
 import startsWith from './startsWith';
+import startsWithNumber from './startsWithNumber';
 import string from './string';
 import stringContainsAll from './stringContainsAll';
 import stringContainsAny from './stringContainsAny';
@@ -121,8 +125,11 @@ const rules: Rules = {
   lte: lte as Rule<unknown>,
   notContainsAll: notContainsAll as Rule<unknown>,
   notContainsAny: notContainsAny as Rule<unknown>,
+  notEndsWith: notEndsWithRule as Rule<unknown>,
   notEquals: notEquals as Rule<unknown>,
   notOneOf: notOneOf as Rule<unknown>,
+  notStartsWith: notStartsWith as Rule<unknown>,
+  notStartsWithNumber: notStartsWithNumber as Rule<unknown>,
   notSubsetOf: notSubsetOf as Rule<unknown>,
   number: number as Rule<unknown>,
   numeric: numeric as Rule<unknown>,
@@ -134,6 +141,7 @@ const rules: Rules = {
   same: same as Rule<unknown>,
   size: size as Rule<unknown>,
   startsWith: startsWith as Rule<unknown>,
+  startsWithNumber: startsWithNumber as Rule<unknown>,
   string: string as Rule<unknown>,
   stringContainsAll: stringContainsAll as Rule<unknown>,
   stringContainsAny: stringContainsAny as Rule<unknown>,
