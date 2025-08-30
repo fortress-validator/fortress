@@ -5,29 +5,24 @@ import { describe, expect, test } from 'vitest';
 import FormValidator from './FormValidator';
 
 describe('FormValidator', () => {
-  describe('should return', () => {
+  describe('should apply', () => {
     test('the locale', () => {
       const validator = new FormValidator()
         .setLocale('zh-TW');
 
       expect(validator.getLocale()).toBe('zh-TW');
+      expect(validator.getFallbackLocale()).toBe('en');
+      expect(validator.defineField('Input').required().validate('')).toBe('此欄位為必填');
     });
 
     test('the fallback locale', () => {
       const validator = new FormValidator()
+        .setLocale('ko')
         .setFallbackLocale('zh-TW');
 
+      expect(validator.getLocale()).toBe('ko');
       expect(validator.getFallbackLocale()).toBe('zh-TW');
-    });
-  });
-
-  describe('should throw', () => {
-    test('an error for a non-existent default locale', () => {
-      expect(() => new FormValidator({ locale: 'ko' })).toThrowError('The "ko" locale is not registered.');
-    });
-
-    test('an error for a non-existent fallback locale', () => {
-      expect(() => new FormValidator({ fallbackLocale: 'ko' })).toThrowError('The "ko" fallback locale is not registered.');
+      expect(validator.defineField('Input').required().validate('')).toBe('此欄位為必填');
     });
   });
 

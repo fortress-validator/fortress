@@ -35,7 +35,7 @@ class FormValidator {
 
   public setLocale(locale: string): this {
     if (!(locale in this.locales)) {
-      throw new Error(`The "${locale}" locale is not registered.`);
+      console.error(`The "${locale}" locale is not registered.`);
     }
     this.locale = locale;
     return this;
@@ -43,7 +43,7 @@ class FormValidator {
 
   public setFallbackLocale(locale: string): this {
     if (!(locale in this.locales)) {
-      throw new Error(`The "${locale}" fallback locale is not registered.`);
+      console.error(`The "${locale}" fallback locale is not registered.`);
     }
     this.fallbackLocale = locale;
     return this;
