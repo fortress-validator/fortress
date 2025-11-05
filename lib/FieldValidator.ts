@@ -1,5 +1,5 @@
 import type { Locales, Message, Messages, Rule, RuleArguments, RuleFunction, Rules } from '@fortress-validator/types';
-import { formatMessage, getType, isEmpty } from '@fortress-validator/utils';
+import { getType, isEmpty } from '@fortress-validator/utils';
 import type { Conditions, FieldValidatorArguments } from './types';
 
 class FieldValidator {
@@ -85,9 +85,9 @@ class FieldValidator {
       if (!(inputType in message)) {
         throw new Error(`The message for the "${ruleName}" rule of the "${inputType}" type is missing.`);
       }
-      return formatMessage(message[inputType]);
+      return message[inputType];
     }
-    return formatMessage(message);
+    return message;
   }
 
   private pushRuleFunction(ruleName: string, args: RuleArguments): this {

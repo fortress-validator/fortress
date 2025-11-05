@@ -14,7 +14,7 @@
     "release": "npm run test && npm run build && npm publish --access public"
   },
   "dependencies": {
-    "@fortress-validator/utils": "^1.0.3"
+    "@fortress-validator/utils": "^1.0.4"
   },
   "peerDependencies": {
     "@fortress-validator/plugin-date": "^1.0.3",

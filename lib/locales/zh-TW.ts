@@ -59,40 +59,40 @@ const zhTW: Messages = {
   array: () => '此欄位必須是一個陣列',
   arrayLength: (_, args) => {
     const { length } = args as ArrayLengthRuleArguments;
-    return `此欄位必須是${formatNumber(length)}個項目`;
+    return `此欄位必須是 ${formatNumber(length)} 個項目`;
   },
   arrayLengthBetween: (_, args) => {
     const { min, max } = args as ArrayLengthBetweenRuleArguments;
-    return `此欄位必須介於${formatNumber(min)}到${formatNumber(max)}個項目之間`;
+    return `此欄位必須介於 ${formatNumber(min)} 到 ${formatNumber(max)} 個項目之間`;
   },
   arrayLengthGt: (_, args) => {
     const { length } = args as ArrayLengthGtRuleArguments;
-    return `此欄位必須大於${formatNumber(length)}個項目`;
+    return `此欄位必須大於 ${formatNumber(length)} 個項目`;
   },
   arrayLengthGte: (_, args) => {
     const { length } = args as ArrayLengthGteRuleArguments;
-    return `此欄位必須大於或等於${formatNumber(length)}個項目`;
+    return `此欄位必須大於或等於 ${formatNumber(length)} 個項目`;
   },
   arrayLengthLt: (_, args) => {
     const { length } = args as ArrayLengthLtRuleArguments;
-    return `此欄位必須小於${formatNumber(length)}個項目`;
+    return `此欄位必須小於 ${formatNumber(length)} 個項目`;
   },
   arrayLengthLte: (_, args) => {
     const { length } = args as ArrayLengthLteRuleArguments;
-    return `此欄位必須小於或等於${formatNumber(length)}個項目`;
+    return `此欄位必須小於或等於 ${formatNumber(length)} 個項目`;
   },
   ascii: () => '此欄位只能包含 ASCII 字元和符號',
   between: (_, args) => {
     const { min, max } = args as BetweenRuleArguments;
     return {
-      number: `此欄位必須介於${formatNumber(min)}到${formatNumber(max)}`,
-      array: `此欄位中的每個項目都必須介於${formatNumber(min)}到${formatNumber(max)}`,
+      number: `此欄位必須介於 ${formatNumber(min)} 到 ${formatNumber(max)}`,
+      array: `此欄位中的每個項目都必須介於 ${formatNumber(min)} 到 ${formatNumber(max)}`,
     };
   },
   boolean: () => '此欄位必須是一個布林值',
   contains: (_, args) => {
     const { value } = args as ContainsRuleArguments;
-    return `此欄位必須包含${quote(value)}`;
+    return `此欄位必須包含 ${quote(value)}`;
   },
   containsAll: (_, args) => {
     const { values } = args as ContainsAllRuleArguments;
@@ -112,7 +112,7 @@ const zhTW: Messages = {
   email: () => '此欄位必須是有效的電子郵件地址',
   endsWith: (_, args) => {
     const { value } = args as EndsWithRuleArguments;
-    return `此欄位必須以${quote(value)}結尾`;
+    return `此欄位必須以 ${quote(value)} 結尾`;
   },
   equals: (_, args) => {
     const { value } = args as EqualsRuleArguments;
@@ -122,57 +122,57 @@ const zhTW: Messages = {
   fileSize: (_, args) => {
     const { size } = args as FileSizeRuleArguments;
     return {
-      file: `此欄位必須是${formatNumber(size)} KB`,
-      array: `此欄位中的每個項目都必須是${formatNumber(size)} KB`,
+      file: `此欄位必須是 ${formatNumber(size)} KB`,
+      array: `此欄位中的每個項目都必須是 ${formatNumber(size)} KB`,
     };
   },
   fileSizeBetween: (_, args) => {
     const { min, max } = args as FileSizeBetweenRuleArguments;
     return {
-      file: `此欄位必須介於${formatNumber(min)}到${formatNumber(max)} KB 之間`,
-      array: `此欄位中的每個項目都必須介於${formatNumber(min)}到${formatNumber(max)} KB 之間`,
+      file: `此欄位必須介於 ${formatNumber(min)} 到 ${formatNumber(max)} KB 之間`,
+      array: `此欄位中的每個項目都必須介於 ${formatNumber(min)} 到 ${formatNumber(max)} KB 之間`,
     };
   },
   fileSizeGt: (_, args) => {
     const { size } = args as FileSizeGtRuleArguments;
     return {
-      file: `此欄位必須大於${formatNumber(size)} KB`,
-      array: `此欄位中的每個項目都必須大於${formatNumber(size)} KB`,
+      file: `此欄位必須大於 ${formatNumber(size)} KB`,
+      array: `此欄位中的每個項目都必須大於 ${formatNumber(size)} KB`,
     };
   },
   fileSizeGte: (_, args) => {
     const { size } = args as FileSizeGteRuleArguments;
     return {
-      file: `此欄位必須大於或等於${formatNumber(size)} KB`,
-      array: `此欄位中的每個項目都必須大於或等於${formatNumber(size)} KB`,
+      file: `此欄位必須大於或等於 ${formatNumber(size)} KB`,
+      array: `此欄位中的每個項目都必須大於或等於 ${formatNumber(size)} KB`,
     };
   },
   fileSizeLt: (_, args) => {
     const { size } = args as FileSizeLtRuleArguments;
     return {
-      file: `此欄位必須小於${formatNumber(size)} KB`,
-      array: `此欄位中的每個項目都必須小於${formatNumber(size)} KB`,
+      file: `此欄位必須小於 ${formatNumber(size)} KB`,
+      array: `此欄位中的每個項目都必須小於 ${formatNumber(size)} KB`,
     };
   },
   fileSizeLte: (_, args) => {
     const { size } = args as FileSizeLteRuleArguments;
     return {
-      file: `此欄位必須小於或等於${formatNumber(size)} KB`,
-      array: `此欄位中的每個項目都必須小於或等於${formatNumber(size)} KB`,
+      file: `此欄位必須小於或等於 ${formatNumber(size)} KB`,
+      array: `此欄位中的每個項目都必須小於或等於 ${formatNumber(size)} KB`,
     };
   },
   gt: (_, args) => {
     const { value } = args as GtRuleArguments;
     return {
-      number: `此欄位必須大於${formatNumber(value)}`,
-      array: `此欄位中的每個項目都必須大於${formatNumber(value)}`,
+      number: `此欄位必須大於 ${formatNumber(value)}`,
+      array: `此欄位中的每個項目都必須大於 ${formatNumber(value)}`,
     };
   },
   gte: (_, args) => {
     const { value } = args as GteRuleArguments;
     return {
-      number: `此欄位必須大於或等於${formatNumber(value)}`,
-      array: `此欄位中的每個項目都必須大於或等於${formatNumber(value)}`,
+      number: `此欄位必須大於或等於 ${formatNumber(value)}`,
+      array: `此欄位中的每個項目都必須大於或等於 ${formatNumber(value)}`,
     };
   },
   http: () => `此欄位必須以 "http://" 協議開頭`,
@@ -187,20 +187,20 @@ const zhTW: Messages = {
   lt: (_, args) => {
     const { value } = args as LtRuleArguments;
     return {
-      number: `此欄位必須小於${formatNumber(value)}`,
-      array: `此欄位中的每個項目都必須小於${formatNumber(value)}`,
+      number: `此欄位必須小於 ${formatNumber(value)}`,
+      array: `此欄位中的每個項目都必須小於 ${formatNumber(value)}`,
     };
   },
   lte: (_, args) => {
     const { value } = args as LteRuleArguments;
     return {
-      number: `此欄位必須小於或等於${formatNumber(value)}`,
-      array: `此欄位中的每個項目都必須小於或等於${formatNumber(value)}`,
+      number: `此欄位必須小於或等於 ${formatNumber(value)}`,
+      array: `此欄位中的每個項目都必須小於或等於 ${formatNumber(value)}`,
     };
   },
   notContains: (_, args) => {
     const { values } = args as NotContainsRuleArguments;
-    return `此欄位不能包含${quote(values)}`;
+    return `此欄位不能包含 ${quote(values)}`;
   },
   notContainsAll: (_, args) => {
     const { values } = args as NotContainsAllRuleArguments;
@@ -212,7 +212,7 @@ const zhTW: Messages = {
   },
   notEndsWith: (_, args) => {
     const { value } = args as NotEndsWithRuleArguments;
-    return `此欄位不能以${quote(value)}結尾`;
+    return `此欄位不能以 ${quote(value)} 結尾`;
   },
   notEquals: (_, args) => {
     const { value } = args as NotEqualsRuleArguments;
@@ -224,7 +224,7 @@ const zhTW: Messages = {
   },
   notStartsWith: (_, args) => {
     const { value } = args as NotStartsWithRuleArguments;
-    return `此欄位不能以${quote(value)}開頭`;
+    return `此欄位不能以 ${quote(value)} 開頭`;
   },
   notStartsWithNumber: () => '此欄位不能以數字開頭',
   notSubsetOf: (_, args) => {
@@ -255,19 +255,19 @@ const zhTW: Messages = {
   size: (_, args) => {
     const { size } = args as SizeRuleArguments;
     return {
-      number: `此欄位必須是${formatNumber(size)}`,
-      array: `此欄位中的每個項目都必須是${formatNumber(size)}`,
+      number: `此欄位必須是 ${formatNumber(size)}`,
+      array: `此欄位中的每個項目都必須是 ${formatNumber(size)}`,
     };
   },
   startsWith: (_, args) => {
     const { value } = args as StartsWithRuleArguments;
-    return `此欄位必須以${quote(value)}開頭`;
+    return `此欄位必須以 ${quote(value)} 開頭`;
   },
   startsWithNumber: () => '此欄位必須以數字開頭',
   string: () => '此欄位必須是字串',
   stringContains: (_, args) => {
     const { value } = args as StringContainsRuleArguments;
-    return `此欄位必須包含${quote(value)}`;
+    return `此欄位必須包含 ${quote(value)}`;
   },
   stringContainsAll: (_, args) => {
     const { values } = args as StringContainsAllRuleArguments;
@@ -280,48 +280,48 @@ const zhTW: Messages = {
   stringLength: (_, args) => {
     const { length } = args as StringLengthRuleArguments;
     return {
-      string: `此欄位必須是${formatNumber(length)}個字元`,
-      array: `此欄位中的每個項目都必須是${formatNumber(length)}個字元`,
+      string: `此欄位必須是 ${formatNumber(length)} 個字元`,
+      array: `此欄位中的每個項目都必須是 ${formatNumber(length)} 個字元`,
     };
   },
   stringLengthBetween: (_, args) => {
     const { min, max } = args as StringLengthBetweenRuleArguments;
     return {
-      string: `此欄位必須介於${formatNumber(min)}到${formatNumber(max)}個字元之間`,
-      array: `此欄位中的每個項目都必須介於${formatNumber(min)}到${formatNumber(max)}個字元之間`,
+      string: `此欄位必須介於 ${formatNumber(min)} 到 ${formatNumber(max)} 個字元之間`,
+      array: `此欄位中的每個項目都必須介於 ${formatNumber(min)} 到 ${formatNumber(max)} 個字元之間`,
     };
   },
   stringLengthGt: (_, args) => {
     const { length } = args as StringLengthGtRuleArguments;
     return {
-      string: `此欄位必須大於${formatNumber(length)}個字元`,
-      array: `此欄位中的每個項目都必須大於${formatNumber(length)}個字元`,
+      string: `此欄位必須大於 ${formatNumber(length)} 個字元`,
+      array: `此欄位中的每個項目都必須大於 ${formatNumber(length)} 個字元`,
     };
   },
   stringLengthGte: (_, args) => {
     const { length } = args as StringLengthGteRuleArguments;
     return {
-      string: `此欄位必須大於或等於${formatNumber(length)}個字元`,
-      array: `此欄位中的每個項目都必須大於或等於${formatNumber(length)}個字元`,
+      string: `此欄位必須大於或等於 ${formatNumber(length)} 個字元`,
+      array: `此欄位中的每個項目都必須大於或等於 ${formatNumber(length)} 個字元`,
     };
   },
   stringLengthLt: (_, args) => {
     const { length } = args as StringLengthLtRuleArguments;
     return {
-      string: `此欄位必須小於${formatNumber(length)}個字元`,
-      array: `此欄位中的每個項目都必須小於${formatNumber(length)}個字元`,
+      string: `此欄位必須小於 ${formatNumber(length)} 個字元`,
+      array: `此欄位中的每個項目都必須小於 ${formatNumber(length)} 個字元`,
     };
   },
   stringLengthLte: (_, args) => {
     const { length } = args as StringLengthLteRuleArguments;
     return {
-      string: `此欄位必須小於或等於${formatNumber(length)}個字元`,
-      array: `此欄位中的每個項目都必須小於或等於${formatNumber(length)}個字元`,
+      string: `此欄位必須小於或等於 ${formatNumber(length)} 個字元`,
+      array: `此欄位中的每個項目都必須小於或等於 ${formatNumber(length)} 個字元`,
     };
   },
   stringNotContains: (_, args) => {
     const { value } = args as StringNotContainsRuleArguments;
-    return `此欄位不能包含${quote(value)}`;
+    return `此欄位不能包含 ${quote(value)}`;
   },
   stringNotContainsAll: (_, args) => {
     const { values } = args as StringNotContainsAllRuleArguments;
