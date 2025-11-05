@@ -7,6 +7,7 @@ import type { ArrayLengthGteRuleArguments } from '~/rules/arrayLengthGte';
 import type { ArrayLengthLtRuleArguments } from '~/rules/arrayLengthLt';
 import type { ArrayLengthLteRuleArguments } from '~/rules/arrayLengthLte';
 import type { BetweenRuleArguments } from '~/rules/between';
+import type { ContainsRuleArguments } from '~/rules/contains';
 import type { ContainsAllRuleArguments } from '~/rules/containsAll';
 import type { ContainsAnyRuleArguments } from '~/rules/containsAny';
 import type { DifferentRuleArguments } from '~/rules/different';
@@ -22,6 +23,7 @@ import type { GtRuleArguments } from '~/rules/gt';
 import type { GteRuleArguments } from '~/rules/gte';
 import type { LtRuleArguments } from '~/rules/lt';
 import type { LteRuleArguments } from '~/rules/lte';
+import type { NotContainsRuleArguments } from '~/rules/notContains';
 import type { NotContainsAllRuleArguments } from '~/rules/notContainsAll';
 import type { NotContainsAnyRuleArguments } from '~/rules/notContainsAny';
 import type { NotEndsWithRuleArguments } from '~/rules/notEndsWith';
@@ -34,6 +36,7 @@ import type { ProtocolRuleArguments } from '~/rules/protocol';
 import type { SameRuleArguments } from '~/rules/same';
 import type { SizeRuleArguments } from '~/rules/size';
 import type { StartsWithRuleArguments } from '~/rules/startsWith';
+import type { StringContainsRuleArguments } from '~/rules/stringContains';
 import type { StringContainsAllRuleArguments } from '~/rules/stringContainsAll';
 import type { StringContainsAnyRuleArguments } from '~/rules/stringContainsAny';
 import type { StringLengthRuleArguments } from '~/rules/stringLength';
@@ -42,6 +45,7 @@ import type { StringLengthGtRuleArguments } from '~/rules/stringLengthGt';
 import type { StringLengthGteRuleArguments } from '~/rules/stringLengthGte';
 import type { StringLengthLtRuleArguments } from '~/rules/stringLengthLt';
 import type { StringLengthLteRuleArguments } from '~/rules/stringLengthLte';
+import type { StringNotContainsRuleArguments } from '~/rules/stringNotContains';
 import type { StringNotContainsAllRuleArguments } from '~/rules/stringNotContainsAll';
 import type { StringNotContainsAnyRuleArguments } from '~/rules/stringNotContainsAny';
 import type { SubsetOfRuleArguments } from '~/rules/subsetOf';
@@ -69,13 +73,13 @@ const en: Messages = {
     const { length } = args as ArrayLengthGteRuleArguments;
     return `The ${field} field must be greater than or equal to ${formatNumber(length)} items.`;
   },
-  arrayLengthLte: (field, args) => {
-    const { length } = args as ArrayLengthLteRuleArguments;
-    return `The ${field} field must be less than or equal to ${formatNumber(length)} items.`;
-  },
   arrayLengthLt: (field, args) => {
     const { length } = args as ArrayLengthLtRuleArguments;
     return `The ${field} field must be less than ${formatNumber(length)} items.`;
+  },
+  arrayLengthLte: (field, args) => {
+    const { length } = args as ArrayLengthLteRuleArguments;
+    return `The ${field} field must be less than or equal to ${formatNumber(length)} items.`;
   },
   ascii: field => `The ${field} field must only contain ASCII characters and symbols.`,
   between: (field, args) => {
@@ -86,6 +90,10 @@ const en: Messages = {
     };
   },
   boolean: field => `The ${field} field must be a boolean value.`,
+  contains: (field, args) => {
+    const { value } = args as ContainsRuleArguments;
+    return `The ${field} field must contain ${quote(value)}.`;
+  },
   containsAll: (field, args) => {
     const { values } = args as ContainsAllRuleArguments;
     return `The ${field} field must contain all of the following values: ${values.map(quote).join(', ')}.`;
@@ -111,6 +119,13 @@ const en: Messages = {
     return `The ${field} field must be equal to ${value}.`;
   },
   file: field => `The ${field} field must be a file.`,
+  fileSize: (field, args) => {
+    const { size } = args as FileSizeRuleArguments;
+    return {
+      file: `The ${field} field must be ${formatNumber(size)} kilobytes.`,
+      array: `The ${field} field must contain items where each item is ${formatNumber(size)} kilobytes.`,
+    };
+  },
   fileSizeBetween: (field, args) => {
     const { min, max } = args as FileSizeBetweenRuleArguments;
     return {
@@ -146,11 +161,18 @@ const en: Messages = {
       array: `The ${field} field must contain items where each item is less than or equal to ${formatNumber(size)} kilobytes.`,
     };
   },
-  fileSize: (field, args) => {
-    const { size } = args as FileSizeRuleArguments;
+  gt: (field, args) => {
+    const { value } = args as GtRuleArguments;
     return {
-      file: `The ${field} field must be ${formatNumber(size)} kilobytes.`,
-      array: `The ${field} field must contain items where each item is ${formatNumber(size)} kilobytes.`,
+      number: `The ${field} field must be greater than ${formatNumber(value)}.`,
+      array: `The ${field} field must contain items where each item is greater than ${formatNumber(value)}.`,
+    };
+  },
+  gte: (field, args) => {
+    const { value } = args as GteRuleArguments;
+    return {
+      number: `The ${field} field must be greater than or equal to ${formatNumber(value)}.`,
+      array: `The ${field} field must contain items where each item is greater than or equal to ${formatNumber(value)}.`,
     };
   },
   http: field => `The ${field} field must start with the "http://" protocol.`,
@@ -176,31 +198,21 @@ const en: Messages = {
       array: `The ${field} field must contain items where each item is less than or equal to ${formatNumber(value)}.`,
     };
   },
-  gt: (field, args) => {
-    const { value } = args as GtRuleArguments;
-    return {
-      number: `The ${field} field must be greater than ${formatNumber(value)}.`,
-      array: `The ${field} field must contain items where each item is greater than ${formatNumber(value)}.`,
-    };
-  },
-  gte: (field, args) => {
-    const { value } = args as GteRuleArguments;
-    return {
-      number: `The ${field} field must be greater than or equal to ${formatNumber(value)}.`,
-      array: `The ${field} field must contain items where each item is greater than or equal to ${formatNumber(value)}.`,
-    };
+  notContains: (field, args) => {
+    const { value } = args as NotContainsRuleArguments;
+    return `The ${field} field must not contain ${quote(value)}.`;
   },
   notContainsAll: (field, args) => {
     const { values } = args as NotContainsAllRuleArguments;
     return `The ${field} field must not contain all of the following values together: ${values.map(quote).join(', ')}.`;
   },
-  notEndsWith: (field, args) => {
-    const { value } = args as NotEndsWithRuleArguments;
-    return `The ${field} field must not end with ${quote(value)}.`;
-  },
   notContainsAny: (field, args) => {
     const { values } = args as NotContainsAnyRuleArguments;
     return `The ${field} field must not contain any of the following values: ${values.map(quote).join(', ')}.`;
+  },
+  notEndsWith: (field, args) => {
+    const { value } = args as NotEndsWithRuleArguments;
+    return `The ${field} field must not end with ${quote(value)}.`;
   },
   notEquals: (field, args) => {
     const { value } = args as NotEqualsRuleArguments;
@@ -253,6 +265,10 @@ const en: Messages = {
   },
   startsWithNumber: field => `The ${field} field must start with a number.`,
   string: field => `The ${field} field must be a string.`,
+  stringContains: (field, args) => {
+    const { value } = args as StringContainsRuleArguments;
+    return `The ${field} field must contain ${quote(value)}.`;
+  },
   stringContainsAll: (field, args) => {
     const { values } = args as StringContainsAllRuleArguments;
     return `The ${field} field must contain all of the following text: ${values.map(quote).join(', ')}.`;
@@ -302,6 +318,10 @@ const en: Messages = {
       string: `The ${field} field must be less than or equal to ${formatNumber(length)} characters.`,
       array: `The ${field} field must contain items where each item is less than or equal to ${formatNumber(length)} characters.`,
     };
+  },
+  stringNotContains: (field, args) => {
+    const { value } = args as StringNotContainsRuleArguments;
+    return `The ${field} field must not contain ${quote(value)}.`;
   },
   stringNotContainsAll: (field, args) => {
     const { values } = args as StringNotContainsAllRuleArguments;

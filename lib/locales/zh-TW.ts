@@ -7,6 +7,7 @@ import type { ArrayLengthGteRuleArguments } from '~/rules/arrayLengthGte';
 import type { ArrayLengthLtRuleArguments } from '~/rules/arrayLengthLt';
 import type { ArrayLengthLteRuleArguments } from '~/rules/arrayLengthLte';
 import type { BetweenRuleArguments } from '~/rules/between';
+import type { ContainsRuleArguments } from '~/rules/contains';
 import type { ContainsAllRuleArguments } from '~/rules/containsAll';
 import type { ContainsAnyRuleArguments } from '~/rules/containsAny';
 import type { DifferentRuleArguments } from '~/rules/different';
@@ -22,6 +23,7 @@ import type { GtRuleArguments } from '~/rules/gt';
 import type { GteRuleArguments } from '~/rules/gte';
 import type { LtRuleArguments } from '~/rules/lt';
 import type { LteRuleArguments } from '~/rules/lte';
+import type { NotContainsRuleArguments } from '~/rules/notContains';
 import type { NotContainsAllRuleArguments } from '~/rules/notContainsAll';
 import type { NotContainsAnyRuleArguments } from '~/rules/notContainsAny';
 import type { NotEndsWithRuleArguments } from '~/rules/notEndsWith';
@@ -34,6 +36,7 @@ import type { ProtocolRuleArguments } from '~/rules/protocol';
 import type { SameRuleArguments } from '~/rules/same';
 import type { SizeRuleArguments } from '~/rules/size';
 import type { StartsWithRuleArguments } from '~/rules/startsWith';
+import type { StringContainsRuleArguments } from '~/rules/stringContains';
 import type { StringContainsAllRuleArguments } from '~/rules/stringContainsAll';
 import type { StringContainsAnyRuleArguments } from '~/rules/stringContainsAny';
 import type { StringLengthRuleArguments } from '~/rules/stringLength';
@@ -42,6 +45,7 @@ import type { StringLengthGtRuleArguments } from '~/rules/stringLengthGt';
 import type { StringLengthGteRuleArguments } from '~/rules/stringLengthGte';
 import type { StringLengthLtRuleArguments } from '~/rules/stringLengthLt';
 import type { StringLengthLteRuleArguments } from '~/rules/stringLengthLte';
+import type { StringNotContainsRuleArguments } from '~/rules/stringNotContains';
 import type { StringNotContainsAllRuleArguments } from '~/rules/stringNotContainsAll';
 import type { StringNotContainsAnyRuleArguments } from '~/rules/stringNotContainsAny';
 import type { SubsetOfRuleArguments } from '~/rules/subsetOf';
@@ -86,6 +90,10 @@ const zhTW: Messages = {
     };
   },
   boolean: () => '此欄位必須是一個布林值',
+  contains: (_, args) => {
+    const { value } = args as ContainsRuleArguments;
+    return `此欄位必須包含${quote(value)}`;
+  },
   containsAll: (_, args) => {
     const { values } = args as ContainsAllRuleArguments;
     return `此欄位必須包含以下所有項目：${values.map(quote).join(', ')}`;
@@ -190,17 +198,21 @@ const zhTW: Messages = {
       array: `此欄位中的每個項目都必須小於或等於${formatNumber(value)}`,
     };
   },
+  notContains: (_, args) => {
+    const { values } = args as NotContainsRuleArguments;
+    return `此欄位不能包含${quote(values)}`;
+  },
   notContainsAll: (_, args) => {
     const { values } = args as NotContainsAllRuleArguments;
     return `此欄位不能同時包含以下所有值：${values.map(quote).join(', ')}`;
   },
-  notEndsWith: (_, args) => {
-    const { value } = args as NotEndsWithRuleArguments;
-    return `此欄位不能以${quote(value)}結尾`;
-  },
   notContainsAny: (_, args) => {
     const { values } = args as NotContainsAnyRuleArguments;
     return `此欄位不能包含以下任何值：${values.map(quote).join(', ')}`;
+  },
+  notEndsWith: (_, args) => {
+    const { value } = args as NotEndsWithRuleArguments;
+    return `此欄位不能以${quote(value)}結尾`;
   },
   notEquals: (_, args) => {
     const { value } = args as NotEqualsRuleArguments;
@@ -253,6 +265,10 @@ const zhTW: Messages = {
   },
   startsWithNumber: () => '此欄位必須以數字開頭',
   string: () => '此欄位必須是字串',
+  stringContains: (_, args) => {
+    const { value } = args as StringContainsRuleArguments;
+    return `此欄位必須包含${quote(value)}`;
+  },
   stringContainsAll: (_, args) => {
     const { values } = args as StringContainsAllRuleArguments;
     return `此欄位必須包含以下所有文字：${values.map(quote).join(', ')}`;
@@ -302,6 +318,10 @@ const zhTW: Messages = {
       string: `此欄位必須小於或等於${formatNumber(length)}個字元`,
       array: `此欄位中的每個項目都必須小於或等於${formatNumber(length)}個字元`,
     };
+  },
+  stringNotContains: (_, args) => {
+    const { value } = args as StringNotContainsRuleArguments;
+    return `此欄位不能包含${quote(value)}`;
   },
   stringNotContainsAll: (_, args) => {
     const { values } = args as StringNotContainsAllRuleArguments;

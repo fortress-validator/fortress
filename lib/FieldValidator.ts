@@ -248,6 +248,13 @@ class FieldValidator {
   }
 
   /**
+   * Passes if the field's value contains the specified value.
+   */
+  public contains(value: unknown): this {
+    return this.apply(this.contains.name, { value });
+  }
+
+  /**
    * Passes if the field's value contains all of the specified values.
    */
   public containsAll(values: unknown[]): this {
@@ -479,6 +486,13 @@ class FieldValidator {
   }
 
   /**
+   * Passes if the field's value does not contain the specified value.
+   */
+  public notContains(value: unknown): this {
+    return this.apply(this.notContains.name, { value });
+  }
+
+  /**
    * Passes if the field's value does not contain all of the specified values together.
    */
   public notContainsAll(values: unknown[]): this {
@@ -630,6 +644,13 @@ class FieldValidator {
   }
 
   /**
+   * Passes if the field's value contains the specified text.
+   */
+  public stringContains(value: string): this {
+    return this.apply(this.stringContains.name, { value });
+  }
+
+  /**
    * Passes if the field's value contains all of the specified text.
    */
   public stringContainsAll(values: string[]): this {
@@ -683,6 +704,13 @@ class FieldValidator {
    */
   public stringLengthLte(length: number): this {
     return this.apply(this.stringLengthLte.name, { length });
+  }
+
+  /**
+   * Passes if the field's value does not contain the specified text.
+   */
+  public stringNotContains(value: string): this {
+    return this.apply(this.stringNotContains.name, { value });
   }
 
   /**

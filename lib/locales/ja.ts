@@ -7,6 +7,7 @@ import type { ArrayLengthGteRuleArguments } from '~/rules/arrayLengthGte';
 import type { ArrayLengthLtRuleArguments } from '~/rules/arrayLengthLt';
 import type { ArrayLengthLteRuleArguments } from '~/rules/arrayLengthLte';
 import type { BetweenRuleArguments } from '~/rules/between';
+import type { ContainsRuleArguments } from '~/rules/contains';
 import type { ContainsAllRuleArguments } from '~/rules/containsAll';
 import type { ContainsAnyRuleArguments } from '~/rules/containsAny';
 import type { DifferentRuleArguments } from '~/rules/different';
@@ -22,16 +23,20 @@ import type { GtRuleArguments } from '~/rules/gt';
 import type { GteRuleArguments } from '~/rules/gte';
 import type { LtRuleArguments } from '~/rules/lt';
 import type { LteRuleArguments } from '~/rules/lte';
+import type { NotContainsRuleArguments } from '~/rules/notContains';
 import type { NotContainsAllRuleArguments } from '~/rules/notContainsAll';
 import type { NotContainsAnyRuleArguments } from '~/rules/notContainsAny';
+import type { NotEndsWithRuleArguments } from '~/rules/notEndsWith';
 import type { NotEqualsRuleArguments } from '~/rules/notEquals';
 import type { NotOneOfRuleArguments } from '~/rules/notOneOf';
+import type { NotStartsWithRuleArguments } from '~/rules/notStartsWith';
 import type { NotSubsetOfRuleArguments } from '~/rules/notSubsetOf';
 import type { OneOfRuleArguments } from '~/rules/oneOf';
 import type { ProtocolRuleArguments } from '~/rules/protocol';
 import type { SameRuleArguments } from '~/rules/same';
 import type { SizeRuleArguments } from '~/rules/size';
 import type { StartsWithRuleArguments } from '~/rules/startsWith';
+import type { StringContainsRuleArguments } from '~/rules/stringContains';
 import type { StringContainsAllRuleArguments } from '~/rules/stringContainsAll';
 import type { StringContainsAnyRuleArguments } from '~/rules/stringContainsAny';
 import type { StringLengthRuleArguments } from '~/rules/stringLength';
@@ -40,6 +45,7 @@ import type { StringLengthGtRuleArguments } from '~/rules/stringLengthGt';
 import type { StringLengthGteRuleArguments } from '~/rules/stringLengthGte';
 import type { StringLengthLtRuleArguments } from '~/rules/stringLengthLt';
 import type { StringLengthLteRuleArguments } from '~/rules/stringLengthLte';
+import type { StringNotContainsRuleArguments } from '~/rules/stringNotContains';
 import type { StringNotContainsAllRuleArguments } from '~/rules/stringNotContainsAll';
 import type { StringNotContainsAnyRuleArguments } from '~/rules/stringNotContainsAny';
 import type { SubsetOfRuleArguments } from '~/rules/subsetOf';
@@ -84,6 +90,10 @@ const ja: Messages = {
     };
   },
   boolean: () => 'このフィールドはブール値である必要があります',
+  contains: (_, args) => {
+    const { value } = args as ContainsRuleArguments;
+    return `このフィールドは${quote(value)}を含む必要があります`;
+  },
   containsAll: (_, args) => {
     const { values } = args as ContainsAllRuleArguments;
     return `このフィールドは以下のすべての項目を含む必要があります：${values.map(quote).join(', ')}`;
@@ -188,6 +198,10 @@ const ja: Messages = {
       array: `このフィールドの各項目は${formatNumber(value)}以下である必要があります`,
     };
   },
+  notContains: (_, args) => {
+    const { values } = args as NotContainsRuleArguments;
+    return `このフィールドは${quote(values)}を含むことはできません`;
+  },
   notContainsAll: (_, args) => {
     const { values } = args as NotContainsAllRuleArguments;
     return `このフィールドは以下のすべての値を同時に含むことはできません：${values.map(quote).join(', ')}`;
@@ -195,6 +209,10 @@ const ja: Messages = {
   notContainsAny: (_, args) => {
     const { values } = args as NotContainsAnyRuleArguments;
     return `このフィールドは以下のいずれの値も含むことはできません：${values.map(quote).join(', ')}`;
+  },
+  notEndsWith: (_, args) => {
+    const { value } = args as NotEndsWithRuleArguments;
+    return `このフィールドは${quote(value)}で終わることはできません`;
   },
   notEquals: (_, args) => {
     const { value } = args as NotEqualsRuleArguments;
@@ -204,6 +222,11 @@ const ja: Messages = {
     const { values } = args as NotOneOfRuleArguments;
     return `このフィールドは以下のいずれの値であってはなりません：${values.map(quote).join(', ')}`;
   },
+  notStartsWith: (_, args) => {
+    const { value } = args as NotStartsWithRuleArguments;
+    return `このフィールドは${quote(value)}で始まってはなりません`;
+  },
+  notStartsWithNumber: () => 'このフィールドは数字で始まってはなりません',
   notSubsetOf: (_, args) => {
     const { values } = args as NotSubsetOfRuleArguments;
     return `このフィールドは以下の項目のサブセットであってはなりません：${values.map(quote).join(', ')}`;
@@ -240,7 +263,12 @@ const ja: Messages = {
     const { value } = args as StartsWithRuleArguments;
     return `このフィールドは${value}で始まる必要があります`;
   },
+  startsWithNumber: () => 'このフィールドは数字で始まる必要があります',
   string: () => 'このフィールドは文字列である必要があります',
+  stringContains: (_, args) => {
+    const { value } = args as StringContainsRuleArguments;
+    return `このフィールドは${quote(value)}を含む必要があります`;
+  },
   stringContainsAll: (_, args) => {
     const { values } = args as StringContainsAllRuleArguments;
     return `このフィールドは以下のすべてのテキストを含む必要があります：${values.map(quote).join(', ')}`;
@@ -290,6 +318,10 @@ const ja: Messages = {
       string: `このフィールドは${formatNumber(length)}文字以下である必要があります`,
       array: `このフィールドの各項目は${formatNumber(length)}文字以下である必要があります`,
     };
+  },
+  stringNotContains: (_, args) => {
+    const { value } = args as StringNotContainsRuleArguments;
+    return `このフィールドは${quote(value)}を含むことはできません`;
   },
   stringNotContainsAll: (_, args) => {
     const { values } = args as StringNotContainsAllRuleArguments;

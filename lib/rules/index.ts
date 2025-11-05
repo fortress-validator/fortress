@@ -14,6 +14,7 @@ import arrayLengthLte from './arrayLengthLte';
 import ascii from './ascii';
 import between from './between';
 import boolean from './boolean';
+import contains from './contains';
 import containsAll from './containsAll';
 import containsAny from './containsAny';
 import declined from './declined';
@@ -43,9 +44,10 @@ import json from './json';
 import lowercase from './lowercase';
 import lt from './lt';
 import lte from './lte';
+import notContains from './notContains';
 import notContainsAll from './notContainsAll';
 import notContainsAny from './notContainsAny';
-import notEndsWithRule from './notEndsWith';
+import notEndsWith from './notEndsWith';
 import notEquals from './notEquals';
 import notOneOf from './notOneOf';
 import notStartsWith from './notStartsWith';
@@ -63,6 +65,7 @@ import size from './size';
 import startsWith from './startsWith';
 import startsWithNumber from './startsWithNumber';
 import string from './string';
+import stringContains from './stringContains';
 import stringContainsAll from './stringContainsAll';
 import stringContainsAny from './stringContainsAny';
 import stringLength from './stringLength';
@@ -71,6 +74,7 @@ import stringLengthGt from './stringLengthGt';
 import stringLengthGte from './stringLengthGte';
 import stringLengthLt from './stringLengthLt';
 import stringLengthLte from './stringLengthLte';
+import stringNotContains from './stringNotContains';
 import stringNotContainsAll from './stringNotContainsAll';
 import stringNotContainsAny from './stringNotContainsAny';
 import subsetOf from './subsetOf';
@@ -94,6 +98,7 @@ const rules: Rules = {
   ascii: ascii as Rule<unknown>,
   between: between as Rule<unknown>,
   boolean: boolean as Rule<unknown>,
+  contains: contains as Rule<unknown>,
   containsAll: containsAll as Rule<unknown>,
   containsAny: containsAny as Rule<unknown>,
   declined: declined as Rule<unknown>,
@@ -123,9 +128,10 @@ const rules: Rules = {
   lowercase: lowercase as Rule<unknown>,
   lt: lt as Rule<unknown>,
   lte: lte as Rule<unknown>,
+  notContains: notContains as Rule<unknown>,
   notContainsAll: notContainsAll as Rule<unknown>,
   notContainsAny: notContainsAny as Rule<unknown>,
-  notEndsWith: notEndsWithRule as Rule<unknown>,
+  notEndsWith: notEndsWith as Rule<unknown>,
   notEquals: notEquals as Rule<unknown>,
   notOneOf: notOneOf as Rule<unknown>,
   notStartsWith: notStartsWith as Rule<unknown>,
@@ -143,6 +149,7 @@ const rules: Rules = {
   startsWith: startsWith as Rule<unknown>,
   startsWithNumber: startsWithNumber as Rule<unknown>,
   string: string as Rule<unknown>,
+  stringContains: stringContains as Rule<unknown>,
   stringContainsAll: stringContainsAll as Rule<unknown>,
   stringContainsAny: stringContainsAny as Rule<unknown>,
   stringLength: stringLength as Rule<unknown>,
@@ -151,6 +158,7 @@ const rules: Rules = {
   stringLengthGte: stringLengthGte as Rule<unknown>,
   stringLengthLt: stringLengthLt as Rule<unknown>,
   stringLengthLte: stringLengthLte as Rule<unknown>,
+  stringNotContains: stringNotContains as Rule<unknown>,
   stringNotContainsAll: stringNotContainsAll as Rule<unknown>,
   stringNotContainsAny: stringNotContainsAny as Rule<unknown>,
   subsetOf: subsetOf as Rule<unknown>,

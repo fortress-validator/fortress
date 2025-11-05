@@ -82,6 +82,7 @@ const result = validator
 | `before` | Passes if the field's value is a date that occurs before the specified date. |
 | `between` | Passes if the field's value is between the specified minimum and maximum values. |
 | `boolean` | Passes if the field's value is a boolean. |
+| `contains` | Passes if the field's value contains the specified value. |
 | `containsAll` | Passes if the field's value contains all of the specified values. |
 | `containsAny` | Passes if the field's value contains at least one of the specified values. |
 | `date` | Passes if the field's value matches the specified date format. |
@@ -114,6 +115,7 @@ const result = validator
 | `lowercase` | Passes if the field's value contains only lowercase characters. |
 | `lt` | Passes if the field's value is less than the specified value. |
 | `lte` | Passes if the field's value is less than or equal to the specified value. |
+| `notContains` | Passes if the field's value does not contain the specified value. |
 | `notContainsAll` | Passes if the field's value does not contain all of the specified values together. |
 | `notContainsAny` | Passes if the field's value does not contain any of the specified values. |
 | `notEndsWith` | Passes if the field's value does not end with the specified value. |
@@ -135,6 +137,7 @@ const result = validator
 | `startsWith` | Passes if the field's value starts with the specified value. |
 | `startsWithNumber` | Passes if the field's value starts with a number. |
 | `string` | Passes if the field's value is a string. |
+| `stringContains` | Passes if the field's value contains the specified text. |
 | `stringContainsAll` | Passes if the field's value contains all of the specified text. |
 | `stringContainsAny` | Passes if the field's value contains at least one of the specified text. |
 | `stringLength` | Passes if the field's string length matches the specified string length. |
@@ -143,6 +146,7 @@ const result = validator
 | `stringLengthGte` | Passes if the field's string length is greater than or equal to the specified string length. |
 | `stringLengthLt` | Passes if the field's string length is less than the specified string length. |
 | `stringLengthLte` | Passes if the field's string length is less than or equal to the specified string length. |
+| `stringNotContains` | Passes if the field's value does not contain the specified text. |
 | `stringNotContainsAll` | Passes if the field's value does not contain all of the specified text together. |
 | `stringNotContainsAny` | Passes if the field's value does not contain any of the specified text. |
 | `subsetOf` | Passes if the field's value is a subset of the specified values. |

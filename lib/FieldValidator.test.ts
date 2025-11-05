@@ -176,6 +176,13 @@ describe('FieldValidator', () => {
       expect(validator.validate('foo')).toBe('The input field must be a boolean value.');
     });
 
+    test('with "contains" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .contains('foo');
+
+      expect(validator.validate(['bar'])).toBe('The input field must contain "foo".');
+    });
+
     test('with "containsAll" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .containsAll(['foo', 'bar']);
@@ -484,6 +491,13 @@ describe('FieldValidator', () => {
       expect(validator.validate(11)).toBe('The input field must be less than or equal to 10.');
     });
 
+    test('with "notContains" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .notContains('foo');
+
+      expect(validator.validate(['foo'])).toBe('The input field must not contain "foo".');
+    });
+
     test('with "notContainsAll" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .notContainsAll(['foo', 'bar']);
@@ -638,6 +652,13 @@ describe('FieldValidator', () => {
       expect(validator.validate([])).toBe('The input field must be a string.');
     });
 
+    test('with "stringContains" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .stringContains('foo');
+
+      expect(validator.validate('_bar_')).toBe('The input field must contain "foo".');
+    });
+
     test('with "stringContainsAll" rule', () => {
       const validator = new FieldValidator(defaultParams)
         .stringContainsAll(['foo', 'bar']);
@@ -693,6 +714,13 @@ describe('FieldValidator', () => {
         .stringLengthLte(10);
 
       expect(validator.validate('_'.repeat(11))).toBe('The input field must be less than or equal to 10 characters.');
+    });
+
+    test('with "stringNotContains" rule', () => {
+      const validator = new FieldValidator(defaultParams)
+        .stringNotContains('foo');
+
+      expect(validator.validate('_foo_')).toBe('The input field must not contain "foo".');
     });
 
     test('with "stringNotContainsAll" rule', () => {
