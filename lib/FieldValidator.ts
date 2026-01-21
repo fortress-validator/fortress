@@ -767,7 +767,7 @@ class FieldValidator {
    */
   public when(conditions: boolean | Conditions): this {
     if (typeof conditions === 'object') {
-      this.conditions = conditions;
+      this.conditions = { ...this.conditions, ...conditions };
       return this;
     }
     if (!conditions) {

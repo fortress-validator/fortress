@@ -800,6 +800,17 @@ describe('FieldValidator', () => {
       expect(validator.validate('@')).toBe('The input field must only contain letters, numbers, dashes and underscores.');
     });
 
+    test('with chained "when" conditions disabling specific rules', () => {
+      const validator = new FieldValidator(defaultParams)
+        .when({ required: false })
+        .when({ alphaDash: false })
+        .required()
+        .alphaDash();
+
+      expect(validator.validate(undefined)).toBe(true);
+      expect(validator.validate('@')).toBe(true);
+    });
+
     test('with "requiredWhen" set to true', () => {
       const validator = new FieldValidator(defaultParams)
         .requiredWhen(true)
