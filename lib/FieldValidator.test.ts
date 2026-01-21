@@ -62,7 +62,7 @@ describe('FieldValidator', () => {
         rules: defaultRules,
       });
 
-      expect(validator.getMessage('required')(validator.formattedName)).toBe('The input field is invalid.');
+      expect(validator.getMessage('required')(validator.formattedName)).toBe('The input field is required.');
     });
   });
 

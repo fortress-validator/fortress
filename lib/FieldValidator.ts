@@ -47,6 +47,10 @@ class FieldValidator {
     return this.locales[this.fallbackLocale] || {};
   }
 
+  public get defaultMessages(): Messages {
+    return this.locales.en;
+  }
+
   public get mandatoryRules(): string[] {
     return [
       this.required.name,
@@ -58,7 +62,10 @@ class FieldValidator {
   }
 
   public getMessage(ruleName: string): Message {
-    return this.messages[ruleName] || this.fallbackMessages[ruleName] || (field => `The ${field} field is invalid.`);
+    return this.messages[ruleName]
+      || this.fallbackMessages[ruleName]
+      || this.defaultMessages[ruleName]
+      || (field => `The ${field} field is invalid.`);
   }
 
   public getRule(name: string): Rule<unknown> {
